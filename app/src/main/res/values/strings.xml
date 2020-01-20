@@ -1,0 +1,125 @@
+<resources>
+    <string name="app_name">Abo100</string>
+    <string name="image">Image</string>
+    <string name="chat">Contact</string>
+    <string name="discounts">Discounts</string>
+    <string name="favorite">Favorites</string>
+    <string name="gifts">Gifts</string>
+    <string name="home">Home</string>
+    <string name="offers">Offers</string>
+    <string name="search">Search</string>
+    <string name="shopping_cart">Shopping cart</string>
+
+    <string name="or">OR</string>
+    <string name="email_here">Email</string>
+    <string name="pass">Password</string>
+    <string name="login">Log in</string>
+    <string name="forgot_pass">forgot password ??</string>
+    <string name="sign_up">Sign up</string>
+
+    <string name="conf_pass">Confirm Pass</string>
+    <string name="register">Register</string>
+    <string name="name">Name</string>
+    <string name="phone">Phone</string>
+
+    <string name="ok">OK</string>
+    <string name="connection_error">Connection error</string>
+    <string name="full_name">Name</string>
+    <string name="full_name_empty">Name is empty</string>
+    <string name="email_empty">Email is empty</string>
+    <string name="email_mobile_empty">Email or mobile field is empty</string>
+    <string name="password_empty">Password is empty</string>
+    <string name="confirm_password_empty">Confirm Password is empty</string>
+    <string name="password_doesnt_match">your passwords doesn\'t match</string>
+    <string name="forgot">Forgot</string>
+    <string name="google">Google+</string>
+    <string name="facebook">Facebook</string>
+    <string name="login_using_a_social_media_account">Login using a social media account</string>
+    <string name="welcome">Welcome</string>
+    <string name="verification_empty">Verification code is empty!</string>
+    <string name="phone_empty">Phone is empty</string>
+    <string name="please_enter_the_code_that_we_send_it_in_your_mobile">please, enter the code that we send it in your
+        mobile
+    </string>
+    <string name="send_code">Send Code</string>
+    <string name="reset_password_now">Reset password now</string>
+    <string name="password">Password</string>
+    <string name="conf_password">Confirm password</string>
+    <string name="change">Change</string>
+    <string name="password_invalid_error">Password must have upper and lower character and number min 8 chr max:255
+    </string>
+    <string name="email_doesnt_exist">Email doesn\'t exist</string>
+    <string name="filter">Filter</string>
+    <string name="sort_by">Sort by:</string>
+    <string name="low_price">Low price</string>
+    <string name="high_price">High price</string>
+    <string name="newest">Newest</string>
+    <string name="oldest">Oldest</string>
+    <string name="back">Back</string>
+    <string name="tab_text_unselected" translatable="false"><![CDATA[<font color="#EA1F22"><b>%s<b/></font><br/><font color="#575757">%s</font>]]></string>
+    <string name="tab_text_unselected_line" translatable="false"><![CDATA[<font color="#EA1F22"><b>%s<b/></font>]]></string>
+    <string name="tab_text_selected" translatable="false"><![CDATA[<font color="#ffffff"><b>%s<b/></font><br/><font color="#ffffff">%s</font>]]></string>
+    <string name="tab_text_selected_line" translatable="false"><![CDATA[<font color="#ffffff"><b>%s<b/></font>]]></string>
+    <string name="sizes">Sizes</string>
+    <string name="d_reviewers">%d reviewers</string>
+    <string name="description">Description:</string>
+    <string name="add_to_cart_s">Add to Cart (%.2f)</string>
+    <string name="buy_now_s">Buy Now (%.2f)</string>
+    <string name="remove">Remove</string>
+    <string name="add">Add</string>
+    <string name="s_kwd">%s KWD</string>
+    <string name="dis_s_kwd">Discount %s KWD</string>
+    <string name="cart">Cart</string>
+    <string name="total">Total</string>
+    <string name="no_items_found">No items found</string>
+    <string name="product_id_s">item code: %s</string>
+    <string name="order">Order</string>
+    <string name="messages">Messages</string>
+    <string name="address">Address</string>
+    <string name="governorate">Governorate</string>
+    <string name="governorateـr">Governorate *</string>
+    <string name="governorateـreq">Governorate is required</string>
+    <string name="area">Area</string>
+    <string name="area_r">Area *</string>
+    <string name="area_req">Area is required</string>
+    <string name="block">Block</string>
+    <string name="block_r">Block *</string>
+    <string name="block_req">Block is required</string>
+    <string name="street">Street</string>
+    <string name="street_r">Street *</string>
+    <string name="street_req">Street is required</string>
+    <string name="avenue">Avenue</string>
+    <string name="remark_address">Remark Address</string>
+    <string name="house_no">House No.</string>
+    <string name="cancel">Cancel</string>
+    <string name="edit_name">Edit name</string>
+    <string name="edit_s">Edit %s</string>
+    <string name="sign_out">Sign out</string>
+    <string name="skip">Skip</string>
+    <string name="change_language">Change Language</string>
+    <string name="message_content">Message Content</string>
+    <string name="message">Message</string>
+    <string name="add_promocode">Add Promocode</string>
+    <string name="send">Send</string>
+    <string name="select_color">Select Color</string>
+    <string name="products">Products</string>
+    <string name="account">Account</string>
+    <string name="confirm_bill">Confirm Bill</string>
+    <string name="thanks_for_using_abo100_application">Thanks for using Abo100 application</string>
+    <string name="sale">Sale</string>
+    <string name="subcode_s">SubCode: %s</string>
+    <string name="promo_code">Promo code</string>
+    <string name="done_copied">Done copied to clipboard</string>
+    <string name="you_have_a_gift">You have a gift:</string>
+    <string name="save">Save</string>
+    <string name="country">Country</string>
+    <string name="countryـr">Country *</string>
+    <string name="countryـreq">Country is required</string>
+    <string name="s_required">%s is required</string>
+    <string name="select_payment">Select Payment</string>
+    <string name="done">Done</string>
+    <string name="visa_knet">VISA / KNET</string>
+    <string name="cash">Cash</string>
+    <string name="select_at_least_one">Please select at least one cart item</string>
+
+</resources>

@@ -1,0 +1,537 @@
+{
+	"info": {
+		"_postman_id": "68dcec71-9f4f-4ed5-9c87-3f7986c6d443",
+		"name": "shop",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "lang",
+								"value": "ar",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "telephone",
+									"value": "01020104733",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456789",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{link}}/login",
+							"host": [
+								"{{link}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "lang",
+								"value": "ar",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Wael Serag",
+									"description": "Required",
+									"type": "text"
+								},
+								{
+									"key": "telephone",
+									"value": "0096551111111",
+									"description": "Required | example 0096551111111",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "waelserag1@gmail.com",
+									"description": "Required | Email Format",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456789",
+									"description": "Required | Min: 6",
+									"type": "text"
+								},
+								{
+									"key": "language",
+									"value": "Arabic",
+									"description": " Favourite Language",
+									"type": "text"
+								},
+								{
+									"key": "governmant",
+									"value": "Cairo",
+									"description": "City",
+									"type": "text"
+								},
+								{
+									"key": "area",
+									"value": "Nasr City",
+									"type": "text"
+								},
+								{
+									"key": "block",
+									"value": "Tyran ",
+									"type": "text"
+								},
+								{
+									"key": "street",
+									"value": "Tyran ST",
+									"type": "text"
+								},
+								{
+									"key": "avenue",
+									"value": "25",
+									"type": "text"
+								},
+								{
+									"key": "lat",
+									"value": "1.11111",
+									"description": "latitude",
+									"type": "text"
+								},
+								{
+									"key": "lon",
+									"value": "2.22222",
+									"description": "longitude",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{link}}/register",
+							"host": [
+								"{{link}}"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "Category",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "lang",
+								"value": "ar",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{link}}/category?",
+							"host": [
+								"{{link}}"
+							],
+							"path": [
+								"category"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "إلكترونيات",
+									"description": "example: إلكترونيات",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sub Category",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "lang",
+								"value": "ar",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{link}}/subcategory?",
+							"host": [
+								"{{link}}"
+							],
+							"path": [
+								"subcategory"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "حفلات التخرج",
+									"description": "example: حفلات التخرج",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Home Slider",
+			"item": [
+				{
+					"name": "Slider",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "lang",
+								"type": "text",
+								"value": "ar"
+							}
+						],
+						"url": {
+							"raw": "{{link}}/slider?",
+							"host": [
+								"{{link}}"
+							],
+							"path": [
+								"slider"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "إلكترونيات",
+									"description": "example: إلكترونيات",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Product (sort -search -details)",
+			"item": [
+				{
+					"name": "Product",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "lang",
+								"type": "text",
+								"value": "ar"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hcGkvbG9naW4iLCJpYXQiOjE1NjI4NjA3MzEsImV4cCI6MTU2MzUwODczMSwibmJmIjoxNTYyODYwNzMxLCJqdGkiOiJXaGhEUWVZcjE5c2xIRXI5In0.NZT9MQp1F9asj6gF_b0r5jBV4C1kNFcnmu8V4OTW_JE",
+								"description": "Not Required To Show Favourite Products",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{link}}/product?",
+							"host": [
+								"{{link}}"
+							],
+							"path": [
+								"product"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "منتج",
+									"description": "Not Required (Word in Name Of  Product)",
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": "price asc",
+									"description": "Not Required | price desc | price asc | date desc | date asc",
+									"disabled": true
+								},
+								{
+									"key": "category_id",
+									"value": "",
+									"description": "Not Required (ID Of Category)",
+									"disabled": true
+								},
+								{
+									"key": "subcategory_id",
+									"value": "51",
+									"description": "Not Required (ID Of SubCategory)",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Offer (sort -search -details) Copy",
+			"item": [
+				{
+					"name": "Offers",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "lang",
+								"type": "text",
+								"value": "ar"
+							}
+						],
+						"url": {
+							"raw": "{{link}}/offer",
+							"host": [
+								"{{link}}"
+							],
+							"path": [
+								"offer"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Wishlist",
+			"item": [
+				{
+					"name": "Wishlist",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "lang",
+								"type": "text",
+								"value": "ar"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hcGkvbG9naW4iLCJpYXQiOjE1NjI4NjA3MzEsImV4cCI6MTU2MzUwODczMSwibmJmIjoxNTYyODYwNzMxLCJqdGkiOiJXaGhEUWVZcjE5c2xIRXI5In0.NZT9MQp1F9asj6gF_b0r5jBV4C1kNFcnmu8V4OTW_JE",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{link}}/wishlist?",
+							"host": [
+								"{{link}}"
+							],
+							"path": [
+								"wishlist"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "www",
+									"description": "Not Required (Word in Name Of  Offer)",
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": "price desc",
+									"description": "Not Required | price desc | price asc",
+									"disabled": true
+								},
+								{
+									"key": "category_id",
+									"value": "1",
+									"description": "Not Required (ID Of Category)",
+									"disabled": true
+								},
+								{
+									"key": "subcategory_id",
+									"value": "1",
+									"description": "Not Required (ID Of SubCategory)",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add / Remove Wishlist",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "lang",
+								"type": "text",
+								"value": "ar"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hcGkvbG9naW4iLCJpYXQiOjE1NjI4NjA3MzEsImV4cCI6MTU2MzUwODczMSwibmJmIjoxNTYyODYwNzMxLCJqdGkiOiJXaGhEUWVZcjE5c2xIRXI5In0.NZT9MQp1F9asj6gF_b0r5jBV4C1kNFcnmu8V4OTW_JE",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{link}}/wishlist/action/4",
+							"host": [
+								"{{link}}"
+							],
+							"path": [
+								"wishlist",
+								"action",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Carts",
+			"item": [
+				{
+					"name": "Cart",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "lang",
+								"type": "text",
+								"value": "ar"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hcGkvbG9naW4iLCJpYXQiOjE1NjI4NjA3MzEsImV4cCI6MTU2MzUwODczMSwibmJmIjoxNTYyODYwNzMxLCJqdGkiOiJXaGhEUWVZcjE5c2xIRXI5In0.NZT9MQp1F9asj6gF_b0r5jBV4C1kNFcnmu8V4OTW_JE"
+							}
+						],
+						"url": {
+							"raw": "{{link}}/cart",
+							"host": [
+								"{{link}}"
+							],
+							"path": [
+								"cart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add / Edit Product",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "lang",
+								"type": "text",
+								"value": "ar"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hcGkvbG9naW4iLCJpYXQiOjE1NjI4NjA3MzEsImV4cCI6MTU2MzUwODczMSwibmJmIjoxNTYyODYwNzMxLCJqdGkiOiJXaGhEUWVZcjE5c2xIRXI5In0.NZT9MQp1F9asj6gF_b0r5jBV4C1kNFcnmu8V4OTW_JE",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "product_id",
+									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "quantity",
+									"value": "2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{link}}/cart/store",
+							"host": [
+								"{{link}}"
+							],
+							"path": [
+								"cart",
+								"store"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Product From Cart",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "lang",
+								"type": "text",
+								"value": "ar"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hcGkvbG9naW4iLCJpYXQiOjE1NjI4NjA3MzEsImV4cCI6MTU2MzUwODczMSwibmJmIjoxNTYyODYwNzMxLCJqdGkiOiJXaGhEUWVZcjE5c2xIRXI5In0.NZT9MQp1F9asj6gF_b0r5jBV4C1kNFcnmu8V4OTW_JE"
+							}
+						],
+						"url": {
+							"raw": "{{link}}/cart/delete/3",
+							"host": [
+								"{{link}}"
+							],
+							"path": [
+								"cart",
+								"delete",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

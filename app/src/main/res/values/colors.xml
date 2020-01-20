@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#EA1F22</color>
+    <color name="colorPrimaryDark">#EA1F22</color>
+    <color name="colorAccent">#EA1F22</color>
+    <color name="colorPrimaryTrans">#43A0A0A0</color>
+    <color name="whiteTrans">#66FFFFFF</color>
+    <color name="textColor">#2B2B2B</color>
+    <color name="gold">#FFD700</color>
+    <color name="gray">#EBEBEB</color>
+</resources>

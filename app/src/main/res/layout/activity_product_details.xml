@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:layoutDirection="ltr"
+            app:contentInsetEnd="0dp"
+            app:contentInsetStart="0dp"
+            app:navigationIcon="@drawable/back_button"
+            app:titleTextAppearance="@style/toolbarTextAppearance" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/pager"
+                    android:layout_width="match_parent"
+                    android:layout_height="400dp" />
+
+                <TextView
+                    android:id="@+id/productId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_margin="8dp"
+                    android:background="@android:color/darker_gray"
+                    android:padding="2dp"
+                    android:text="253"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/text_normal" />
+
+                <LinearLayout
+                    android:id="@+id/indicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="8dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="8dp" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/text_normal" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <androidx.appcompat.widget.AppCompatRatingBar
+                        android:id="@+id/ratingBar"
+                        style="@style/smallRatingBar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:rating="4.2"
+                        android:theme="@style/smallRatingBar" />
+
+                    <TextView
+                        android:id="@+id/reviewNo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:text="@string/d_reviewers"
+                        android:textColor="@android:color/black"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/priceOld"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/s_kwd"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/text_small_x"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/price"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/s_kwd"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/text_big"
+                        android:textStyle="bold" />
+
+                    <CheckBox
+                        android:id="@+id/favorite"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:button="@drawable/fav_button" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="@string/select_color"
+                    android:id="@+id/selectColor"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/text_normal" />
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/colorsTabLayout"
+                    style="@style/customTab2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="8dp"
+                    app:tabMode="scrollable" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="@string/sizes"
+                    android:id="@+id/sizesColor"
+                    android:textAllCaps="true"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/text_normal" />
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tabLayout"
+                    style="@style/customTab"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="32dp" />
+
+                <TextView
+                    android:id="@+id/subCode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="@string/subcode_s"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/text_normal"
+                    android:visibility="gone" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:id="@+id/remove"
+                        style="@style/Widget.AppCompat.Button.Borderless"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:contentDescription="@string/remove"
+                        android:src="@drawable/remove_drawable" />
+
+                    <TextView
+                        android:id="@+id/amount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1"
+                        android:textAllCaps="true"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/text_normal_x"
+                        android:textStyle="bold" />
+
+                    <ImageButton
+                        android:id="@+id/add"
+                        style="@style/Widget.AppCompat.Button.Borderless"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:contentDescription="@string/add"
+                        android:src="@drawable/add_drawable" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@android:color/darker_gray" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="100dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="4dp"
+                        android:text="@string/description"
+                        android:textAllCaps="true"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/text_normal"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/description"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world "
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/text_normal" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+    <LinearLayout
+        android:layout_gravity="bottom"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:padding="8dp"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:orientation="horizontal">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/addToCart"
+            style="@style/buttonCardStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/addToCartText"
+                style="@style/buttonText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/add_to_cart_s"
+                android:textSize="@dimen/text_normal" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/buyNow"
+            style="@style/buttonCardStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_weight="1"
+            app:cardBackgroundColor="@android:color/holo_blue_dark">
+
+            <TextView
+                android:id="@+id/buyNowText"
+                style="@style/buttonText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/buy_now_s"
+                android:textSize="@dimen/text_normal" />
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+    <include layout="@layout/progress_layout" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

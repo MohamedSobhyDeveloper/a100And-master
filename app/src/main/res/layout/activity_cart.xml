@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:layoutDirection="ltr"
+            app:contentInsetEnd="0dp"
+            app:contentInsetStart="0dp"
+            app:navigationIcon="@drawable/back_button"
+            app:title="@string/cart"
+            app:titleTextAppearance="@style/toolbarTextAppearance" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:orientation="vertical"
+        android:paddingBottom="200dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:orientation="horizontal">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/addPromo"
+            style="@style/buttonCardStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="8dp"
+            android:layout_weight="1"
+            app:cardBackgroundColor="@android:color/holo_blue_dark">
+
+            <TextView
+                style="@style/buttonText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/add_promocode"
+                android:textSize="@dimen/text_normal" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/order"
+            style="@style/buttonCardStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="24dp"
+            android:layout_weight="1">
+
+            <TextView
+                style="@style/buttonText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/order"
+                android:textSize="@dimen/text_normal" />
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+    <include layout="@layout/progress_layout" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

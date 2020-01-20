@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:gravity="center_vertical">
+
+        <ImageButton
+            android:id="@+id/back"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/back"
+            android:src="@drawable/back_button" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/filter"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/text_big" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/sort_by"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/text_big" />
+
+            <RadioGroup
+                android:id="@+id/group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <RadioButton
+                    android:id="@+id/lowPrice"
+                    style="la"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:text="@string/low_price"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/text_normal" />
+
+                <RadioButton
+                    android:id="@+id/highPrice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:text="@string/high_price"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/text_normal" />
+
+                <RadioButton
+                    android:id="@+id/newest"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:text="@string/newest"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/text_normal" />
+
+                <RadioButton
+                    android:id="@+id/oldest"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:text="@string/oldest"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/text_normal" />
+            </RadioGroup>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

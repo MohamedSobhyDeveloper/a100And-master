@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.MainActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent">
+
+            <androidx.appcompat.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                android:background="@color/colorPrimary"
+                android:layoutDirection="ltr"
+                app:contentInsetEnd="0dp"
+                app:contentInsetStart="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:cardCornerRadius="16dp"
+                        app:cardElevation="0dp"
+                        app:cardUseCompatPadding="true">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/search"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@android:color/transparent"
+                            android:drawableStart="@drawable/search_grey"
+                            android:focusableInTouchMode="true"
+                            android:gravity="center_vertical"
+                            android:hint="@string/search"
+                            android:imeOptions="actionSearch"
+                            android:inputType="text"
+                            android:maxLines="1"
+                            android:paddingStart="16dp"
+                            android:paddingTop="8dp"
+                            android:paddingEnd="16dp"
+                            android:paddingBottom="8dp" />
+                    </androidx.cardview.widget.CardView>
+
+                    <ImageButton
+                        android:id="@+id/list"
+                        style="@style/Widget.AppCompat.Button.Borderless"
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/list_grey" />
+                </LinearLayout>
+            </androidx.appcompat.widget.Toolbar>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="?actionBarSize"
+                android:layoutDirection="ltr"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/home"
+                    style="@style/buttonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawableTop="@drawable/home_grey"
+                    android:text="@string/home" />
+
+                <Button
+                    android:id="@+id/favorite"
+                    style="@style/buttonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawableTop="@drawable/fav_red"
+                    android:text="@string/favorite" />
+
+                <Button
+                    android:id="@+id/offers"
+                    style="@style/buttonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawableTop="@drawable/diamond_blue_32"
+                    android:text="@string/offers" />
+
+                <Button
+                    android:id="@+id/cart"
+                    style="@style/buttonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawableTop="@drawable/cart_green"
+                    android:text="@string/shopping_cart"
+                    android:textSize="10sp" />
+
+            </LinearLayout>
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <FrameLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layoutDirection="ltr"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/account"
+                style="@style/buttonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/account_circle_grey"
+                android:text="@string/account" />
+
+            <Button
+                android:id="@+id/message"
+                style="@style/buttonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/chat_blue_32"
+                android:text="@string/chat" />
+
+            <Button
+                android:id="@+id/gift"
+                style="@style/buttonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/gift_grey"
+                android:text="@string/gifts" />
+
+            <Button
+                android:id="@+id/discounts"
+                style="@style/buttonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/discounts_grey"
+                android:text="@string/discounts" />
+
+        </LinearLayout>
+    </LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
