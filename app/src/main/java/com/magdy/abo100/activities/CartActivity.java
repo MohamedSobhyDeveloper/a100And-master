@@ -1,11 +1,14 @@
 package com.magdy.abo100.activities;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -15,6 +18,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.gson.Gson;
 import com.magdy.abo100.R;
 import com.magdy.abo100.adapters.CartAdapter;
@@ -61,6 +65,8 @@ public class CartActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
         ButterKnife.bind(this);
+
+
         toolbar.setNavigationOnClickListener(v -> onBackPressed());
         cartData = new Data();
         cartData.setCart(new ArrayList<>());
@@ -77,6 +83,8 @@ public class CartActivity extends BaseActivity {
 
             intent.putExtra(StaticMembers.CART,cartData);
             startActivityForResult(intent,ORDER_REQ);
+
+
         });
         addPromo.setOnClickListener(v -> {
             final AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
@@ -93,7 +101,11 @@ public class CartActivity extends BaseActivity {
             alertDialog.show();
         });
 
+
     }
+
+
+
 
     public void setPromo(String s) {
         progress.setVisibility(View.VISIBLE);
@@ -106,7 +118,7 @@ public class CartActivity extends BaseActivity {
                 if (response.isSuccessful()) {
                     result = response.body();
                     if (result != null) {
-                        StaticMembers.toastMessageShort(getBaseContext(), result.getMessage());
+                        StaticMembers.toastMessageSuccess(getBaseContext(), result.getMessage());
                         if (result.isStatus()) {
                             getCart();
                         }
@@ -119,7 +131,7 @@ public class CartActivity extends BaseActivity {
                             StaticMembers.checkLoginRequired(errorBody, CartActivity.this);
                             result = new Gson().fromJson(e, MessageResponse.class);
                             if (result != null && result.getMessage() != null)
-                                StaticMembers.toastMessageShort(getBaseContext(), result.getMessage());
+                                StaticMembers.toastMessageSuccess(getBaseContext(), result.getMessage());
                         }
                     } catch (Exception e) {
                         e.printStackTrace();

@@ -110,5 +110,14 @@
     <string name="governorateـreq">المحافظة مطلوبة</string>
     <string name="street_req">الشارع مطلوب</string>
     <string name="s_required">%s مطلوب</string>
+    <string name="select_payment">اختر طريقة الدفع</string>
+    <string name="done">دفع</string>
+    <string name="visa_knet">VISA / KNET</string>
+    <string name="cash">Cash</string>
+    <string name="select_at_least_one">اختر على الاقل عنصر واحد</string>
+    <string name="want_to_exit">هل تريد الخروج من التطبيق</string>
+    <string name="yes">نعم</string>
+    <string name="no">لا</string>
+    <string name="choose_payment_method">Choose Payment Method</string>
 
 </resources>

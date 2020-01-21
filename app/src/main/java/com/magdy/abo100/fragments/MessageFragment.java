@@ -88,7 +88,7 @@ public class MessageFragment extends DialogFragment {
                 if (response.isSuccessful()) {
                     result = response.body();
                     if (result != null) {
-                        StaticMembers.toastMessageShort(getContext(), result.getMessage());
+                        StaticMembers.toastMessageSuccess(getContext(), result.getMessage());
                         if (result.isStatus()) {
                             dismiss();
                         }
@@ -100,10 +100,10 @@ public class MessageFragment extends DialogFragment {
                         String e = errorBody.string();
                         StaticMembers.checkLoginRequired(errorBody, getContext());
                         result = new Gson().fromJson(e, MessageResponse.class);
-                        StaticMembers.toastMessageShort(getContext(), result.getMessage());
+                        StaticMembers.toastMessageFailed(getContext(), result.getMessage());
                     } catch (Exception e) {
                         e.printStackTrace();
-                        StaticMembers.toastMessageShort(getContext(), R.string.connection_error);
+                        StaticMembers.toastMessageFailed(getContext(), getActivity().getString(R.string.connection_error));
                     }
                 }
             }

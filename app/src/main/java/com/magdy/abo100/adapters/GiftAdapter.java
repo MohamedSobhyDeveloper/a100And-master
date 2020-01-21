@@ -47,7 +47,8 @@ public class GiftAdapter extends RecyclerView.Adapter<GiftAdapter.Holder> {
             ClipData clip = ClipData.newPlainText(context.getString(R.string.promo_code), item.getCode());
             assert clipboard != null;
             clipboard.setPrimaryClip(clip);
-            StaticMembers.toastMessageShort(context, R.string.done_copied);
+            StaticMembers.toastMessageSuccess(context, context.getString(R.string.done_copied));
+
         });
     }
 

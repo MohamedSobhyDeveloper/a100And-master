@@ -187,7 +187,7 @@ public class AccountFragment extends DialogFragment {
         if (defaultVal != null && defaultVal.equals(s))
             return;
         if (isReq && s.isEmpty()) {
-            StaticMembers.toastMessageShort(getContext(), String.format(Locale.getDefault(), getString(R.string.s_required), key));
+            StaticMembers.toastMessageInfo(getContext(), String.format(Locale.getDefault(), getString(R.string.s_required), key));
             return;
         }
         progress.setVisibility(View.VISIBLE);
@@ -206,7 +206,7 @@ public class AccountFragment extends DialogFragment {
                             PrefManager.getInstance(getContext()).setObject(StaticMembers.USER, result.getData().getUser());
                             updateUI();
                         }
-                        StaticMembers.toastMessageShort(getContext(), result.getMessage());
+                        StaticMembers.toastMessageSuccess(getContext(), result.getMessage());
                     }
                 } else {
                     StaticMembers.checkLoginRequired(response.errorBody(), getContext());

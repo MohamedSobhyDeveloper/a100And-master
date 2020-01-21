@@ -87,7 +87,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Holder
                     progress.setVisibility(View.GONE);
                     WishlistResponse result = response.body();
                     if (response.isSuccessful() && result != null) {
-                        //StaticMembers.toastMessageShort(context, result.getMessage());
+                        StaticMembers.toastMessageSuccess(context, result.getMessage());
                     } else {
                         buttonView.setChecked(!buttonView.isChecked());
                         try {
@@ -98,12 +98,12 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Holder
                             if (response.errorBody() != null) {
                                 errorLoginResponse = new GsonBuilder().create().fromJson(s, ErrorWishListResponse.class);
                                 if (errorLoginResponse != null) {
-                                    StaticMembers.toastMessageShort(context, errorLoginResponse.getMessage());
+                                    StaticMembers.toastMessageFailed(context, errorLoginResponse.getMessage());
                                 }
                             }
                         } catch (Exception e) {
                             e.printStackTrace();
-                            StaticMembers.toastMessageShort(getBaseContext(), R.string.connection_error);
+                            StaticMembers.toastMessageFailed(context, context.getString(R.string.connection_error));
                         }
                     }
                 }

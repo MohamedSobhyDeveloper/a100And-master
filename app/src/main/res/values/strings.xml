@@ -121,5 +121,9 @@
     <string name="visa_knet">VISA / KNET</string>
     <string name="cash">Cash</string>
     <string name="select_at_least_one">Please select at least one cart item</string>
+    <string name="want_to_exit">Want To Exit App</string>
+    <string name="yes">yes</string>
+    <string name="no">No</string>
+    <string name="choose_payment_method">Choose Payment Method</string>
 
 </resources>

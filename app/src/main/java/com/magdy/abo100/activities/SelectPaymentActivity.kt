@@ -46,7 +46,7 @@ class SelectPaymentActivity : BaseActivity() {
             }
         }
         if (noSelected) {
-            StaticMembers.toastMessageLong(this, getString(R.string.select_at_least_one))
+            StaticMembers.toastMessageInfo(this,getString(R.string.select_at_least_one))
             onBackPressed()
             return
         }
@@ -57,7 +57,7 @@ class SelectPaymentActivity : BaseActivity() {
                 progress.visibility = View.GONE
                 val result = response.body()
                 if (response.isSuccessful && result != null) {
-                    StaticMembers.toastMessageShort(baseContext, result.message)
+                    StaticMembers.toastMessageSuccess(baseContext, result.message)
                     setResult(Activity.RESULT_OK)
                     startActivity(Intent(this@SelectPaymentActivity, ConfirmBillActivity::class.java))
                     finish()

@@ -89,7 +89,7 @@ public class LogInActivity extends BaseActivity {
                     progress.setVisibility(View.GONE);
                     LoginResponse result = response.body();
                     if (response.isSuccessful() && result != null) {
-                        StaticMembers.toastMessageShort(getBaseContext(), result.getMessage());
+                        StaticMembers.toastMessageSuccess(getBaseContext(), result.getMessage());
                         PrefManager.getInstance(getBaseContext()).setAPIToken(result.getData().getToken());
                         PrefManager.getInstance(getBaseContext()).setObject(StaticMembers.USER, result.getData().getUser());
                         if (getIntent().getBooleanExtra(StaticMembers.ACTION, false))
@@ -102,12 +102,13 @@ public class LogInActivity extends BaseActivity {
                             if (response.errorBody() != null) {
                                 errorLoginResponse = new GsonBuilder().create().fromJson(response.errorBody().string(), ErrorLoginResponse.class);
                                 if (errorLoginResponse != null) {
-                                    StaticMembers.toastMessageShort(getBaseContext(), errorLoginResponse.getMessage());
+                                    StaticMembers.toastMessageFailed(getBaseContext(), errorLoginResponse.getMessage());
                                 }
                             }
                         } catch (Exception e) {
                             e.printStackTrace();
-                            StaticMembers.toastMessageShort(getBaseContext(), R.string.connection_error);
+                            StaticMembers.toastMessageFailed(LogInActivity.this, getString(R.string.connection_error));
+
                         }
                     }
                 }

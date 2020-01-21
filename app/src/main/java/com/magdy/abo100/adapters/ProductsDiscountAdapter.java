@@ -111,12 +111,12 @@ public class ProductsDiscountAdapter extends RecyclerView.Adapter<ProductsDiscou
                             if (response.errorBody() != null) {
                                 errorLoginResponse = new GsonBuilder().create().fromJson(s, ErrorWishListResponse.class);
                                 if (errorLoginResponse != null) {
-                                    StaticMembers.toastMessageShort(context, errorLoginResponse.getMessage());
+                                    StaticMembers.toastMessageFailed(context, errorLoginResponse.getMessage());
                                 }
                             }
                         } catch (Exception e) {
                             e.printStackTrace();
-                            StaticMembers.toastMessageShort(getBaseContext(), R.string.connection_error);
+                            StaticMembers.toastMessageFailed(getBaseContext(), context.getString(R.string.connection_error));
                         }
                     }
                 }

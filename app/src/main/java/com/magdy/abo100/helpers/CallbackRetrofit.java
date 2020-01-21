@@ -24,6 +24,6 @@ public abstract class CallbackRetrofit<T> implements Callback<T> {
     @Override
     public void onFailure(@NotNull Call<T> call, @NotNull Throwable t) {
         if (context != null)
-            StaticMembers.toastMessageShort(context, R.string.connection_error);
+            StaticMembers.toastMessageFailed(context,context.getString(R.string.connection_error));
     }
 }

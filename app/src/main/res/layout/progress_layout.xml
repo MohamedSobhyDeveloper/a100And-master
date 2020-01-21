@@ -6,12 +6,22 @@
     android:background="@color/colorPrimaryTrans"
     android:visibility="gone">
 
-    <ProgressBar
-        style="@style/myProgress"
-        android:layout_width="200dp"
+<!--    <ProgressBar-->
+<!--        style="@style/myProgress"-->
+<!--        android:layout_width="200dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_centerInParent="true"-->
+<!--        android:indeterminateOnly="true"-->
+<!--        android:scaleY="4"-->
+<!--        android:theme="@style/myProgress" />-->
+
+    <com.wang.avi.AVLoadingIndicatorView android:id="@+id/avi"
+        style="@style/AVLoadingIndicatorView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:indicatorColor="@color/colorPrimary"
         android:layout_centerInParent="true"
-        android:indeterminateOnly="true"
-        android:scaleY="4"
-        android:theme="@style/myProgress" />
+        app:indicatorName="BallPulseIndicator"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android" />
 </RelativeLayout>

@@ -78,7 +78,7 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.Hold
     }
 
     private void changeFavorite(int i, long id, CompoundButton buttonView) {
-        //progress.setVisibility(View.VISIBLE);
+        progress.setVisibility(View.VISIBLE);
         if (PrefManager.getInstance(context).getAPIToken().isEmpty()) {
             StaticMembers.openLogin(context);
         } else {
@@ -89,7 +89,7 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.Hold
                     progress.setVisibility(View.GONE);
                     WishlistResponse result = response.body();
                     if (response.isSuccessful() && result != null) {
-                        //StaticMembers.toastMessageShort(context, result.getMessage());
+                        StaticMembers.toastMessageSuccess(context, result.getMessage());
                         if (!buttonView.isChecked()) {
                             list.remove(i);
                             notifyItemRemoved(i);
@@ -105,12 +105,12 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.Hold
                             if (response.errorBody() != null) {
                                 errorLoginResponse = new GsonBuilder().create().fromJson(response.errorBody().string(), ErrorWishListResponse.class);
                                 if (errorLoginResponse != null) {
-                                    StaticMembers.toastMessageShort(context, errorLoginResponse.getMessage());
+                                    StaticMembers.toastMessageFailed(context, errorLoginResponse.getMessage());
                                 }
                             }
                         } catch (Exception e) {
                             e.printStackTrace();
-                            StaticMembers.toastMessageShort(context, R.string.connection_error);
+                            StaticMembers.toastMessageFailed(context, context.getString(R.string.connection_error));
                         }
                     }
                 }

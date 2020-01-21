@@ -19,7 +19,10 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.google.gson.GsonBuilder;
 import com.magdy.abo100.R;
 import com.magdy.abo100.activities.LogInActivity;
+import com.magdy.abo100.activities.SelectPaymentActivity;
 import com.magdy.abo100.models.login_models.ErrorLoginResponse;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -28,6 +31,7 @@ import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import es.dmoral.toasty.Toasty;
 import okhttp3.ResponseBody;
 
 public class StaticMembers {
@@ -227,41 +231,19 @@ public class StaticMembers {
     }
     //////////////////////Toasts/////////////////////
 
-    private static Toast toast;
 
-    public static void toastMessageShort(Context context, String messaage) {
-        if (toast != null)
-            toast.cancel();
-        toast = Toast.makeText(context, messaage, Toast.LENGTH_SHORT);
-        toast.show();
+    public static void toastMessageSuccess(Context context, String messaage) {
+        Toasty.success(context, messaage, Toast.LENGTH_SHORT, true).show();
+
     }
 
-    public static void toastMessageShort(Context context, int messaage) {
-        if (toast != null)
-            toast.cancel();
-        toast = Toast.makeText(context, messaage, Toast.LENGTH_SHORT);
-        toast.show();
+    public static void toastMessageFailed(Context context, String messaage) {
+        Toasty.error(context, messaage, Toast.LENGTH_SHORT, true).show();
+
     }
 
-    public static void toastMessageShort(Context context, CharSequence messaage) {
-        if (toast != null)
-            toast.cancel();
-        toast = Toast.makeText(context, messaage, Toast.LENGTH_SHORT);
-        toast.show();
-    }
-
-    public static void toastMessageLong(Context context, int messaage) {
-        if (toast != null)
-            toast.cancel();
-        toast = Toast.makeText(context, messaage, Toast.LENGTH_LONG);
-        toast.show();
-    }
-
-    public static void toastMessageLong(Context context, String messaage) {
-        if (toast != null)
-            toast.cancel();
-        toast = Toast.makeText(context, messaage, Toast.LENGTH_LONG);
-        toast.show();
+    public static void toastMessageInfo(Context context, String messaage) {
+        Toasty.info(context, messaage, Toast.LENGTH_SHORT, true).show();
     }
 
     public static boolean CheckTextInputEditText(TextInputEditText editText, final TextInputLayout textInputLayout, final String errorMessage) {
@@ -343,7 +325,10 @@ public class StaticMembers {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            StaticMembers.toastMessageShort(context, R.string.connection_error);
+            Toasty.error(context, R.string.connection_error, Toast.LENGTH_SHORT, true).show();
+
         }
     }
+
+
 }

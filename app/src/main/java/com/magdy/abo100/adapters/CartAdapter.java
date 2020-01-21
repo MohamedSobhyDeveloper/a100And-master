@@ -114,7 +114,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Holder> {
                     if (!response.isSuccessful()) {
                         restoreItem(cartItem, position);
                         if (!response.message().isEmpty())
-                            StaticMembers.toastMessageShort(activity, response.message());
+                            StaticMembers.toastMessageSuccess(activity, response.message());
                         StaticMembers.checkLoginRequired(response.errorBody(), activity);
                     } else activity.getCart();
                 }

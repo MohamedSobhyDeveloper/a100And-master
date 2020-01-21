@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -31,11 +32,20 @@
             android:layout_height="match_parent"
             android:gravity="center_horizontal"
             android:orientation="vertical">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/abo100"
+                android:layout_marginTop="@dimen/_5sdp"
+                tools:ignore="ContentDescription" />
+
 
             <RadioGroup
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="100dp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
                 android:layout_marginBottom="100dp"
                 android:padding="16dp">
 
@@ -62,7 +72,9 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/done"
                 style="@style/buttonCardStyle"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp">
 
@@ -72,6 +84,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="50dp"
                     android:layout_marginEnd="50dp"
+                    android:padding="@dimen/_10sdp"
                     android:gravity="center"
                     android:text="@string/done" />
             </androidx.cardview.widget.CardView>

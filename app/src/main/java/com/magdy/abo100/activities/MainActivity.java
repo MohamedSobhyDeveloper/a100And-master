@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.github.javiersantos.materialstyleddialogs.MaterialStyledDialog;
 import com.google.android.material.textfield.TextInputEditText;
 import com.magdy.abo100.R;
 import com.magdy.abo100.baseactivity.BaseActivity;
@@ -79,7 +80,22 @@ public class MainActivity extends BaseActivity {
         if (getSupportFragmentManager().findFragmentByTag(DIV) != null && !getIntent().getBooleanExtra(CAT, false))
             openFragment(SlidersFragment.getInstance(), SLIDER);
         else
-            finish();
+                new MaterialStyledDialog.Builder(this)
+                .setDescription(R.string.want_to_exit)
+                .setPositiveText(R.string.yes)
+                .setNegativeText(R.string.no)
+                .setIcon(R.mipmap.ic_launcher)
+                .setHeaderColor(R.color.colorPrimary)
+                .withDialogAnimation(true)
+                .withIconAnimation(true)
+                .onPositive((dialog, which) -> {
+                    dialog.dismiss();
+                    android.os.Process.killProcess(android.os.Process.myPid());
+                    System.exit(1);
+                    MainActivity.this.finish();
+
+                }).onNegative((dialog, which) -> dialog.dismiss())
+                .show();
     }
 
     private void openFragment(Fragment fragment, String tag) {

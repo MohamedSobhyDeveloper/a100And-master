@@ -173,14 +173,17 @@ public class ProductDetailsActivity extends BaseActivity {
                 view = LayoutInflater.from(this).inflate(R.layout.item_color_tab, null, false);
                 TextView textView = view.findViewById(R.id.text);
                 CardView cardView = view.findViewById(R.id.colorCard);
-                textView.setText(details.getColor().getCode());
-                if (details.getColor().getHastag().isEmpty()) {
-                    colorsTabLayout.setVisibility(View.GONE);
-                    selectColor.setVisibility(View.GONE);
-                } else
-                    cardView.setCardBackgroundColor(Color.parseColor("#" + details.getColor().getHastag()));
-                tab.setCustomView(view);
-                colorsTabLayout.addTab(tab);
+                          if (details.getColor()!=null){
+                              textView.setText(details.getColor().getCode()+"");
+                              if (details.getColor().getHastag().isEmpty()) {
+                                  colorsTabLayout.setVisibility(View.GONE);
+                                  selectColor.setVisibility(View.GONE);
+                              } else
+                                  cardView.setCardBackgroundColor(Color.parseColor("#" + details.getColor().getHastag()));
+                              tab.setCustomView(view);
+                              colorsTabLayout.addTab(tab);
+                          }
+
             }
             if (view != null) {
                 ViewGroup.LayoutParams params = view.getLayoutParams();
@@ -308,22 +311,30 @@ public class ProductDetailsActivity extends BaseActivity {
             });
 
         }
+        if (proDetails.getCount()!=null){
+            maxAmount = Integer.parseInt(proDetails.getCount());
+            if (amount > maxAmount)
+                amount = 1;
+        }
+        if (proDetails.getPrice()!=null){
+            priceOld.setText(String.format(Locale.getDefault(), getString(R.string.s_kwd), proDetails.getPrice()));
+            priceOld.setPaintFlags(priceOld.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+            price.setText(String.format(Locale.getDefault(), getString(R.string.s_kwd), proDetails.getPrice()));
+            actualPrice = proDetails.getPrice();
+        }
 
-        maxAmount = Integer.parseInt(proDetails.getCount());
-        if (amount > maxAmount)
-            amount = 1;
-        priceOld.setText(String.format(Locale.getDefault(), getString(R.string.s_kwd), proDetails.getPrice()));
-        priceOld.setPaintFlags(priceOld.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-        price.setText(String.format(Locale.getDefault(), getString(R.string.s_kwd), proDetails.getPrice()));
-        actualPrice = proDetails.getPrice();
+
         if (proDetails.getNewprice() != null) {
             price.setText(String.format(Locale.getDefault(), getString(R.string.s_kwd), proDetails.getNewprice()));
             priceOld.setVisibility(View.VISIBLE);
             actualPrice = proDetails.getNewprice();
         } else priceOld.setVisibility(View.GONE);
-        addToCartText.setText(String.format(Locale.getDefault(), getString(R.string.add_to_cart_s), Float.parseFloat(actualPrice) * amount));
-        buyNowText.setText(String.format(Locale.getDefault(), getString(R.string.buy_now_s), amount * Float.parseFloat(actualPrice)));
-        amountText.setText(String.format(Locale.getDefault(), "%d", amount));
+        if (actualPrice!=null){
+            addToCartText.setText(String.format(Locale.getDefault(), getString(R.string.add_to_cart_s), Float.parseFloat(actualPrice) * amount));
+            buyNowText.setText(String.format(Locale.getDefault(), getString(R.string.buy_now_s), amount * Float.parseFloat(actualPrice)));
+            amountText.setText(String.format(Locale.getDefault(), "%d", amount));
+        }
+
         if (amount < 2)
             remove.setEnabled(false);
         if (proDetails.getCount() != null)
@@ -359,7 +370,7 @@ public class ProductDetailsActivity extends BaseActivity {
     }
 
     private void changeCartItem(boolean buyNow) {
-        // progress.setVisibility(View.VISIBLE);
+         progress.setVisibility(View.VISIBLE);
         if (PrefManager.getInstance(getBaseContext()).getAPIToken().isEmpty()) {
             Intent intent = new Intent(getBaseContext(), LogInActivity.class);
             intent.putExtra(StaticMembers.ACTION, true);
@@ -383,7 +394,7 @@ public class ProductDetailsActivity extends BaseActivity {
                         StaticMembers.checkLoginRequired(response.errorBody(), getBaseContext());
 
                     } else if (response.body() != null) {
-                        StaticMembers.toastMessageShort(getBaseContext(), response.body().getMessage());
+                        StaticMembers.toastMessageSuccess(getBaseContext(), response.body().getMessage());
                         amountText.setText(String.format(Locale.getDefault(), "%d", amount));
                         if (buyNow)
                             startActivity(new Intent(getBaseContext(), CartActivity.class));
@@ -407,7 +418,7 @@ public class ProductDetailsActivity extends BaseActivity {
     }
 
     private void changeFavorite() {
-        //progress.setVisibility(View.VISIBLE);
+        progress.setVisibility(View.VISIBLE);
         if (PrefManager.getInstance(getBaseContext()).getAPIToken().isEmpty()) {
             StaticMembers.openLogin(this);
         } else {
@@ -418,7 +429,7 @@ public class ProductDetailsActivity extends BaseActivity {
                     progress.setVisibility(View.GONE);
                     WishlistResponse result = response.body();
                     if (response.isSuccessful() && result != null) {
-                        // StaticMembers.toastMessageShort(getBaseContext(), result.getMessage());
+                         StaticMembers.toastMessageSuccess(getBaseContext(), result.getMessage());
                     } else {
                         favorite.setChecked(!favorite.isChecked());
                         try {
@@ -429,12 +440,12 @@ public class ProductDetailsActivity extends BaseActivity {
                             if (response.errorBody() != null) {
                                 errorLoginResponse = new GsonBuilder().create().fromJson(s, ErrorWishListResponse.class);
                                 if (errorLoginResponse != null) {
-                                    StaticMembers.toastMessageShort(getBaseContext(), errorLoginResponse.getMessage());
+                                    StaticMembers.toastMessageFailed(getBaseContext(), errorLoginResponse.getMessage());
                                 }
                             }
                         } catch (Exception e) {
                             e.printStackTrace();
-                            StaticMembers.toastMessageShort(getBaseContext(), R.string.connection_error);
+                            StaticMembers.toastMessageFailed(getBaseContext(),getString(R.string.connection_error));
                         }
 
 
