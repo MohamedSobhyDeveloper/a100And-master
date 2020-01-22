@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">أبو100</string>
+    <string name="app_name">Pazar</string>
     <string name="account">الحساب</string>
     <string name="chat">تواصل</string>
     <string name="discounts">تخفيضات</string>
@@ -10,6 +10,9 @@
     <string name="offers">العروض</string>
     <string name="search">بحث</string>
     <string name="shopping_cart">سلة تسوق</string>
+    <string name="home_">الصفحة الرئيسية</string>
+    <string name="favorite_">صفحة المفضلة</string>
+    <string name="offers_">صفحة العروض</string>
     <string name="image">صورة</string>
 
     <string name="or">أو</string>
@@ -70,9 +73,9 @@
     <string name="cart">سلة المشتريات</string>
     <string name="add_promocode">اضافة بروموكود</string>
     <string name="address">العنوان</string>
-    <string name="area">منطقة</string>
-    <string name="avenue">طريق</string>
-    <string name="block">عمارة</string>
+    <string name="area">المنطقة</string>
+    <string name="avenue">الجادة</string>
+    <string name="block">القطعة</string>
     <string name="cancel">إلغاء</string>
     <string name="change_language">تغيير اللغة</string>
     <string name="confirm_bill">تأكيد الفاتورة</string>
@@ -86,8 +89,8 @@
     <string name="send">ارسال</string>
     <string name="sign_out">"تسجيل خروج "</string>
     <string name="skip">تخطي</string>
-    <string name="street">شارع</string>
-    <string name="thanks_for_using_abo100_application">شكرًا لاستخدام تطبيق ابو100</string>
+    <string name="street">الشارع</string>
+    <string name="thanks_for_using_abo100_application">شكرًا لاستخدام تطبيق بازار</string>
     <string name="edit_s">تعديل %s</string>
     <string name="done_copied">تم النسخ إلى الحافظة</string>
     <string name="promo_code">كود خصم</string>
@@ -98,8 +101,8 @@
     <string name="remark_address">علامة مميزة</string>
     <string name="house_no">رقم المنزل</string>
     <string name="save">حفظ</string>
-    <string name="country">بلد</string>
-    <string name="countryـr">بلد *</string>
+    <string name="country">الدولة</string>
+    <string name="countryـr">الدولة *</string>
     <string name="area_r">منطقة *</string>
     <string name="block_r">عمارة *</string>
     <string name="governorateـr">المحافظة *</string>

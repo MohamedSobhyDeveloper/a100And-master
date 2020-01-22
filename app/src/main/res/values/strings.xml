@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Abo100</string>
+    <string name="app_name">Pazar</string>
     <string name="image">Image</string>
     <string name="chat">Contact</string>
     <string name="discounts">Discounts</string>
@@ -9,7 +9,9 @@
     <string name="offers">Offers</string>
     <string name="search">Search</string>
     <string name="shopping_cart">Shopping cart</string>
-
+    <string name="home_">Home</string>
+    <string name="favorite_">Favorites</string>
+    <string name="offers_">Offers</string>
     <string name="or">OR</string>
     <string name="email_here">Email</string>
     <string name="pass">Password</string>
@@ -105,7 +107,7 @@
     <string name="products">Products</string>
     <string name="account">Account</string>
     <string name="confirm_bill">Confirm Bill</string>
-    <string name="thanks_for_using_abo100_application">Thanks for using Abo100 application</string>
+    <string name="thanks_for_using_abo100_application">Thanks for using Pazar application</string>
     <string name="sale">Sale</string>
     <string name="subcode_s">SubCode: %s</string>
     <string name="promo_code">Promo code</string>
@@ -125,5 +127,7 @@
     <string name="yes">yes</string>
     <string name="no">No</string>
     <string name="choose_payment_method">Choose Payment Method</string>
+
+
 
 </resources>

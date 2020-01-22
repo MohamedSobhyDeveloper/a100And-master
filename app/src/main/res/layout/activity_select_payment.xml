@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/white"
     android:layout_height="match_parent">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -35,7 +36,7 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/abo100"
+                android:src="@drawable/pazar"
                 android:layout_marginTop="@dimen/_5sdp"
                 tools:ignore="ContentDescription" />
 

@@ -87,8 +87,10 @@ public class CategoriesActivity extends BaseActivity {
             case R.id.favorite:
                 startActivity(new Intent(this, FavoritesActivity.class));
                 break;
-            case R.id.messages:
-                MessageFragment.getInstance().show(getSupportFragmentManager(), getString(R.string.messages));
+            case R.id.offers:
+//                MessageFragment.getInstance().show(getSupportFragmentManager(), getString(R.string.messages));
+                startActivity(new Intent(this, OffersActivity.class));
+
                 break;
         }
         return true;

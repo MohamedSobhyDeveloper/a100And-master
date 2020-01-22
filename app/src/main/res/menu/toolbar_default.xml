@@ -21,17 +21,17 @@
             <item
                 android:id="@+id/home"
                 android:icon="@drawable/home_grey"
-                android:title="@string/home"
-                app:showAsAction="ifRoom" />
-            <item
-                android:id="@+id/messages"
-                android:icon="@drawable/chat_blue_32"
-                android:title="@string/messages"
+                android:title="@string/home_"
                 app:showAsAction="ifRoom" />
             <item
                 android:id="@+id/favorite"
                 android:icon="@drawable/fav_red"
-                android:title="@string/favorite"
+                android:title="@string/favorite_"
+                app:showAsAction="ifRoom" />
+            <item
+                android:id="@+id/offers"
+                android:icon="@drawable/diamond_blue_32"
+                android:title="@string/offers_"
                 app:showAsAction="ifRoom" />
         </menu>
     </item>
