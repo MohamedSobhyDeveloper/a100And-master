@@ -5,12 +5,44 @@ apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.magdy.abo100"
+        applicationId "com.app.pazar"
         minSdkVersion 19
         targetSdkVersion 28
         versionCode 9
         versionName '1.2.3'
+        ndk.abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+        vectorDrawables.useSupportLibrary = true
+
+        configurations {
+            all*.exclude module: 'support-v13'
+
+        }
+    }
+
+
+    bundle {
+
+//Generate APKs for devices with different screen densities//
+
+        density {
+
+            enableSplit true
+        }
+
+//Generate APKs for devices with different CPU architectures//
+
+        abi {
+            enableSplit true
+
+//Create a split APK for each language//
+
+        }
+        language {
+            enableSplit false
+        }
+
     }
     buildTypes {
         release {
