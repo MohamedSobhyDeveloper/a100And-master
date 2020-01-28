@@ -103,10 +103,10 @@
     <string name="save">حفظ</string>
     <string name="country">الدولة</string>
     <string name="countryـr">الدولة *</string>
-    <string name="area_r">منطقة *</string>
-    <string name="block_r">عمارة *</string>
+    <string name="area_r">المنطقة *</string>
+    <string name="block_r">القطعة *</string>
     <string name="governorateـr">المحافظة *</string>
-    <string name="street_r">شارع *</string>
+    <string name="street_r">الشارع *</string>
     <string name="area_req">المنطقة مطلوبة</string>
     <string name="block_req">العمارة مطلوبة</string>
     <string name="countryـreq">البلد مطلوب</string>

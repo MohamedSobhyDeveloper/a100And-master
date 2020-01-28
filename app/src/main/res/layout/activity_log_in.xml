@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_sign_in"
     android:background="@color/white"
     android:layout_width="match_parent"
@@ -49,9 +50,11 @@
                         android:layout_gravity="center"
                         android:drawablePadding="8dp"
                         android:padding="@dimen/_10sdp"
+                        android:textAlignment="viewStart"
                         android:background="@drawable/roundedbuttondrawablewhite"
                         android:hint="@string/email_here"
-                        android:inputType="textEmailAddress" />
+                        android:inputType="textEmailAddress"
+                        tools:ignore="RtlCompat" />
                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -72,10 +75,12 @@
                         android:layout_gravity="center"
                         android:drawablePadding="8dp"
                         android:hint="@string/pass"
+                        android:textAlignment="viewStart"
                         android:padding="@dimen/_10sdp"
                         android:background="@drawable/roundedbuttondrawablewhite"
                         android:imeOptions="actionDone"
-                        android:inputType="textPassword" />
+                        android:inputType="textPassword"
+                        tools:ignore="RtlCompat" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <androidx.cardview.widget.CardView

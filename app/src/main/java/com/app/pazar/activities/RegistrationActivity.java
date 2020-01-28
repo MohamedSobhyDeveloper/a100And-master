@@ -120,7 +120,7 @@ public class RegistrationActivity extends BaseActivity {
                 StaticMembers.CheckTextInputEditText(area, areaLayout, getString(R.string.area_req)) &&
                 StaticMembers.CheckTextInputEditText(block, blockLayout, getString(R.string.block_req)) &&
                 StaticMembers.CheckTextInputEditText(street, streetLayout, getString(R.string.street_req)) &&
-                //StaticMembers.CheckValidationPassword(passwordText, passwordLayout, getString(R.string.password_empty), getString(R.string.password_invalid_error)) &&
+                StaticMembers.CheckValidationPassword(passwordText, passwordLayout, getString(R.string.password_empty), getString(R.string.password_invalid_error)) &&
                 StaticMembers.CheckTextInputEditText(confirmPassword, confirmPasswordLayout, getString(R.string.confirm_password_empty))) {
             final String name = nameText.getText().toString();
             final String email = emailText.getText().toString();

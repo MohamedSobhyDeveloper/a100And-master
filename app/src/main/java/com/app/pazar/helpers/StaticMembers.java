@@ -279,6 +279,11 @@ public class StaticMembers {
         }
     }
 
+//    public static boolean isValidPassword(String password) {
+//        Matcher matcher = Pattern.compile("((?=.*[a-z])(?=.*\\d)(?=.*[A-Z])(?=.*[@#$%!]).{4,20})").matcher(password);
+//        return matcher.matches();
+//    }
+
     public static String getLanguage(Context context) {
         return PrefManager.getInstance(context).getStringData(LANGUAGE);
     }

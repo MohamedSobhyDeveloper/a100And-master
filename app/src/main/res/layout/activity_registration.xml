@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:background="@color/white"
     android:layout_height="match_parent">
@@ -49,7 +50,10 @@
                     android:padding="@dimen/_10sdp"
                     android:background="@drawable/roundedbuttondrawablewhite"
                     android:hint="@string/full_name"
-                    android:inputType="textPersonName" />
+                    android:textAlignment="viewStart"
+                    tools:ignore="RtlCompat"
+                    android:inputType="textPersonName"
+                    />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -69,6 +73,8 @@
                     android:hint="@string/email_here"
                     android:layout_marginBottom="@dimen/_5sdp"
                     android:padding="@dimen/_10sdp"
+                    android:textAlignment="viewStart"
+                    tools:ignore="RtlCompat"
                     android:background="@drawable/roundedbuttondrawablewhite"
                     android:inputType="textEmailAddress" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -88,10 +94,12 @@
                     android:layout_gravity="center"
                     android:drawablePadding="8dp"
                     android:hint="@string/phone"
+                    android:textAlignment="viewStart"
                     android:layout_marginBottom="@dimen/_5sdp"
                     android:padding="@dimen/_10sdp"
                     android:background="@drawable/roundedbuttondrawablewhite"
-                    android:inputType="phone" />
+                    android:inputType="phone"
+                    tools:ignore="RtlCompat" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -111,10 +119,12 @@
                     android:layout_gravity="center"
                     android:drawablePadding="8dp"
                     android:hint="@string/pass"
+                    android:textAlignment="viewStart"
                     android:layout_marginBottom="@dimen/_5sdp"
                     android:padding="@dimen/_10sdp"
                     android:background="@drawable/roundedbuttondrawablewhite"
-                    android:inputType="textPassword" />
+                    android:inputType="textPassword"
+                    tools:ignore="RtlCompat" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -135,10 +145,12 @@
                     android:drawablePadding="8dp"
                     android:hint="@string/conf_pass"
                     android:imeOptions="actionDone"
+                    android:textAlignment="viewStart"
                     android:layout_marginBottom="@dimen/_5sdp"
                     android:padding="@dimen/_10sdp"
                     android:background="@drawable/roundedbuttondrawablewhite"
-                    android:inputType="textPassword" />
+                    android:inputType="textPassword"
+                    tools:ignore="RtlCompat" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -158,6 +170,8 @@
                     android:hint="@string/countryـr"
                     android:layout_marginBottom="@dimen/_5sdp"
                     android:padding="@dimen/_10sdp"
+                    android:textAlignment="viewStart"
+                    tools:ignore="RtlCompat"
                     android:background="@drawable/roundedbuttondrawablewhite"
                     android:inputType="textPersonName" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -179,6 +193,8 @@
                     android:hint="@string/governorateـr"
                     android:layout_marginBottom="@dimen/_5sdp"
                     android:padding="@dimen/_10sdp"
+                    android:textAlignment="viewStart"
+                    tools:ignore="RtlCompat"
                     android:background="@drawable/roundedbuttondrawablewhite"
                     android:inputType="textPersonName" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -200,6 +216,8 @@
                     android:hint="@string/area_r"
                     android:layout_marginBottom="@dimen/_5sdp"
                     android:padding="@dimen/_10sdp"
+                    android:textAlignment="viewStart"
+                    tools:ignore="RtlCompat"
                     android:background="@drawable/roundedbuttondrawablewhite"
                     android:inputType="textPersonName" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -221,6 +239,8 @@
                     android:hint="@string/block_r"
                     android:layout_marginBottom="@dimen/_5sdp"
                     android:padding="@dimen/_10sdp"
+                    android:textAlignment="viewStart"
+                    tools:ignore="RtlCompat"
                     android:background="@drawable/roundedbuttondrawablewhite"
                     android:inputType="textPersonName" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -242,6 +262,8 @@
                     android:hint="@string/street_r"
                     android:layout_marginBottom="@dimen/_5sdp"
                     android:padding="@dimen/_10sdp"
+                    android:textAlignment="viewStart"
+                    tools:ignore="RtlCompat"
                     android:background="@drawable/roundedbuttondrawablewhite"
                     android:inputType="textPersonName" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -261,6 +283,8 @@
                     android:layout_gravity="center"
                     android:drawablePadding="8dp"
                     android:hint="@string/avenue"
+                    android:textAlignment="viewStart"
+                    tools:ignore="RtlCompat"
                     android:layout_marginBottom="@dimen/_5sdp"
                     android:padding="@dimen/_10sdp"
                     android:background="@drawable/roundedbuttondrawablewhite"
@@ -284,6 +308,8 @@
                     android:layout_gravity="center"
                     android:drawablePadding="8dp"
                     android:hint="@string/house_no"
+                    android:textAlignment="viewStart"
+                    tools:ignore="RtlCompat"
                     android:layout_marginBottom="@dimen/_5sdp"
                     android:padding="@dimen/_10sdp"
                     android:background="@drawable/roundedbuttondrawablewhite"
@@ -304,6 +330,8 @@
                     android:layout_gravity="center"
                     android:drawablePadding="8dp"
                     android:hint="@string/remark_address"
+                    android:textAlignment="viewStart"
+                    tools:ignore="RtlCompat"
                     android:layout_marginBottom="@dimen/_5sdp"
                     android:padding="@dimen/_10sdp"
                     android:background="@drawable/roundedbuttondrawablewhite"
