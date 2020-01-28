@@ -127,7 +127,7 @@
     <string name="yes">yes</string>
     <string name="no">No</string>
     <string name="choose_payment_method">Choose Payment Method</string>
-
+    <string name="data_updated_successfully">Data Updated Successfully</string>
 
 
 </resources>

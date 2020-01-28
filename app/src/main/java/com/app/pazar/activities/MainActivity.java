@@ -84,8 +84,8 @@ public class MainActivity extends BaseActivity {
                 .setDescription(R.string.want_to_exit)
                 .setPositiveText(R.string.yes)
                 .setNegativeText(R.string.no)
-                .setIcon(R.mipmap.ic_launcher)
-                .setHeaderColor(R.color.colorPrimary)
+                .setIcon(R.drawable.pazar)
+                .setHeaderColor(R.color.white)
                 .withDialogAnimation(true)
                 .withIconAnimation(true)
                 .onPositive((dialog, which) -> {

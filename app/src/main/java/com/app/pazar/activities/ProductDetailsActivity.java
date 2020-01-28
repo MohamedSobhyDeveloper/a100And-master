@@ -262,8 +262,8 @@ public class ProductDetailsActivity extends BaseActivity {
             sizesColor.setVisibility(View.GONE);
         } else {
            /* if (proDetails.getSubcode() != null && !proDetails.getSubcode().isEmpty() &&
-                    !proDetails.getSubcode().equals("0") &&
-                    !proDetails.getSubcode().isEmpty()) {
+                 !proDetails.getSubcode().equals("0") &&
+                 !proDetails.getSubcode().isEmpty()) {
                 subCode.setVisibility(View.VISIBLE);
                 subCode.setText(String.format(Locale.getDefault(), getString(R.string.subcode_s), proDetails.getSubcode()));
             } else {

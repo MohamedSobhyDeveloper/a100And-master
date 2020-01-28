@@ -122,5 +122,6 @@
     <string name="yes">نعم</string>
     <string name="no">لا</string>
     <string name="choose_payment_method">Choose Payment Method</string>
+    <string name="data_updated_successfully">تم التحديث بنجاح</string>
 
 </resources>

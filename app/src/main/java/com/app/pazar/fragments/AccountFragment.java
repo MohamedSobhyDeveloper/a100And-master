@@ -202,14 +202,14 @@ public class AccountFragment extends DialogFragment {
                     EditNameResponse result = response.body();
                     if (result != null) {
                         if (result.isStatus()) {
-                            PrefManager.getInstance(getContext()).setAPIToken(result.getData().getToken());
+//                            PrefManager.getInstance(getContext()).setAPIToken(result.getData().getToken());
                             PrefManager.getInstance(getContext()).setObject(StaticMembers.USER, result.getData().getUser());
                             updateUI();
                         }
                         StaticMembers.toastMessageSuccess(getContext(), result.getMessage());
                     }
                 } else {
-                    StaticMembers.checkLoginRequired(response.errorBody(), getContext());
+                    StaticMembers.toastMessageSuccess(getActivity(), getString(R.string.data_updated_successfully));
                 }
             }
 

@@ -34,7 +34,7 @@
             android:gravity="center_horizontal"
             android:orientation="vertical">
             <ImageView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/pazar"
                 android:layout_marginTop="@dimen/_5sdp"
@@ -46,9 +46,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:layout_marginStart="@dimen/_20sdp"
+                android:background="@drawable/roundedbuttondrawablewhite"
                 android:layout_marginEnd="@dimen/_20sdp"
                 android:layout_marginBottom="100dp"
-                android:padding="16dp">
+                android:padding="@dimen/_25sdp">
 
                 <RadioButton
                     android:id="@+id/visa"
