@@ -45,7 +45,6 @@ import retrofit2.Response;
 import static com.Pazarabo100kwt.pazar.helpers.StaticMembers.openLogin;
 
 public class CartActivity extends BaseActivity {
-
     private static final int ORDER_REQ = 456;
     @BindView(R.id.recycler)
     RecyclerView recycler;
