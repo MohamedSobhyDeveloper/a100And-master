@@ -5,7 +5,7 @@ apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.app.pazar"
+        applicationId "com.Pazarabo100kwt.pazar"
         minSdkVersion 19
         targetSdkVersion 28
         versionCode 1
