@@ -1,9 +1,14 @@
 package com.Pazarabo100kwt.pazar.activities;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -12,23 +17,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.viewpager.widget.ViewPager;
 
-import com.google.android.material.tabs.TabLayout;
-import com.google.gson.GsonBuilder;
+import com.Pazarabo100kwt.pazar.BuildConfig;
 import com.Pazarabo100kwt.pazar.R;
 import com.Pazarabo100kwt.pazar.adapters.ProductImagesAdapter;
 import com.Pazarabo100kwt.pazar.baseactivity.BaseActivity;
 import com.Pazarabo100kwt.pazar.fragments.ImageFragment;
-import com.Pazarabo100kwt.pazar.fragments.MessageFragment;
 import com.Pazarabo100kwt.pazar.fragments.VideoFragment;
 import com.Pazarabo100kwt.pazar.helpers.CallbackRetrofit;
 import com.Pazarabo100kwt.pazar.helpers.PrefManager;
@@ -40,13 +43,22 @@ import com.Pazarabo100kwt.pazar.models.search_products.ProDetails;
 import com.Pazarabo100kwt.pazar.models.search_products.Product;
 import com.Pazarabo100kwt.pazar.models.wishlist_models.ErrorWishListResponse;
 import com.Pazarabo100kwt.pazar.models.wishlist_models.WishlistResponse;
+import com.google.android.material.tabs.TabLayout;
+import com.google.gson.GsonBuilder;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
+import com.wang.avi.AVLoadingIndicatorView;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Response;
@@ -107,7 +119,14 @@ public class ProductDetailsActivity extends BaseActivity {
     VideoFragment videoFragment;
     ProDetails proDetails;
     String actualPrice;
+    @BindView(R.id.shareproduct)
+    ImageView shareproduct;
+    @BindView(R.id.botomLayout)
+    LinearLayout botomLayout;
+    @BindView(R.id.avi)
+    AVLoadingIndicatorView avi;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -142,6 +161,8 @@ public class ProductDetailsActivity extends BaseActivity {
         ratingBar.setRating(product.getRate());
         reviewNo.setText(String.format(Locale.getDefault(), getString(R.string.d_reviewers), 0));
         StaticMembers.changeDots(0, adapter.getCount(), indicator, getBaseContext());
+
+
         pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -162,6 +183,8 @@ public class ProductDetailsActivity extends BaseActivity {
 
             }
         });
+
+
         if (savedInstanceState != null) {
             amount = savedInstanceState.getInt(StaticMembers.AMOUNT);
             maxAmount = savedInstanceState.getInt(StaticMembers.MAX_AMOUNT);
@@ -173,16 +196,16 @@ public class ProductDetailsActivity extends BaseActivity {
                 view = LayoutInflater.from(this).inflate(R.layout.item_color_tab, null, false);
                 TextView textView = view.findViewById(R.id.text);
                 CardView cardView = view.findViewById(R.id.colorCard);
-                          if (details.getColor()!=null){
-                              textView.setText(details.getColor().getCode()+"");
-                              if (details.getColor().getHastag().isEmpty()) {
-                                  colorsTabLayout.setVisibility(View.GONE);
-                                  selectColor.setVisibility(View.GONE);
-                              } else
-                                  cardView.setCardBackgroundColor(Color.parseColor("#" + details.getColor().getHastag()));
-                              tab.setCustomView(view);
-                              colorsTabLayout.addTab(tab);
-                          }
+                if (details.getColor() != null) {
+                    textView.setText(details.getColor().getCode() + "");
+                    if (details.getColor().getHastag().isEmpty()) {
+                        colorsTabLayout.setVisibility(View.GONE);
+                        selectColor.setVisibility(View.GONE);
+                    } else
+                        cardView.setCardBackgroundColor(Color.parseColor("#" + details.getColor().getHastag()));
+                    tab.setCustomView(view);
+                    colorsTabLayout.addTab(tab);
+                }
 
             }
             if (view != null) {
@@ -261,6 +284,7 @@ public class ProductDetailsActivity extends BaseActivity {
             tabLayout.setVisibility(View.GONE);
             sizesColor.setVisibility(View.GONE);
         } else {
+
            /* if (proDetails.getSubcode() != null && !proDetails.getSubcode().isEmpty() &&
                  !proDetails.getSubcode().equals("0") &&
                  !proDetails.getSubcode().isEmpty()) {
@@ -269,79 +293,87 @@ public class ProductDetailsActivity extends BaseActivity {
             } else {
 //                subCode.setVisibility(View.GONE);
             }*/
-            selectedSizeTab = tabLayout.getSelectedTabPosition();
-            tabLayout.removeAllTabs();
-            for (MeasureItem measure : proDetails.getMeasure()) {
-                TabLayout.Tab tab = tabLayout.newTab();
-                tab.setText(Html.fromHtml(String.format(Locale.getDefault(), getString(R.string.tab_text_unselected_line),
-                        measure.getName())));
-                tabLayout.addTab(tab);
-            }
 
-            TabLayout.Tab tab = tabLayout.getTabAt(selectedSizeTab < tabLayout.getTabCount() && selectedSizeTab > -1 ? selectedSizeTab : 0);
-            if (tab != null) {
-                tab.setText(Html.fromHtml(String.format(Locale.getDefault(), getString(R.string.tab_text_selected_line),
-                        proDetails.getMeasure().get(selectedSizeTab < tabLayout.getTabCount() && selectedSizeTab > -1 ? selectedSizeTab : 0).getName())));
-                tab.select();
-            }
-            if (proDetails.getMeasure().size() > 3)
-                tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
-            else tabLayout.setTabMode(TabLayout.MODE_FIXED);
-            tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-                @Override
-                public void onTabSelected(TabLayout.Tab tab) {
-                    if (proDetails.getMeasure() != null && proDetails.getMeasure().size() > tab.getPosition()) {
-                        tab.setText(Html.fromHtml(String.format(Locale.getDefault(), getString(R.string.tab_text_selected_line),
-                                proDetails.getMeasure().get(tab.getPosition()).getName())));
+
+            if (proDetails.getMeasure().get(0).getId()==29) {
+                tabLayout.setVisibility(View.GONE);
+                sizesColor.setVisibility(View.GONE);
+            } else {
+                selectedSizeTab = tabLayout.getSelectedTabPosition();
+                tabLayout.removeAllTabs();
+                for (MeasureItem measure : proDetails.getMeasure()) {
+                    TabLayout.Tab tab = tabLayout.newTab();
+                    tab.setText(Html.fromHtml(String.format(Locale.getDefault(), getString(R.string.tab_text_unselected_line),
+                            measure.getName())));
+                    tabLayout.addTab(tab);
+                }
+
+                TabLayout.Tab tab = tabLayout.getTabAt(selectedSizeTab < tabLayout.getTabCount() && selectedSizeTab > -1 ? selectedSizeTab : 0);
+                if (tab != null) {
+                    tab.setText(Html.fromHtml(String.format(Locale.getDefault(), getString(R.string.tab_text_selected_line),
+                            proDetails.getMeasure().get(selectedSizeTab < tabLayout.getTabCount() && selectedSizeTab > -1 ? selectedSizeTab : 0).getName())));
+                    tab.select();
+                }
+                if (proDetails.getMeasure().size() > 3)
+                    tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+                else tabLayout.setTabMode(TabLayout.MODE_FIXED);
+                tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+                    @Override
+                    public void onTabSelected(TabLayout.Tab tab) {
+                        if (proDetails.getMeasure() != null && proDetails.getMeasure().size() > tab.getPosition()) {
+                            tab.setText(Html.fromHtml(String.format(Locale.getDefault(), getString(R.string.tab_text_selected_line),
+                                    proDetails.getMeasure().get(tab.getPosition()).getName())));
+                        }
+
                     }
 
-                }
+                    @Override
+                    public void onTabUnselected(TabLayout.Tab tab) {
+                        if (proDetails.getMeasure() != null && proDetails.getMeasure().size() > tab.getPosition())
+                            tab.setText(Html.fromHtml(String.format(Locale.getDefault(), getString(R.string.tab_text_unselected_line),
+                                    proDetails.getMeasure().get(tab.getPosition()).getName())));
+                    }
 
-                @Override
-                public void onTabUnselected(TabLayout.Tab tab) {
-                    if (proDetails.getMeasure() != null && proDetails.getMeasure().size() > tab.getPosition())
-                        tab.setText(Html.fromHtml(String.format(Locale.getDefault(), getString(R.string.tab_text_unselected_line),
-                                proDetails.getMeasure().get(tab.getPosition()).getName())));
-                }
+                    @Override
+                    public void onTabReselected(TabLayout.Tab tab) {
 
-                @Override
-                public void onTabReselected(TabLayout.Tab tab) {
+                    }
+                });
 
-                }
-            });
+            }
+            if (proDetails.getCount() != null) {
+                maxAmount = Integer.parseInt(proDetails.getCount());
+                if (amount > maxAmount)
+                    amount = 1;
+            }
+            if (proDetails.getPrice() != null) {
+                priceOld.setText(String.format(Locale.getDefault(), getString(R.string.s_kwd), proDetails.getPrice()));
+                priceOld.setPaintFlags(priceOld.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                price.setText(String.format(Locale.getDefault(), getString(R.string.s_kwd), proDetails.getPrice()));
+                actualPrice = proDetails.getPrice();
+            }
+
+
+            if (proDetails.getNewprice() != null) {
+                price.setText(String.format(Locale.getDefault(), getString(R.string.s_kwd), proDetails.getNewprice()));
+                priceOld.setVisibility(View.VISIBLE);
+                actualPrice = proDetails.getNewprice();
+            } else priceOld.setVisibility(View.GONE);
+            if (actualPrice != null) {
+                addToCartText.setText(String.format(Locale.getDefault(), getString(R.string.add_to_cart_s), Float.parseFloat(actualPrice) * amount));
+                buyNowText.setText(String.format(Locale.getDefault(), getString(R.string.buy_now_s), amount * Float.parseFloat(actualPrice)));
+                amountText.setText(String.format(Locale.getDefault(), "%d", amount));
+            }
+
+            if (amount < 2)
+                remove.setEnabled(false);
+            if (proDetails.getCount() != null)
+                if (amount > Integer.parseInt(proDetails.getCount()))
+                    add.setEnabled(false);
+                else
+                    add.setEnabled(true);
 
         }
-        if (proDetails.getCount()!=null){
-            maxAmount = Integer.parseInt(proDetails.getCount());
-            if (amount > maxAmount)
-                amount = 1;
-        }
-        if (proDetails.getPrice()!=null){
-            priceOld.setText(String.format(Locale.getDefault(), getString(R.string.s_kwd), proDetails.getPrice()));
-            priceOld.setPaintFlags(priceOld.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-            price.setText(String.format(Locale.getDefault(), getString(R.string.s_kwd), proDetails.getPrice()));
-            actualPrice = proDetails.getPrice();
-        }
-
-
-        if (proDetails.getNewprice() != null) {
-            price.setText(String.format(Locale.getDefault(), getString(R.string.s_kwd), proDetails.getNewprice()));
-            priceOld.setVisibility(View.VISIBLE);
-            actualPrice = proDetails.getNewprice();
-        } else priceOld.setVisibility(View.GONE);
-        if (actualPrice!=null){
-            addToCartText.setText(String.format(Locale.getDefault(), getString(R.string.add_to_cart_s), Float.parseFloat(actualPrice) * amount));
-            buyNowText.setText(String.format(Locale.getDefault(), getString(R.string.buy_now_s), amount * Float.parseFloat(actualPrice)));
-            amountText.setText(String.format(Locale.getDefault(), "%d", amount));
-        }
-
-        if (amount < 2)
-            remove.setEnabled(false);
-        if (proDetails.getCount() != null)
-            if (amount > Integer.parseInt(proDetails.getCount()))
-                add.setEnabled(false);
-            else
-                add.setEnabled(true);
     }
 
     @Override
@@ -371,7 +403,7 @@ public class ProductDetailsActivity extends BaseActivity {
     }
 
     private void changeCartItem(boolean buyNow) {
-         progress.setVisibility(View.VISIBLE);
+        progress.setVisibility(View.VISIBLE);
         if (PrefManager.getInstance(getBaseContext()).getAPIToken().isEmpty()) {
             Intent intent = new Intent(getBaseContext(), LogInActivity.class);
             intent.putExtra(StaticMembers.ACTION, true);
@@ -430,7 +462,7 @@ public class ProductDetailsActivity extends BaseActivity {
                     progress.setVisibility(View.GONE);
                     WishlistResponse result = response.body();
                     if (response.isSuccessful() && result != null) {
-                         StaticMembers.toastMessageSuccess(getBaseContext(), result.getMessage());
+                        StaticMembers.toastMessageSuccess(getBaseContext(), result.getMessage());
                     } else {
                         favorite.setChecked(!favorite.isChecked());
                         try {
@@ -446,7 +478,7 @@ public class ProductDetailsActivity extends BaseActivity {
                             }
                         } catch (Exception e) {
                             e.printStackTrace();
-                            StaticMembers.toastMessageFailed(getBaseContext(),getString(R.string.connection_error));
+                            StaticMembers.toastMessageFailed(getBaseContext(), getString(R.string.connection_error));
                         }
 
 
@@ -461,4 +493,23 @@ public class ProductDetailsActivity extends BaseActivity {
             });
         }
     }
+
+    @OnClick(R.id.shareproduct)
+    public void onViewClicked() {
+        try {
+            Intent shareIntent = new Intent(Intent.ACTION_SEND);
+            shareIntent.setType("text/plain");
+            shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Pazar");
+            String shareMessage= getString(R.string.Let_me_recommend_this_app);
+            shareMessage = shareMessage + "https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID +"\n\n";
+            shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
+            startActivity(Intent.createChooser(shareIntent, "choose one"));
+        } catch(Exception e) {
+            //e.toString();
+        }
+    }
+
+
+
+
 }

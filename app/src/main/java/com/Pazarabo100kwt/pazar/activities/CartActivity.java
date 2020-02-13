@@ -104,8 +104,6 @@ public class CartActivity extends BaseActivity {
     }
 
 
-
-
     public void setPromo(String s) {
         progress.setVisibility(View.VISIBLE);
         Call<MessageResponse> call = RetrofitModel.getApi(this).addPromo(s);
@@ -130,7 +128,7 @@ public class CartActivity extends BaseActivity {
                             StaticMembers.checkLoginRequired(errorBody, CartActivity.this);
                             result = new Gson().fromJson(e, MessageResponse.class);
                             if (result != null && result.getMessage() != null)
-                                StaticMembers.toastMessageSuccess(getBaseContext(), result.getMessage());
+                                StaticMembers.toastMessageFailed(getBaseContext(), result.getMessage());
                         }
                     } catch (Exception e) {
                         e.printStackTrace();
