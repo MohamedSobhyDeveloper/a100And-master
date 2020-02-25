@@ -45,7 +45,7 @@
                 <androidx.viewpager.widget.ViewPager
                     android:id="@+id/pager"
                     android:layout_width="match_parent"
-                    android:layout_height="300dp" />
+                    android:layout_height="@dimen/_250sdp" />
 
                 <TextView
                     android:id="@+id/productId"
@@ -84,7 +84,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
                     android:textColor="@color/textColor"
-                    android:textSize="@dimen/text_normal" />
+                    android:textSize="@dimen/text_normal_x" />
 
 
                 <LinearLayout
@@ -269,9 +269,10 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world "
+                        android:text=" hello world Hello world Hello world Hello world Hello world "
                         android:textColor="@android:color/black"
-                        android:textSize="@dimen/text_normal" />
+                        android:textSize="@dimen/text_normal_x"
+                        />
                 </LinearLayout>
 
             </LinearLayout>

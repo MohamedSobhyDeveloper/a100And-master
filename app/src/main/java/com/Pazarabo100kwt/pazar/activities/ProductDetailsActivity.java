@@ -234,15 +234,18 @@ public class ProductDetailsActivity extends BaseActivity {
             });
         }
         changeViewsOnSelection();
+
         add.setOnClickListener(v ->
         {
             amount++;
             amountText.setText(String.format(Locale.getDefault(), "%d", amount));
             if (amount > 1)
                 remove.setEnabled(true);
-            if (product.getProDetails().get(0).getCount() != null)
-                if (amount >= maxAmount)
+//            if (product.getProDetails().get(0).getCount() != null){
+                if (amount >= maxAmount){
                     add.setEnabled(false);
+                }
+
             if (actualPrice != null && !actualPrice.isEmpty()) {
                 float total = amount * Float.parseFloat(actualPrice);
                 addToCartText.setText(String.format(Locale.getDefault(), getString(R.string.add_to_cart_s), total));
@@ -251,16 +254,17 @@ public class ProductDetailsActivity extends BaseActivity {
         });
         remove.setOnClickListener(v ->
         {
-            if (amount < 2)
+            if (amount < 2){
                 remove.setEnabled(false);
-            else {
+            }else {
                 amount--;
                 amountText.setText(String.format(Locale.getDefault(), "%d", amount));
                 if (amount < 2)
                     remove.setEnabled(false);
-                if (product.getProDetails().get(0).getCount() != null)
-                    if (amount < maxAmount)
+//                if (product.getProDetails().get(0).getCount() != null)
+                    if (amount < maxAmount){
                         add.setEnabled(true);
+                    }
                 if (actualPrice != null && !actualPrice.isEmpty()) {
                     float total = amount * Float.parseFloat(actualPrice);
                     addToCartText.setText(String.format(Locale.getDefault(), getString(R.string.add_to_cart_s), total));
@@ -341,39 +345,47 @@ public class ProductDetailsActivity extends BaseActivity {
                 });
 
             }
-            if (proDetails.getCount() != null) {
-                maxAmount = Integer.parseInt(proDetails.getCount());
-                if (amount > maxAmount)
-                    amount = 1;
-            }
-            if (proDetails.getPrice() != null) {
-                priceOld.setText(String.format(Locale.getDefault(), getString(R.string.s_kwd), proDetails.getPrice()));
-                priceOld.setPaintFlags(priceOld.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-                price.setText(String.format(Locale.getDefault(), getString(R.string.s_kwd), proDetails.getPrice()));
-                actualPrice = proDetails.getPrice();
-            }
 
 
-            if (proDetails.getNewprice() != null) {
-                price.setText(String.format(Locale.getDefault(), getString(R.string.s_kwd), proDetails.getNewprice()));
-                priceOld.setVisibility(View.VISIBLE);
-                actualPrice = proDetails.getNewprice();
-            } else priceOld.setVisibility(View.GONE);
-            if (actualPrice != null) {
-                addToCartText.setText(String.format(Locale.getDefault(), getString(R.string.add_to_cart_s), Float.parseFloat(actualPrice) * amount));
-                buyNowText.setText(String.format(Locale.getDefault(), getString(R.string.buy_now_s), amount * Float.parseFloat(actualPrice)));
-                amountText.setText(String.format(Locale.getDefault(), "%d", amount));
-            }
-
-            if (amount < 2)
-                remove.setEnabled(false);
-            if (proDetails.getCount() != null)
-                if (amount > Integer.parseInt(proDetails.getCount()))
-                    add.setEnabled(false);
-                else
-                    add.setEnabled(true);
 
         }
+
+
+        if (proDetails.getCount() != null) {
+            maxAmount = Integer.parseInt(proDetails.getCount());
+            if (maxAmount==1){
+                add.setEnabled(false);
+                remove.setEnabled(false);
+            }
+            if (amount > maxAmount)
+                amount = 1;
+        }
+        if (proDetails.getPrice() != null) {
+            priceOld.setText(String.format(Locale.getDefault(), getString(R.string.s_kwd), proDetails.getPrice()));
+            priceOld.setPaintFlags(priceOld.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+            price.setText(String.format(Locale.getDefault(), getString(R.string.s_kwd), proDetails.getPrice()));
+            actualPrice = proDetails.getPrice();
+        }
+
+
+        if (proDetails.getNewprice() != null) {
+            price.setText(String.format(Locale.getDefault(), getString(R.string.s_kwd), proDetails.getNewprice()));
+            priceOld.setVisibility(View.VISIBLE);
+            actualPrice = proDetails.getNewprice();
+        } else priceOld.setVisibility(View.GONE);
+        if (actualPrice != null) {
+            addToCartText.setText(String.format(Locale.getDefault(), getString(R.string.add_to_cart_s), Float.parseFloat(actualPrice) * amount));
+            buyNowText.setText(String.format(Locale.getDefault(), getString(R.string.buy_now_s), amount * Float.parseFloat(actualPrice)));
+            amountText.setText(String.format(Locale.getDefault(), "%d", amount));
+        }
+
+        if (amount < 2)
+            remove.setEnabled(false);
+        if (proDetails.getCount() != null)
+            if (amount > Integer.parseInt(proDetails.getCount()))
+                add.setEnabled(false);
+            else
+                add.setEnabled(true);
     }
 
     @Override
