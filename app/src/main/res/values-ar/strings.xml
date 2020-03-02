@@ -125,5 +125,6 @@
     <string name="data_updated_successfully">تم التحديث بنجاح</string>
     <string name="share_product">شارك المنتج</string>
     <string name="Let_me_recommend_this_app">انصحك باستخدام هذا التطبيق من اجل التسوق</string>
+    <string name="product_number">رقم الصنف:</string>
 
 </resources>

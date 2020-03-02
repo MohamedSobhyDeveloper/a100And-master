@@ -1,5 +1,6 @@
 package com.Pazarabo100kwt.pazar.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -163,6 +164,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Holder> {
         TextView amountText;
         @BindView(R.id.productId)
         TextView productId;
+        @BindView(R.id.productnumber)
+        TextView productnumber;
         @BindView(R.id.total)
         TextView total;
         @BindView(R.id.selected)
@@ -182,6 +185,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Holder> {
             ButterKnife.bind(this, itemView);
         }
 
+        @SuppressLint("SetTextI18n")
         public void onBind() {
             int position = getAdapterPosition();
             if (position < cartData.getCart().size()) {
@@ -196,6 +200,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Holder> {
 
                     name.setText(product.getName());
                     productId.setText(String.format(Locale.getDefault(), activity.getString(R.string.product_id_s), product.getProductNo()));
+                    productnumber.setText(activity.getString(R.string.product_number)+" "+product.getSerialNumber()+"");
                     price.setText(String.format(Locale.getDefault(), activity.getString(R.string.s_kwd), cartItem.getPrice()));
                     itemView.setOnClickListener(v -> {
                 /*Intent intent = new Intent(activity, ProductDetailsActivity.class);
