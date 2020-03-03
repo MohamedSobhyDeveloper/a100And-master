@@ -126,5 +126,7 @@
     <string name="share_product">شارك المنتج</string>
     <string name="Let_me_recommend_this_app">انصحك باستخدام هذا التطبيق من اجل التسوق</string>
     <string name="product_number">رقم الصنف:</string>
+    <string name="delivery_charge">خدمة التوصيل</string>
+    <string name="Minimum_payment_to_be_completed">الحد الادنى لاتمام عملية الدفع </string>
 
 </resources>

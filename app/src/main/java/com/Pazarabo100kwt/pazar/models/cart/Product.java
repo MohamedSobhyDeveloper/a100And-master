@@ -86,6 +86,8 @@ public class Product implements Serializable {
 		this.locationInStore1 = locationInStore1;
 	}
 
+
+
 	public String getLocationInStore1(){
 		return locationInStore1;
 	}

@@ -35,6 +35,15 @@ public class CartItem implements Serializable {
 
     @SerializedName("client_id")
     private String clientId;
+    @SerializedName("subcode")
+    private String subcode;
+
+    @SerializedName("invoicelimit")
+    private String invoicelimit;
+
+    @SerializedName("deliverycharge")
+    private String deliverycharge;
+
 
     private boolean isNotChecked;
 
@@ -116,5 +125,29 @@ public class CartItem implements Serializable {
 
     public String getClientId() {
         return clientId;
+    }
+
+    public String getSubcode() {
+        return subcode;
+    }
+
+    public void setSubcode(String subcode) {
+        this.subcode = subcode;
+    }
+
+    public String getInvoicelimit() {
+        return invoicelimit;
+    }
+
+    public void setInvoicelimit(String invoicelimit) {
+        this.invoicelimit = invoicelimit;
+    }
+
+    public String getDeliverycharge() {
+        return deliverycharge;
+    }
+
+    public void setDeliverycharge(String deliverycharge) {
+        this.deliverycharge = deliverycharge;
     }
 }
