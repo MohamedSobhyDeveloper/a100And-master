@@ -58,9 +58,10 @@ class SelectPaymentActivity : BaseActivity() {
                 val result = response.body()
                 if (response.isSuccessful && result != null) {
                     StaticMembers.toastMessageSuccess(baseContext, result.message)
-                    setResult(Activity.RESULT_OK)
-                    startActivity(Intent(this@SelectPaymentActivity, ConfirmBillActivity::class.java))
-                    finish()
+                    StaticMembers.opendetailsdialog(this@SelectPaymentActivity,result)
+//                    setResult(Activity.RESULT_OK)
+//                    startActivity(Intent(this@SelectPaymentActivity, ConfirmBillActivity::class.java))
+//                    finish()
                 } else {
                     StaticMembers.checkLoginRequired(response.errorBody(), this@SelectPaymentActivity)
                 }
