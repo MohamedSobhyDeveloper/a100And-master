@@ -134,6 +134,9 @@
     <string name="delivery_charge">delivery Service</string>
     <string name="Minimum_payment_to_be_completed">Minimum payment to be completed</string>
     <string name="order_">Order</string>
+    <string name="cart_is_empty">Cart Is Empty</string>
+    <string name="shapesize">Shape/Size</string>
+    <string name="color">Color</string>
 
 
 </resources>

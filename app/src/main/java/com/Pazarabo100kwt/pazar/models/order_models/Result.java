@@ -43,8 +43,32 @@ public class Result{
 	@SerializedName("last_updt")
 	private String lastUpdt;
 
+	@SerializedName("deliverycharge")
+	private String deliverycharge;
+
+
+	@SerializedName("address")
+	private String address;
+
 	@SerializedName("id")
 	private int id;
+
+
+	public String getDeliverycharge() {
+		return deliverycharge;
+	}
+
+	public void setDeliverycharge(String deliverycharge) {
+		this.deliverycharge = deliverycharge;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
 
 	public void setPaymentWay(Object paymentWay){
 		this.paymentWay = paymentWay;

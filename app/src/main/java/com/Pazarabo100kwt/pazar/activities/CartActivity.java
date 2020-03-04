@@ -57,6 +57,10 @@ public class CartActivity extends BaseActivity {
     Data cartData;
     @BindView(R.id.invoicelimit)
     TextView invoicelimit;
+    @BindView(R.id.relativeView)
+    RelativeLayout relativeView;
+    @BindView(R.id.isemptyTv)
+    TextView isemptyTv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -157,17 +161,29 @@ public class CartActivity extends BaseActivity {
                     progress.setVisibility(View.GONE);
                     if (response.isSuccessful() && response.body() != null && response.body().getData() != null) {
                         cartData = response.body().getData();
-                        double limited= Double.parseDouble(cartData.getCart().get(0).getInvoicelimit());
-                        if (cartData.getTotal()>=limited){
-                            order.setVisibility(View.VISIBLE);
-                            invoicelimit.setVisibility(View.GONE);
+
+                        if (cartData.getCart()!=null&&cartData.getCart().size()>0){
+
+                            double limited = Double.parseDouble(cartData.getCart().get(0).getInvoicelimit());
+                            if (cartData.getTotal() >= limited) {
+                                order.setVisibility(View.VISIBLE);
+                                invoicelimit.setVisibility(View.GONE);
+                            } else {
+                                order.setVisibility(View.GONE);
+                                invoicelimit.setVisibility(View.VISIBLE);
+                                invoicelimit.setText(getString(R.string.Minimum_payment_to_be_completed) + " " + limited);
+                            }
+                            adapter.setCartData(cartData);
+                            adapter.notifyDataSetChanged();
+
                         }else {
-                            order.setVisibility(View.GONE);
-                            invoicelimit.setVisibility(View.VISIBLE);
-                            invoicelimit.setText(getString(R.string.Minimum_payment_to_be_completed)+" "+limited);
+
+                            relativeView.setVisibility(View.GONE);
+                            isemptyTv.setVisibility(View.VISIBLE);
+
                         }
-                        adapter.setCartData(cartData);
-                        adapter.notifyDataSetChanged();
+
+
                     } else {
                         StaticMembers.checkLoginRequired(response.errorBody(), CartActivity.this);
                     }

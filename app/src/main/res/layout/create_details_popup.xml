@@ -60,8 +60,6 @@
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:orientation="vertical"
-        android:layout_marginTop="@dimen/_10sdp"
-
         />
 
 
@@ -151,9 +149,10 @@
         android:layout_height="wrap_content"
         android:text="Address"
         android:id="@+id/address"
-        android:textSize="@dimen/_14sdp"
+        android:textSize="@dimen/text_normal"
         android:textStyle="bold"
         android:gravity="center"
+        android:textColor="@color/textColor"
         android:layout_marginTop="@dimen/_10sdp"
         android:textAlignment="center"
         />

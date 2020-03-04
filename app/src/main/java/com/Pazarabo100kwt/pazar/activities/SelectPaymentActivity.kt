@@ -23,6 +23,7 @@ import retrofit2.Response
 
 class SelectPaymentActivity : BaseActivity() {
 
+     var ordervalue=0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,6 +60,7 @@ class SelectPaymentActivity : BaseActivity() {
                 if (response.isSuccessful && result != null) {
                     StaticMembers.toastMessageSuccess(baseContext, result.message)
                     StaticMembers.opendetailsdialog(this@SelectPaymentActivity,result)
+                    ordervalue=1
 //                    setResult(Activity.RESULT_OK)
 //                    startActivity(Intent(this@SelectPaymentActivity, ConfirmBillActivity::class.java))
 //                    finish()
@@ -73,5 +75,14 @@ class SelectPaymentActivity : BaseActivity() {
             }
         })
 
+    }
+
+    override fun onBackPressed() {
+        if (ordervalue==0){
+            finish()
+        }else{
+            StaticMembers.startActivityOverAll(this@SelectPaymentActivity,MainActivity::class.java)
+
+        }
     }
 }

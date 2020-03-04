@@ -25,6 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:id="@+id/relativeView"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
 
         >
@@ -100,7 +101,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="الحد الادنى لاتمام عملية الدفع 50"
-                android:textColor="@color/textColor"
+                android:textColor="@color/colorPrimary"
                 android:id="@+id/invoicelimit"
                 android:padding="@dimen/_10sdp"
                 android:textSize="@dimen/text_normal" />
@@ -110,6 +111,19 @@
     </LinearLayout>
 
     </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/cart_is_empty"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:textSize="@dimen/text_normal_x"
+        android:textColor="@color/textColor"
+        android:id="@+id/isemptyTv"
+        android:visibility="gone"
+
+        />
 
     <include layout="@layout/progress_layout" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

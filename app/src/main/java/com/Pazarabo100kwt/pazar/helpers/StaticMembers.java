@@ -374,6 +374,9 @@ public class StaticMembers {
         total.setText(storeOrderResponse.getData().getResult().getTotalAmount()+"");
         payment_method.setText(storeOrderResponse.getData().getResult().getPaymentWay()+"");
         order_number.setText(context.getString(R.string.order_)+" "+"#"+" "+storeOrderResponse.getData().getResult().getId()+"");
+        delivery_charge.setText(storeOrderResponse.getData().getResult().getDeliverycharge()+"");
+        address.setText(storeOrderResponse.getData().getResult().getAddress()+"");
+
 
         home.setOnClickListener(view -> {
             Intent intent = new Intent(context, MainActivity.class);
@@ -399,8 +402,19 @@ public class StaticMembers {
                 TextView productId = rowView.findViewById(R.id.productId);
                 TextView amount = rowView.findViewById(R.id.amount);
                 TextView price = rowView.findViewById(R.id.price);
+                TextView unit = rowView.findViewById(R.id.unit);
+                TextView color = rowView.findViewById(R.id.color);
 
-//                name.setText(storeOrderResponse.getData().getResult().getItem().get(i).get);
+                if (storeOrderResponse.getData().getResult().getItem().get(i).getUnit()!=null){
+                    unit.setVisibility(View.VISIBLE);
+                    unit.setText(context.getString(R.string.shapesize)+" "+storeOrderResponse.getData().getResult().getItem().get(i).getUnit()+"");
+
+                }else{
+                    unit.setVisibility(View.GONE);
+                }
+//                color.setText(context.getString(R.string.color)+" : "+storeOrderResponse.getData().getResult().getItem().get(i).getProduct_name()+"");
+
+                name.setText(storeOrderResponse.getData().getResult().getItem().get(i).getProduct_name()+"");
                 productId.setText(storeOrderResponse.getData().getResult().getItem().get(i).getOrderId()+"-"+storeOrderResponse.getData().getResult().getItem().get(i).getSubcode());
                 amount.setText(storeOrderResponse.getData().getResult().getItem().get(i).getQuantity());
 
