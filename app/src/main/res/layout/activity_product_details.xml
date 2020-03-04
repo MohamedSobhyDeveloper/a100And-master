@@ -45,7 +45,7 @@
                 <androidx.viewpager.widget.ViewPager
                     android:id="@+id/pager"
                     android:layout_width="match_parent"
-                    android:layout_height="400dp" />
+                    android:layout_height="@dimen/_250sdp" />
 
                 <TextView
                     android:id="@+id/productId"
@@ -84,7 +84,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
                     android:textColor="@color/textColor"
-                    android:textSize="@dimen/text_normal" />
+                    android:textSize="@dimen/text_normal_x" />
 
 
                 <LinearLayout
@@ -136,6 +136,16 @@
                         android:textColor="@android:color/black"
                         android:textSize="@dimen/text_big"
                         android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/shareproduct"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/shareicon"
+                        android:padding="@dimen/_5sdp"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_marginEnd="@dimen/_5sdp"
+                        />
 
                     <CheckBox
                         android:id="@+id/favorite"
@@ -259,9 +269,10 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world "
+                        android:text=" hello world Hello world Hello world Hello world Hello world "
                         android:textColor="@android:color/black"
-                        android:textSize="@dimen/text_normal" />
+                        android:textSize="@dimen/text_normal_x"
+                        />
                 </LinearLayout>
 
             </LinearLayout>

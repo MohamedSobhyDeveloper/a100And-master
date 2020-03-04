@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/linear"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -24,7 +25,8 @@
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="16dp"
-                android:src="@drawable/delete_white" />
+                android:src="@drawable/delete_white"
+                tools:ignore="VectorDrawableCompat" />
 
         </RelativeLayout>
 
@@ -80,6 +82,14 @@
                     android:text="@string/product_id_s"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/text_normal" />
+                <TextView
+                    android:id="@+id/productnumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="@string/product_number"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/text_normal" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -125,6 +135,34 @@
 
         </LinearLayout>
     </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/deliveryLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/delivery_charge"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/text_big"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/delivery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="20"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/text_big"
+
+            />
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/totalLayout"

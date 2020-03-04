@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -12,14 +11,11 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.bottomsheet.BottomSheetDialog;
-import com.google.gson.Gson;
 import com.Pazarabo100kwt.pazar.R;
 import com.Pazarabo100kwt.pazar.adapters.CartAdapter;
 import com.Pazarabo100kwt.pazar.baseactivity.BaseActivity;
@@ -31,6 +27,7 @@ import com.Pazarabo100kwt.pazar.helpers.StaticMembers;
 import com.Pazarabo100kwt.pazar.models.cart.CartResponse;
 import com.Pazarabo100kwt.pazar.models.cart.Data;
 import com.Pazarabo100kwt.pazar.models.message_models.MessageResponse;
+import com.google.gson.Gson;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -58,6 +55,8 @@ public class CartActivity extends BaseActivity {
     CardView order;
     CartAdapter adapter;
     Data cartData;
+    @BindView(R.id.invoicelimit)
+    TextView invoicelimit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,8 +79,8 @@ public class CartActivity extends BaseActivity {
         order.setOnClickListener(v -> {
             Intent intent = new Intent(getBaseContext(), SelectPaymentActivity.class);
 
-            intent.putExtra(StaticMembers.CART,cartData);
-            startActivityForResult(intent,ORDER_REQ);
+            intent.putExtra(StaticMembers.CART, cartData);
+            startActivityForResult(intent, ORDER_REQ);
 
 
         });
@@ -102,8 +101,6 @@ public class CartActivity extends BaseActivity {
 
 
     }
-
-
 
 
     public void setPromo(String s) {
@@ -130,7 +127,7 @@ public class CartActivity extends BaseActivity {
                             StaticMembers.checkLoginRequired(errorBody, CartActivity.this);
                             result = new Gson().fromJson(e, MessageResponse.class);
                             if (result != null && result.getMessage() != null)
-                                StaticMembers.toastMessageSuccess(getBaseContext(), result.getMessage());
+                                StaticMembers.toastMessageFailed(getBaseContext(), result.getMessage());
                         }
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -154,11 +151,21 @@ public class CartActivity extends BaseActivity {
         } else {
             Call<CartResponse> call = RetrofitModel.getApi(getBaseContext()).getCart();
             call.enqueue(new CallbackRetrofit<CartResponse>(this) {
+                @SuppressLint("SetTextI18n")
                 @Override
                 public void onResponse(@NotNull Call<CartResponse> call, @NotNull Response<CartResponse> response) {
                     progress.setVisibility(View.GONE);
                     if (response.isSuccessful() && response.body() != null && response.body().getData() != null) {
                         cartData = response.body().getData();
+                        double limited= Double.parseDouble(cartData.getCart().get(0).getInvoicelimit());
+                        if (cartData.getTotal()>=limited){
+                            order.setVisibility(View.VISIBLE);
+                            invoicelimit.setVisibility(View.GONE);
+                        }else {
+                            order.setVisibility(View.GONE);
+                            invoicelimit.setVisibility(View.VISIBLE);
+                            invoicelimit.setText(getString(R.string.Minimum_payment_to_be_completed)+" "+limited);
+                        }
                         adapter.setCartData(cartData);
                         adapter.notifyDataSetChanged();
                     } else {
@@ -178,10 +185,8 @@ public class CartActivity extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == ORDER_REQ)
-        {
-            if (resultCode==RESULT_OK)
-            {
+        if (requestCode == ORDER_REQ) {
+            if (resultCode == RESULT_OK) {
                 getCart();
             }
         }

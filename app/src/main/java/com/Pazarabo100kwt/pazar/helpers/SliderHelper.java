@@ -28,7 +28,9 @@ public class SliderHelper {
             pager1.setOffscreenPageLimit(1);
             pager1.setAdapter(adapter1);
             adapter1.notifyDataSetChanged();
-            pager1.resumeAutoScroll();
+            pager1.pauseAutoScroll();
+            Handler handler = new Handler();
+            handler.postDelayed(() -> pager1.resumeAutoScroll(), 1500);
 
             pager2 = view.findViewById(R.id.pager2);
             adapter2 = new ImageSliderAdapter(activity, sliderList.get(1));
@@ -37,7 +39,7 @@ public class SliderHelper {
             adapter2.notifyDataSetChanged();
             pager2.pauseAutoScroll();
             Handler handler2 = new Handler();
-            handler2.postDelayed(() -> pager2.resumeAutoScroll(), 1500);
+            handler2.postDelayed(() -> pager2.resumeAutoScroll(), 3500);
 
 
             pager3 = view.findViewById(R.id.pager3);
@@ -47,7 +49,8 @@ public class SliderHelper {
             adapter3.notifyDataSetChanged();
             pager3.pauseAutoScroll();
             Handler handler3 = new Handler();
-            handler3.postDelayed(() -> pager3.resumeAutoScroll(), 2500);
+            handler3.postDelayed(() -> pager3.resumeAutoScroll(), 5000);
+
         }
     }
 
@@ -69,8 +72,10 @@ public class SliderHelper {
 
     public void resumeAll(){
         pager1.resumeAutoScroll();
-        new Handler().postDelayed(() -> pager2.resumeAutoScroll(), 1500);
-        new Handler().postDelayed(() -> pager3.resumeAutoScroll(), 2500);
+        new Handler().postDelayed(() -> pager1.resumeAutoScroll(), 1500);
+        new Handler().postDelayed(() -> pager2.resumeAutoScroll(), 3500);
+        new Handler().postDelayed(() -> pager3.resumeAutoScroll(), 5000);
+
     }
 
 }

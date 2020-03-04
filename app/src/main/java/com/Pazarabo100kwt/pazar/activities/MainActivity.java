@@ -56,6 +56,7 @@ public class MainActivity extends BaseActivity {
         if (getIntent().getBooleanExtra(CAT, false))
             openFragment(DivisionsFragment.getInstance(), DIV);
         else openFragment(SlidersFragment.getInstance(), SLIDER);
+
         listButton.setOnClickListener(v -> startActivity(new Intent(getBaseContext(), CategoriesActivity.class)));
         account.setOnClickListener(v -> AccountFragment.getInstance().show(getSupportFragmentManager(), getString(R.string.account)));
         offers.setOnClickListener(v -> startActivity(new Intent(getBaseContext(), OffersActivity.class)));
@@ -63,6 +64,7 @@ public class MainActivity extends BaseActivity {
         gifts.setOnClickListener(v -> startActivity(new Intent(getBaseContext(), GiftsActivity.class)));
         message.setOnClickListener(v -> MessageFragment.getInstance().show(getSupportFragmentManager(), getString(R.string.messages)));
         favorite.setOnClickListener(v -> startActivity(new Intent(getBaseContext(), FavoritesActivity.class)));
+
         search.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                 Intent intent = new Intent(getBaseContext(), SearchProductsActivity.class);
@@ -72,6 +74,7 @@ public class MainActivity extends BaseActivity {
             }
             return false;
         });
+
         cart.setOnClickListener(v -> startActivity(new Intent(getBaseContext(), CartActivity.class)));
     }
 

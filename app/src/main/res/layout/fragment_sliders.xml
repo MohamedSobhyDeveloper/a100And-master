@@ -30,7 +30,8 @@
                     app:itemAspectRatio="1.33"
                     app:autoScroll="true"
                     app:isInfinite="true"
-                    app:scrollInterval="5000"/>
+                    app:scrollInterval="5000"
+                    />
             </FrameLayout>
         </androidx.cardview.widget.CardView>
 
@@ -76,11 +77,11 @@
                     android:id="@+id/pager3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:viewpagerAspectRatio="1.78"
-                    app:itemAspectRatio="1.33"
                     app:autoScroll="true"
                     app:isInfinite="true"
-                    app:scrollInterval="5000" />
+                    app:itemAspectRatio="1.33"
+                    app:scrollInterval="5000"
+                    app:viewpagerAspectRatio="1.78" />
             </FrameLayout>
         </androidx.cardview.widget.CardView>
     </LinearLayout>

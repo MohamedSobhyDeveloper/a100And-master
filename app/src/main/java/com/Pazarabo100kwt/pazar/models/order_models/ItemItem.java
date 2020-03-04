@@ -27,6 +27,17 @@ public class ItemItem{
 	@SerializedName("order_id")
 	private String orderId;
 
+	@SerializedName("subcode")
+	private String subcode;
+
+	public String getSubcode() {
+		return subcode;
+	}
+
+	public void setSubcode(String subcode) {
+		this.subcode = subcode;
+	}
+
 	public void setUnit(String unit){
 		this.unit = unit;
 	}

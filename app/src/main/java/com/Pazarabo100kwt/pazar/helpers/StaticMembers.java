@@ -1,6 +1,8 @@
 package com.Pazarabo100kwt.pazar.helpers;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -8,12 +10,21 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.DisplayMetrics;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.cardview.widget.CardView;
+
+import com.Pazarabo100kwt.pazar.activities.ConfirmBillActivity;
+import com.Pazarabo100kwt.pazar.activities.MainActivity;
+import com.Pazarabo100kwt.pazar.models.order_models.StoreOrderResponse;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.gson.GsonBuilder;
@@ -21,6 +32,7 @@ import com.Pazarabo100kwt.pazar.R;
 import com.Pazarabo100kwt.pazar.activities.LogInActivity;
 import com.Pazarabo100kwt.pazar.activities.SelectPaymentActivity;
 import com.Pazarabo100kwt.pazar.models.login_models.ErrorLoginResponse;
+import com.squareup.picasso.Picasso;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -33,6 +45,8 @@ import java.util.regex.Pattern;
 
 import es.dmoral.toasty.Toasty;
 import okhttp3.ResponseBody;
+
+import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
 public class StaticMembers {
 
@@ -246,6 +260,9 @@ public class StaticMembers {
         Toasty.info(context, messaage, Toast.LENGTH_SHORT, true).show();
     }
 
+
+
+
     public static boolean CheckTextInputEditText(TextInputEditText editText, final TextInputLayout textInputLayout, final String errorMessage) {
 
         editText.addTextChangedListener(new TextWatcher() {
@@ -336,4 +353,83 @@ public class StaticMembers {
     }
 
 
-}
+    @SuppressLint("SetTextI18n")
+    public static void opendetailsdialog(Context context,StoreOrderResponse storeOrderResponse) {
+        Dialog dialogview = new Dialog(context);
+        dialogview.setContentView(R.layout.create_details_popup);
+        dialogview.setCanceledOnTouchOutside(false);
+        dialogview.setCancelable(false);
+        dialogview.getWindow().setLayout(WindowManager.LayoutParams.FILL_PARENT, WindowManager.LayoutParams.FILL_PARENT);
+
+        CardView home = dialogview.findViewById(R.id.home);
+        TextView delivery_charge = dialogview.findViewById(R.id.delivery_charge);
+        TextView total = dialogview.findViewById(R.id.total);
+        TextView payment_method = dialogview.findViewById(R.id.payment_method);
+        TextView address = dialogview.findViewById(R.id.address);
+        TextView order_number = dialogview.findViewById(R.id.order_number);
+        LinearLayout llayout_item = dialogview.findViewById(R.id.llayout_item);
+        TextView close = dialogview.findViewById(R.id.close);
+
+
+        total.setText(storeOrderResponse.getData().getResult().getTotalAmount()+"");
+        payment_method.setText(storeOrderResponse.getData().getResult().getPaymentWay()+"");
+        order_number.setText(context.getString(R.string.order_)+" "+"#"+" "+storeOrderResponse.getData().getResult().getId()+"");
+
+        home.setOnClickListener(view -> {
+            Intent intent = new Intent(context, MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            context.startActivity(intent);
+        });
+
+        close.setOnClickListener(view -> {
+            Intent intent = new Intent(context, MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            context.startActivity(intent);
+        });
+
+
+        for (int i=0;i<storeOrderResponse.getData().getResult().getItem().size();i++){
+
+            LayoutInflater inflater = (LayoutInflater) context.getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
+            final View rowView;
+            if (inflater != null) {
+
+                rowView = inflater.inflate(R.layout.item_product_inflate, null);
+                TextView name = rowView.findViewById(R.id.name);
+                TextView productId = rowView.findViewById(R.id.productId);
+                TextView amount = rowView.findViewById(R.id.amount);
+                TextView price = rowView.findViewById(R.id.price);
+
+//                name.setText(storeOrderResponse.getData().getResult().getItem().get(i).get);
+                productId.setText(storeOrderResponse.getData().getResult().getItem().get(i).getOrderId()+"-"+storeOrderResponse.getData().getResult().getItem().get(i).getSubcode());
+                amount.setText(storeOrderResponse.getData().getResult().getItem().get(i).getQuantity());
+
+//                double pricevlaue= Double.parseDouble(storeOrderResponse.getData().getResult().getItem().get(i).getPrice());
+//                double quantity= Integer.parseInt(storeOrderResponse.getData().getResult().getItem().get(i).getQuantity());
+//
+//                double totalvalue=pricevlaue*quantity;
+
+                price.setText(storeOrderResponse.getData().getResult().getItem().get(i).getPrice()+" "+"KD");
+
+
+                llayout_item.addView(rowView);
+            }
+
+
+        }
+
+
+
+
+
+        dialogview.show();
+
+
+        }
+
+
+
+    }
+
+
+

@@ -128,6 +128,12 @@
     <string name="no">No</string>
     <string name="choose_payment_method">Choose Payment Method</string>
     <string name="data_updated_successfully">Data Updated Successfully</string>
+    <string name="share_product">Share Product</string>
+    <string name="Let_me_recommend_this_app">Let me recommend you this application for shopping</string>
+    <string name="product_number">Product number:</string>
+    <string name="delivery_charge">delivery Service</string>
+    <string name="Minimum_payment_to_be_completed">Minimum payment to be completed</string>
+    <string name="order_">Order</string>
 
 
 </resources>

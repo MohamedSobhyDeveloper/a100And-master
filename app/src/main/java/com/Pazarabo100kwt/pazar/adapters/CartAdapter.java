@@ -1,5 +1,6 @@
 package com.Pazarabo100kwt.pazar.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +16,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.Pazarabo100kwt.pazar.R;
 import com.Pazarabo100kwt.pazar.activities.CartActivity;
 import com.Pazarabo100kwt.pazar.activities.LogInActivity;
@@ -28,6 +28,7 @@ import com.Pazarabo100kwt.pazar.models.cart.CartItem;
 import com.Pazarabo100kwt.pazar.models.cart.Data;
 import com.Pazarabo100kwt.pazar.models.cart.Product;
 import com.Pazarabo100kwt.pazar.models.cart.delete_cart_models.DeleteCartResponse;
+import com.bumptech.glide.Glide;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -39,6 +40,7 @@ import retrofit2.Call;
 import retrofit2.Response;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Holder> {
+
     private CartActivity activity;
     private RelativeLayout progress;
     private Data cartData;
@@ -51,7 +53,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Holder> {
 
     void changeTotal(double total) {
         cartData.setTotal(total);
-        notifyItemChanged(cartData.getCart().size() );
+        notifyItemChanged(cartData.getCart().size());
     }
 
     public void setCartData(Data cartData) {
@@ -163,6 +165,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Holder> {
         TextView amountText;
         @BindView(R.id.productId)
         TextView productId;
+        @BindView(R.id.productnumber)
+        TextView productnumber;
         @BindView(R.id.total)
         TextView total;
         @BindView(R.id.selected)
@@ -175,27 +179,40 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Holder> {
         LinearLayout totalLayout;
         @BindView(R.id.linear)
         LinearLayout linear;
-
+        @BindView(R.id.delivery)
+        TextView delivery;
+        @BindView(R.id.deliveryLayout)
+        LinearLayout deliveryLayout;
 
         Holder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
 
+        @SuppressLint("SetTextI18n")
         public void onBind() {
             int position = getAdapterPosition();
             if (position < cartData.getCart().size()) {
 
                 totalLayout.setVisibility(View.GONE);
+                deliveryLayout.setVisibility(View.GONE);
                 itemLayout.setVisibility(View.VISIBLE);
                 CartItem cartItem = cartData.getCart().get(position);
                 Product product = cartItem.getProduct();
+
                 if (product != null) {
                     if (product.getPhotos() != null)
                         Glide.with(activity).load(product.getPhotos().get(0)).into(image);
 
                     name.setText(product.getName());
                     productId.setText(String.format(Locale.getDefault(), activity.getString(R.string.product_id_s), product.getProductNo()));
+                    if (cartData.getCart().get(position).getSubcode() != null) {
+                        productnumber.setText(activity.getString(R.string.product_number) + " " + cartData.getCart().get(position).getSubcode() + "");
+                        productnumber.setVisibility(View.VISIBLE);
+
+                    } else {
+                        productnumber.setVisibility(View.GONE);
+                    }
                     price.setText(String.format(Locale.getDefault(), activity.getString(R.string.s_kwd), cartItem.getPrice()));
                     itemView.setOnClickListener(v -> {
                 /*Intent intent = new Intent(activity, ProductDetailsActivity.class);
@@ -246,6 +263,11 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Holder> {
                 totalLayout.setVisibility(View.VISIBLE);
                 itemLayout.setVisibility(View.GONE);
                 total.setText(String.format(Locale.getDefault(), "%.2f", cartData.getTotal()));
+                if (cartData.getCart()!=null&&cartData.getCart().size()>0){
+                    deliveryLayout.setVisibility(View.VISIBLE);
+                    delivery.setText(cartData.getCart().get(0).getDeliverycharge()+"");
+                }
+
             }
         }
     }
