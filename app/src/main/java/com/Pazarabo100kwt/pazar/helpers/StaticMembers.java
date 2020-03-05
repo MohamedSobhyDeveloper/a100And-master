@@ -407,7 +407,7 @@ public class StaticMembers {
 
                 if (storeOrderResponse.getData().getResult().getItem().get(i).getUnit()!=null){
                     unit.setVisibility(View.VISIBLE);
-                    unit.setText(context.getString(R.string.shapesize)+" "+storeOrderResponse.getData().getResult().getItem().get(i).getUnit()+"");
+                    unit.setText(context.getString(R.string.shapesize)+" : "+storeOrderResponse.getData().getResult().getItem().get(i).getUnit()+"");
 
                 }else{
                     unit.setVisibility(View.GONE);
@@ -423,7 +423,8 @@ public class StaticMembers {
 //
 //                double totalvalue=pricevlaue*quantity;
 
-                price.setText(storeOrderResponse.getData().getResult().getItem().get(i).getPrice()+" "+"KD");
+                price.setText(storeOrderResponse.getData().getResult().getItem().get(i).getPrice()+" "+context.getString(R.string.kd));
+
 
 
                 llayout_item.addView(rowView);

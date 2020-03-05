@@ -58,8 +58,9 @@
         android:layout_width="match_parent"
         android:id="@+id/llayout_item"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="@color/gray"
         android:orientation="vertical"
+        android:padding="5dp"
         />
 
 
@@ -129,7 +130,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Payment Method"
+            android:text="@string/payment_method"
             android:textColor="@android:color/black"
             android:textSize="@dimen/text_normal"
             android:textStyle="bold" />

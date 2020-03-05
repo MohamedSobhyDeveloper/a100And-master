@@ -132,11 +132,13 @@
     <string name="Let_me_recommend_this_app">Let me recommend you this application for shopping</string>
     <string name="product_number">Product number:</string>
     <string name="delivery_charge">delivery Service</string>
-    <string name="Minimum_payment_to_be_completed">Minimum payment to be completed</string>
+    <string name="Minimum_payment_to_be_completed">Minimum Charge </string>
     <string name="order_">Order</string>
     <string name="cart_is_empty">Cart Is Empty</string>
     <string name="shapesize">Shape/Size</string>
     <string name="color">Color</string>
+    <string name="payment_method">Payment Method</string>
+    <string name="kd">KD</string>
 
 
 </resources>

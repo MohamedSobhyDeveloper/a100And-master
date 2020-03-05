@@ -171,7 +171,7 @@ public class CartActivity extends BaseActivity {
                             } else {
                                 order.setVisibility(View.GONE);
                                 invoicelimit.setVisibility(View.VISIBLE);
-                                invoicelimit.setText(getString(R.string.Minimum_payment_to_be_completed) + " " + limited);
+                                invoicelimit.setText(getString(R.string.Minimum_payment_to_be_completed) + " " + limited+" "+getString(R.string.kd));
                             }
                             adapter.setCartData(cartData);
                             adapter.notifyDataSetChanged();

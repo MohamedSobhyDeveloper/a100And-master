@@ -121,16 +121,18 @@
     <string name="want_to_exit">هل تريد الخروج من التطبيق</string>
     <string name="yes">نعم</string>
     <string name="no">لا</string>
-    <string name="choose_payment_method">Choose Payment Method</string>
+    <string name="choose_payment_method">اختر وسيلة الدفع</string>
     <string name="data_updated_successfully">تم التحديث بنجاح</string>
     <string name="share_product">شارك المنتج</string>
     <string name="Let_me_recommend_this_app">انصحك باستخدام هذا التطبيق من اجل التسوق</string>
     <string name="product_number">رقم الصنف:</string>
     <string name="delivery_charge">خدمة التوصيل</string>
-    <string name="Minimum_payment_to_be_completed">الحد الادنى لاتمام عملية الدفع </string>
+    <string name="Minimum_payment_to_be_completed">الحد الادنى </string>
     <string name="order_">طلب</string>
     <string name="cart_is_empty">السلة فارغة</string>
     <string name="shapesize">الشكل/الحجم</string>
     <string name="color">اللون</string>
+    <string name="payment_method">وسيلة الدفع</string>
+    <string name="kd">دك</string>
 
 </resources>

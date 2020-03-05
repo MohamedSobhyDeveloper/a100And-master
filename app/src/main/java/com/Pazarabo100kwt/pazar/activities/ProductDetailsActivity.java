@@ -321,6 +321,7 @@ public class ProductDetailsActivity extends BaseActivity {
                 if (proDetails.getMeasure().size() > 3)
                     tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
                 else tabLayout.setTabMode(TabLayout.MODE_FIXED);
+
                 tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
                     @Override
                     public void onTabSelected(TabLayout.Tab tab) {
