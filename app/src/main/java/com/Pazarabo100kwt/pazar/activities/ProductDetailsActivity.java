@@ -441,7 +441,13 @@ public class ProductDetailsActivity extends BaseActivity {
 
                     } else if (response.body() != null) {
                         StaticMembers.toastMessageSuccess(getBaseContext(), response.body().getMessage());
-                        amountText.setText(String.format(Locale.getDefault(), "%d", amount));
+//                        amountText.setText(String.format(Locale.getDefault(), "%d", amount));
+                        amount=1;
+                        amountText.setText("1");
+                        float total = amount * Float.parseFloat(actualPrice);
+                        addToCartText.setText(String.format(Locale.getDefault(), getString(R.string.add_to_cart_s), total));
+                        buyNowText.setText(String.format(Locale.getDefault(), getString(R.string.buy_now_s), total));
+
                         if (buyNow)
                             startActivity(new Intent(getBaseContext(), CartActivity.class));
                     }

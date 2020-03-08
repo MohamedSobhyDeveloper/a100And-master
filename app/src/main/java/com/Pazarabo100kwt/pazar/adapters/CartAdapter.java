@@ -262,10 +262,10 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Holder> {
             } else {
                 totalLayout.setVisibility(View.VISIBLE);
                 itemLayout.setVisibility(View.GONE);
-                total.setText(String.format(Locale.getDefault(), "%.2f", cartData.getTotal()));
+                total.setText(cartData.getTotal()+" "+activity.getString(R.string.kd));
                 if (cartData.getCart()!=null&&cartData.getCart().size()>0){
                     deliveryLayout.setVisibility(View.VISIBLE);
-                    delivery.setText(cartData.getCart().get(0).getDeliverycharge()+"");
+                    delivery.setText(cartData.getCart().get(0).getDeliverycharge()+" "+activity.getString(R.string.kd));
                 }
 
             }

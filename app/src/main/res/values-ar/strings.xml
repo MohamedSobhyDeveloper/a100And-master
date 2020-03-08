@@ -68,7 +68,7 @@
     <string name="product_id_s">كود المنتج: %s</string>
     <string name="remove">حذف</string>
     <string name="s_kwd">%s دك</string>
-    <string name="sizes">أحجام</string>
+    <string name="sizes">مقاس/شكل </string>
     <string name="total">المجموع</string>
     <string name="cart">سلة المشتريات</string>
     <string name="add_promocode">اضافة بروموكود</string>
@@ -128,7 +128,7 @@
     <string name="product_number">رقم الصنف:</string>
     <string name="delivery_charge">خدمة التوصيل</string>
     <string name="Minimum_payment_to_be_completed">الحد الادنى </string>
-    <string name="order_">طلب</string>
+    <string name="order_">فاتورة رقم</string>
     <string name="cart_is_empty">السلة فارغة</string>
     <string name="shapesize">الشكل/الحجم</string>
     <string name="color">اللون</string>

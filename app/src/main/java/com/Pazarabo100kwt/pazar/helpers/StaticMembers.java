@@ -372,10 +372,10 @@ public class StaticMembers {
         TextView close = dialogview.findViewById(R.id.close);
 
 
-        total.setText(storeOrderResponse.getData().getResult().getTotalAmount()+"");
+        total.setText(storeOrderResponse.getData().getResult().getTotalAmount()+" "+context.getString(R.string.kd));
         payment_method.setText(storeOrderResponse.getData().getResult().getPaymentWay()+"");
         order_number.setText(context.getString(R.string.order_)+" "+"#"+" "+storeOrderResponse.getData().getResult().getId()+"");
-        delivery_charge.setText(storeOrderResponse.getData().getResult().getDeliverycharge()+"");
+        delivery_charge.setText(storeOrderResponse.getData().getResult().getDeliverycharge()+" "+context.getString(R.string.kd));
         address.setText(storeOrderResponse.getData().getResult().getAddress()+"");
 
 
@@ -406,17 +406,24 @@ public class StaticMembers {
                 TextView unit = rowView.findViewById(R.id.unit);
                 TextView color = rowView.findViewById(R.id.color);
 
-                if (storeOrderResponse.getData().getResult().getItem().get(i).getUnit()!=null){
+                if (storeOrderResponse.getData().getResult().getItem().get(i).getUnit()!=null&&!storeOrderResponse.getData().getResult().getItem().get(i).getUnit().equals("0")&&!storeOrderResponse.getData().getResult().getItem().get(i).getUnit().equals("")){
                     unit.setVisibility(View.VISIBLE);
                     unit.setText(context.getString(R.string.shapesize)+" : "+storeOrderResponse.getData().getResult().getItem().get(i).getUnit()+"");
 
                 }else{
                     unit.setVisibility(View.GONE);
                 }
-//                color.setText(context.getString(R.string.color)+" : "+storeOrderResponse.getData().getResult().getItem().get(i).getProduct_name()+"");
+
+           if (!storeOrderResponse.getData().getResult().getItem().get(i).getColor_name().equals("")){
+               color.setVisibility(View.VISIBLE);
+               color.setText(context.getString(R.string.color)+" : "+storeOrderResponse.getData().getResult().getItem().get(i).getColor_name()+"");
+
+           }else {
+               color.setVisibility(View.GONE);
+           }
 
                 name.setText(storeOrderResponse.getData().getResult().getItem().get(i).getProduct_name()+"");
-                productId.setText(storeOrderResponse.getData().getResult().getItem().get(i).getOrderId()+"-"+storeOrderResponse.getData().getResult().getItem().get(i).getSubcode());
+                productId.setText(storeOrderResponse.getData().getResult().getItem().get(i).getProductId()+"-"+storeOrderResponse.getData().getResult().getItem().get(i).getSubcode());
                 amount.setText(storeOrderResponse.getData().getResult().getItem().get(i).getQuantity());
 
 //                double pricevlaue= Double.parseDouble(storeOrderResponse.getData().getResult().getItem().get(i).getPrice());
