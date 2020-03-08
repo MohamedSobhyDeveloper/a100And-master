@@ -107,6 +107,7 @@ public class StaticMembers {
     public static final String DISCOUNT = "discount";
     public static final String GIFT_GET = "gifts/all";
     public static final String EMAIL = "email";
+    public static final String telephone = "telephone";
     public static final String PASSWORD = "password";
     public static final String LAT = "latitude";
     public static final String LONG = "longitude";

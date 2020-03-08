@@ -139,6 +139,7 @@
     <string name="color">Color</string>
     <string name="payment_method">Payment Method</string>
     <string name="kd">KD</string>
+    <string name="discount">Discount</string>
 
 
 </resources>

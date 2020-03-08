@@ -134,5 +134,6 @@
     <string name="color">اللون</string>
     <string name="payment_method">وسيلة الدفع</string>
     <string name="kd">دك</string>
+    <string name="discount">خصومات</string>
 
 </resources>

@@ -165,7 +165,9 @@ public class CartActivity extends BaseActivity {
                         if (cartData.getCart()!=null&&cartData.getCart().size()>0){
 
                             double limited = Double.parseDouble(cartData.getCart().get(0).getInvoicelimit());
-                            if (cartData.getTotal() >= limited) {
+
+                            double total=cartData.getTotal()-Integer.parseInt(cartData.getCart().get(0).getDeliverycharge());
+                            if (total>= limited) {
                                 order.setVisibility(View.VISIBLE);
                                 invoicelimit.setVisibility(View.GONE);
                             } else {

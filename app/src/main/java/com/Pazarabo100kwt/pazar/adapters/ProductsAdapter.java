@@ -1,7 +1,9 @@
 package com.Pazarabo100kwt.pazar.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,8 +16,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
-import com.google.gson.GsonBuilder;
 import com.Pazarabo100kwt.pazar.R;
 import com.Pazarabo100kwt.pazar.activities.ProductDetailsActivity;
 import com.Pazarabo100kwt.pazar.helpers.CallbackRetrofit;
@@ -25,10 +25,11 @@ import com.Pazarabo100kwt.pazar.helpers.StaticMembers;
 import com.Pazarabo100kwt.pazar.models.search_products.Product;
 import com.Pazarabo100kwt.pazar.models.wishlist_models.ErrorWishListResponse;
 import com.Pazarabo100kwt.pazar.models.wishlist_models.WishlistResponse;
+import com.bumptech.glide.Glide;
+import com.google.gson.GsonBuilder;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.io.IOException;
 import java.util.List;
 
 import butterknife.BindView;
@@ -38,6 +39,8 @@ import retrofit2.Call;
 import retrofit2.Response;
 
 public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Holder> {
+
+
     private Context context;
     private List<Product> list;
     private RelativeLayout progress;
@@ -54,6 +57,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Holder
         return new Holder(LayoutInflater.from(context).inflate(R.layout.item_product, parent, false));
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull Holder holder, int position) {
         Product product = list.get(position);
@@ -66,7 +70,20 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Holder
             }
         });
         holder.name.setText(product.getName());
-        holder.price.setText(product.getProDetails().get(0).getPrice());
+        if (product.getProDetails().get(0).getNewprice() != null && !product.getProDetails().get(0).getNewprice().equals("")) {
+            holder.priceOld.setVisibility(View.VISIBLE);
+            holder.discount.setVisibility(View.VISIBLE);
+            holder.price.setText(product.getProDetails().get(0).getNewprice() + " " + context.getString(R.string.kd));
+            holder.priceOld.setText(product.getProDetails().get(0).getPrice() + " " + context.getString(R.string.kd));
+            holder.priceOld.setPaintFlags(holder.priceOld.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+
+
+        } else {
+            holder.priceOld.setVisibility(View.GONE);
+            holder.discount.setVisibility(View.GONE);
+            holder.price.setText(product.getProDetails().get(0).getPrice() + " " + context.getString(R.string.kd));
+
+        }
         holder.productId.setText(product.getProductNo());
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, ProductDetailsActivity.class);
@@ -145,6 +162,10 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Holder
         @BindView(R.id.subCode)
         TextView subCode;
 
+        @BindView(R.id.priceOld)
+        TextView priceOld;
+        @BindView(R.id.discount)
+        TextView discount;
         Holder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);

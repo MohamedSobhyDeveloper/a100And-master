@@ -169,8 +169,15 @@ public class AccountFragment extends DialogFragment {
             area.setText(user.getArea());
             remarkAddress.setText(user.getRemarkaddress());
             houseNo.setText(user.getHouse_no());
+
             name.setOnClickListener(v -> {
                 openDialog(StaticMembers.NAME, getString(R.string.name), user.getName());
+            });
+            email.setOnClickListener(v -> {
+                openDialog(StaticMembers.EMAIL, getString(R.string.email_here), user.getEmail());
+            });
+            phone.setOnClickListener(v -> {
+                openDialog(StaticMembers.telephone, getString(R.string.phone), user.getTelephone());
             });
             country.setOnClickListener(v -> openDialog(StaticMembers.COUNTRY, getString(R.string.country), user.getCountry(),true));
             gov.setOnClickListener(v -> openDialog(StaticMembers.GOV, getString(R.string.governorate), user.getGovernmant(),true));
