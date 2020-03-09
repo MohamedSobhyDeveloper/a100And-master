@@ -423,7 +423,7 @@ public class StaticMembers {
            }
 
                 name.setText(storeOrderResponse.getData().getResult().getItem().get(i).getProduct_name()+"");
-                productId.setText(storeOrderResponse.getData().getResult().getItem().get(i).getProductId()+"-"+storeOrderResponse.getData().getResult().getItem().get(i).getSubcode());
+                productId.setText(storeOrderResponse.getData().getResult().getItem().get(i).getProduct_no()+"-"+storeOrderResponse.getData().getResult().getItem().get(i).getSubcode());
                 amount.setText(storeOrderResponse.getData().getResult().getItem().get(i).getQuantity());
 
 //                double pricevlaue= Double.parseDouble(storeOrderResponse.getData().getResult().getItem().get(i).getPrice());

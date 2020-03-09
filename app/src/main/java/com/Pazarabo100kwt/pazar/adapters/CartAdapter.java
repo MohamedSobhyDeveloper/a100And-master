@@ -25,9 +25,11 @@ import com.Pazarabo100kwt.pazar.helpers.RetrofitModel;
 import com.Pazarabo100kwt.pazar.helpers.StaticMembers;
 import com.Pazarabo100kwt.pazar.models.cart.AddCartResponse;
 import com.Pazarabo100kwt.pazar.models.cart.CartItem;
+import com.Pazarabo100kwt.pazar.models.cart.Color;
 import com.Pazarabo100kwt.pazar.models.cart.Data;
 import com.Pazarabo100kwt.pazar.models.cart.Product;
 import com.Pazarabo100kwt.pazar.models.cart.delete_cart_models.DeleteCartResponse;
+import com.Pazarabo100kwt.pazar.models.search_products.Measure;
 import com.bumptech.glide.Glide;
 
 import org.jetbrains.annotations.NotNull;
@@ -40,6 +42,7 @@ import retrofit2.Call;
 import retrofit2.Response;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Holder> {
+
 
     private CartActivity activity;
     private RelativeLayout progress;
@@ -73,13 +76,29 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Holder> {
 
     private void changeCartItem(CartItem cartItem, int amount, TextView amountText) {
         // progress.setVisibility(View.VISIBLE);
+        Call<AddCartResponse> call = null;
         if (PrefManager.getInstance(activity).getAPIToken().isEmpty()) {
             Intent intent = new Intent(activity, LogInActivity.class);
             intent.putExtra(StaticMembers.ACTION, true);
             activity.startActivity(intent);
         } else {
-            Call<AddCartResponse> call = RetrofitModel.getApi(activity).addOrEditCart(cartItem.getProductId(),
-                    amount, 0, 0);
+            if (cartItem.getUnit()!=null&&cartItem.getColor()!=null){
+                call = RetrofitModel.getApi(activity).addOrEditCart(cartItem.getProductId(),
+                        amount, cartItem.getUnit().getId(), cartItem.getColor().getId());
+            }else if (cartItem.getUnit()!=null){
+                call = RetrofitModel.getApi(activity).addOrEditCart(cartItem.getProductId(),
+                        amount, cartItem.getUnit().getId());
+
+            }else if (cartItem.getColor()!=null){
+                call = RetrofitModel.getApi(activity).addOrEditCart(cartItem.getProductId(),
+                        amount,cartItem.getColor().getId());
+            }else {
+                call = RetrofitModel.getApi(activity).addOrEditCart(cartItem.getProductId(),
+                        amount, 0, 0);
+            }
+
+
+
             call.enqueue(new CallbackRetrofit<AddCartResponse>(activity) {
                 @Override
                 public void onResponse(@NotNull Call<AddCartResponse> call, @NotNull Response<AddCartResponse> response) {
@@ -184,6 +203,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Holder> {
         @BindView(R.id.deliveryLayout)
         LinearLayout deliveryLayout;
 
+        @BindView(R.id.productcolor)
+        TextView productcolor;
+
         Holder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
@@ -213,6 +235,15 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Holder> {
                     } else {
                         productnumber.setVisibility(View.GONE);
                     }
+
+                    if (cartData.getCart().get(position).getColor() != null) {
+                        productcolor.setText(activity.getString(R.string.color) + " : " + cartData.getCart().get(position).getColor().getName() + "");
+                        productcolor.setVisibility(View.VISIBLE);
+
+                    } else {
+                        productcolor.setVisibility(View.GONE);
+                    }
+
                     price.setText(String.format(Locale.getDefault(), activity.getString(R.string.s_kwd), cartItem.getPrice()));
                     itemView.setOnClickListener(v -> {
                 /*Intent intent = new Intent(activity, ProductDetailsActivity.class);
@@ -262,10 +293,10 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Holder> {
             } else {
                 totalLayout.setVisibility(View.VISIBLE);
                 itemLayout.setVisibility(View.GONE);
-                total.setText(cartData.getTotal()+" "+activity.getString(R.string.kd));
-                if (cartData.getCart()!=null&&cartData.getCart().size()>0){
+                total.setText(cartData.getTotal() + " " + activity.getString(R.string.kd));
+                if (cartData.getCart() != null && cartData.getCart().size() > 0) {
                     deliveryLayout.setVisibility(View.VISIBLE);
-                    delivery.setText(cartData.getCart().get(0).getDeliverycharge()+" "+activity.getString(R.string.kd));
+                    delivery.setText(cartData.getCart().get(0).getDeliverycharge() + " " + activity.getString(R.string.kd));
                 }
 
             }

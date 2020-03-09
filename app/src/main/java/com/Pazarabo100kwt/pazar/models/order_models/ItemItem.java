@@ -18,6 +18,9 @@ public class ItemItem{
 	@SerializedName("product_id")
 	private String productId;
 
+	@SerializedName("product_no")
+	private String product_no;
+
 	@SerializedName("colorcode")
 	private String colorcode;
 
@@ -36,6 +39,14 @@ public class ItemItem{
 	@SerializedName("color_name")
 	private String color_name;
 
+
+	public String getProduct_no() {
+		return product_no;
+	}
+
+	public void setProduct_no(String product_no) {
+		this.product_no = product_no;
+	}
 
 	public String getColor_name() {
 		return color_name;
