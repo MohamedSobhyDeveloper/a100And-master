@@ -67,7 +67,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Hello world"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/textColor"
             android:textSize="@dimen/text_normal" />
 
         <TextView
@@ -75,7 +75,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/s_kwd"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/textColor"
             android:textSize="@dimen/text_small_x"
             android:visibility="gone"
             android:textStyle="bold" />
@@ -92,7 +92,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="253"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/textColor"
                 android:textSize="@dimen/text_normal" />
 
             <CheckBox
