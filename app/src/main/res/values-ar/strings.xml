@@ -139,5 +139,7 @@
     <string name="price_total">الاجمالى</string>
     <string name="price">السعر</string>
     <string name="try_again">اعادة المحاولة مرة اخرى</string>
+    <string name="product_name"> المنتج</string>
+    <string name="quantity">الكمية</string>
 
 </resources>

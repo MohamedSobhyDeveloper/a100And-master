@@ -144,6 +144,8 @@
     <string name="price_total">Total</string>
     <string name="price">Price</string>
     <string name="try_again">Try Again</string>
+    <string name="product_name">Product name</string>
+    <string name="quantity">Quantity</string>
 
 
 </resources>

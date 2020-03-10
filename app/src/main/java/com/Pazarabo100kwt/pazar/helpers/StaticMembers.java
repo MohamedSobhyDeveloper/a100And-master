@@ -425,15 +425,15 @@ public class StaticMembers {
 
                 name.setText(storeOrderResponse.getData().getResult().getItem().get(i).getProduct_name()+"");
                 productId.setText(storeOrderResponse.getData().getResult().getItem().get(i).getSubcode()+"-"+storeOrderResponse.getData().getResult().getItem().get(i).getProduct_no());
-                amount.setText(context.getString(R.string.amount_number)+" : "+storeOrderResponse.getData().getResult().getItem().get(i).getQuantity());
+                amount.setText(storeOrderResponse.getData().getResult().getItem().get(i).getQuantity());
 
                 double pricevlaue= Double.parseDouble(storeOrderResponse.getData().getResult().getItem().get(i).getPrice());
                 double quantity= Integer.parseInt(storeOrderResponse.getData().getResult().getItem().get(i).getQuantity());
 
                 double totalvalue=pricevlaue*quantity;
 
-                price.setText(context.getString(R.string.price)+" : "+storeOrderResponse.getData().getResult().getItem().get(i).getPrice()+" "+context.getString(R.string.kd));
-                Totalprice.setText(context.getString(R.string.price_total)+" : "+totalvalue+" "+context.getString(R.string.kd));
+                price.setText(storeOrderResponse.getData().getResult().getItem().get(i).getPrice()+" "+context.getString(R.string.kd));
+                Totalprice.setText(totalvalue+" "+context.getString(R.string.kd));
 
 
                 llayout_item.addView(rowView);
