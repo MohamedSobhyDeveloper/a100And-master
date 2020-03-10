@@ -79,6 +79,7 @@ public class StaticMembers {
     public static final String SEARCH = "search";
     public static final String SUB_CATEGORY = "subcategory";
     public static final String ID = "id";
+    public static final String colorcode = "colorcode";
     public static final String WISHLIST = "wishlist";
     public static final String WISHLIST_ACTION = "wishlist/action/{id}";
     public static final String SORT = "sort";
@@ -401,6 +402,7 @@ public class StaticMembers {
                 rowView = inflater.inflate(R.layout.item_product_inflate, null);
                 TextView name = rowView.findViewById(R.id.name);
                 TextView productId = rowView.findViewById(R.id.productId);
+                TextView productnumber = rowView.findViewById(R.id.productnumber);
                 TextView amount = rowView.findViewById(R.id.amount);
                 TextView price = rowView.findViewById(R.id.price);
                 TextView Totalprice = rowView.findViewById(R.id.Totalprice);
@@ -424,7 +426,11 @@ public class StaticMembers {
            }
 
                 name.setText(storeOrderResponse.getData().getResult().getItem().get(i).getProduct_name()+"");
-                productId.setText(storeOrderResponse.getData().getResult().getItem().get(i).getSubcode()+"-"+storeOrderResponse.getData().getResult().getItem().get(i).getProduct_no());
+//                productId.setText(storeOrderResponse.getData().getResult().getItem().get(i).getSubcode()+"-"+storeOrderResponse.getData().getResult().getItem().get(i).getProduct_no());
+                productnumber.setText(context.getString(R.string.product_number) + " " + storeOrderResponse.getData().getResult().getItem().get(i).getSubcode() + "");
+                productId.setText(String.format(Locale.getDefault(), context.getString(R.string.product_id_s), storeOrderResponse.getData().getResult().getItem().get(i).getProduct_no()));
+
+
                 amount.setText(storeOrderResponse.getData().getResult().getItem().get(i).getQuantity());
 
                 double pricevlaue= Double.parseDouble(storeOrderResponse.getData().getResult().getItem().get(i).getPrice());

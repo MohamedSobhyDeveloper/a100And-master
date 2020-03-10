@@ -83,8 +83,10 @@ public interface ApiInterface {
     @GET(StaticMembers.AREA)
     Call<AreaResponse> getAreas();
 
+    @FormUrlEncoded
     @POST(StaticMembers.DELETE_CART)
-    Call<DeleteCartResponse> deleteCartItem(@Path(StaticMembers.ID) String id);
+    Call<DeleteCartResponse> deleteCartItem(@Path(StaticMembers.ID) String id,@FieldMap HashMap<String, String> params);
+
 
     @FormUrlEncoded
     @POST(StaticMembers.EDIT_NAME)

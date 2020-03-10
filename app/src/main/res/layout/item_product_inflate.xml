@@ -35,16 +35,24 @@
                 android:textSize="@dimen/text_small_x"
                 tools:ignore="HardcodedText" />
 
+
             <TextView
                 android:id="@+id/productId"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:text="12"
-                android:textAlignment="viewStart"
-                android:textColor="@color/textColor"
-                android:textSize="@dimen/text_small_x"
-                tools:ignore="HardcodedText,RtlCompat" />
+                android:text="@string/product_id_s"
+                android:padding="@dimen/_1sdp"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/text_small_x" />
+            <TextView
+                android:id="@+id/productnumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text="@string/product_number"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/text_small_x" />
 
             <TextView
                 android:id="@+id/color"

@@ -32,6 +32,7 @@ import com.bumptech.glide.Glide;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.HashMap;
 import java.util.Locale;
 
 import butterknife.BindView;
@@ -120,12 +121,23 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Holder> {
         CartItem cartItem = cartData.getCart().get(position);
         removeItem(position);
         // progress.setVisibility(View.VISIBLE);
+        Call<DeleteCartResponse> call;
         if (PrefManager.getInstance(activity).getAPIToken().isEmpty()) {
             Intent intent = new Intent(activity, LogInActivity.class);
             intent.putExtra(StaticMembers.ACTION, true);
             activity.startActivity(intent);
         } else {
-            Call<DeleteCartResponse> call = RetrofitModel.getApi(activity).deleteCartItem(cartItem.getProductId());
+            HashMap hashMap=new HashMap();
+            if (cartItem.getColor()!=null){
+
+                hashMap.put("colorcode",cartItem.getColor().getId()+"");
+                call = RetrofitModel.getApi(activity).deleteCartItem(cartItem.getProductId(),hashMap);
+
+            }else {
+
+                call = RetrofitModel.getApi(activity).deleteCartItem(cartItem.getProductId(),null);
+
+            }
             call.enqueue(new CallbackRetrofit<DeleteCartResponse>(activity) {
                 @Override
                 public void onResponse(@NotNull Call<DeleteCartResponse> call, @NotNull Response<DeleteCartResponse> response) {
