@@ -432,8 +432,8 @@ public class StaticMembers {
 
                 double totalvalue=pricevlaue*quantity;
 
-                price.setText(storeOrderResponse.getData().getResult().getItem().get(i).getPrice()+" "+context.getString(R.string.kd));
-                Totalprice.setText(totalvalue+" "+context.getString(R.string.kd));
+                price.setText(storeOrderResponse.getData().getResult().getItem().get(i).getPrice()+" ");
+                Totalprice.setText(totalvalue+" ");
 
 
                 llayout_item.addView(rowView);

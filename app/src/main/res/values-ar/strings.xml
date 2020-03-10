@@ -140,6 +140,6 @@
     <string name="price">السعر</string>
     <string name="try_again">اعادة المحاولة مرة اخرى</string>
     <string name="product_name"> المنتج</string>
-    <string name="quantity">الكمية</string>
+    <string name="quantity">العدد</string>
 
 </resources>
