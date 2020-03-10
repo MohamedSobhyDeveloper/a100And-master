@@ -7,19 +7,15 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.gson.GsonBuilder;
 import com.Pazarabo100kwt.pazar.R;
 import com.Pazarabo100kwt.pazar.baseactivity.BaseActivity;
-import com.Pazarabo100kwt.pazar.helpers.CallbackRetrofit;
+import com.Pazarabo100kwt.pazar.retrofit.CallbackRetrofit;
 import com.Pazarabo100kwt.pazar.helpers.PrefManager;
-import com.Pazarabo100kwt.pazar.helpers.RetrofitModel;
+import com.Pazarabo100kwt.pazar.retrofit.RetrofitModel;
 import com.Pazarabo100kwt.pazar.helpers.StaticMembers;
-import com.Pazarabo100kwt.pazar.models.area_models.AreaResponse;
-import com.Pazarabo100kwt.pazar.models.area_models.DataItem;
 import com.Pazarabo100kwt.pazar.models.registration_models.ErrorRegistrationResponse;
 import com.Pazarabo100kwt.pazar.models.registration_models.RegistrationResponse;
 import com.Pazarabo100kwt.pazar.models.registration_models.RegistrationSendModel;

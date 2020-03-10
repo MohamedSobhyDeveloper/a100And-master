@@ -1,6 +1,9 @@
-package com.Pazarabo100kwt.pazar.helpers;
+package com.Pazarabo100kwt.pazar.retrofit;
 
 import android.content.Context;
+
+import com.Pazarabo100kwt.pazar.helpers.PrefManager;
+import com.Pazarabo100kwt.pazar.helpers.StaticMembers;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;

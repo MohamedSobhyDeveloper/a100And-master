@@ -1,5 +1,6 @@
-package com.Pazarabo100kwt.pazar.helpers;
+package com.Pazarabo100kwt.pazar.retrofit;
 
+import com.Pazarabo100kwt.pazar.helpers.StaticMembers;
 import com.Pazarabo100kwt.pazar.models.area_models.AreaResponse;
 import com.Pazarabo100kwt.pazar.models.cart.AddCartResponse;
 import com.Pazarabo100kwt.pazar.models.cart.CartResponse;

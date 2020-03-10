@@ -140,6 +140,10 @@
     <string name="payment_method">Payment Method</string>
     <string name="kd">KWD</string>
     <string name="discount">Discount</string>
+    <string name="amount_number">Amount/number</string>
+    <string name="price_total">Total</string>
+    <string name="price">Price</string>
+    <string name="try_again">Try Again</string>
 
 
 </resources>

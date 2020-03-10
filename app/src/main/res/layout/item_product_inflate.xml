@@ -23,19 +23,18 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"
+                android:layout_weight="1.5"
                 android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/_3sdp"
-                    android:gravity="center_vertical"
+                    android:layout_marginBottom="@dimen/_2sdp"
                     android:text="pazar"
-                    android:padding="@dimen/_3sdp"
+                    android:padding="@dimen/_1sdp"
                     android:textColor="@color/textColor"
-                    android:textSize="@dimen/text_normal"
+                    android:textSize="@dimen/text_small_x"
                     tools:ignore="HardcodedText" />
 
                 <TextView
@@ -46,8 +45,17 @@
                     android:text="12"
                     android:textAlignment="viewStart"
                     android:textColor="@color/textColor"
-                    android:textSize="@dimen/text_normal"
+                    android:textSize="@dimen/text_small_x"
                     tools:ignore="HardcodedText,RtlCompat" />
+
+                <TextView
+                    android:id="@+id/color"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Color:red"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/text_small_x"
+                    tools:ignore="HardcodedText,NestedWeights" />
 
 
             </LinearLayout>
@@ -58,33 +66,42 @@
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:orientation="vertical">
                 <TextView
                     android:id="@+id/amount"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="1"
-                    android:padding="@dimen/_3sdp"
-                    android:textAllCaps="true"
+                    android:text="العدد/الكمية : 5"
+                    android:padding="@dimen/_1sdp"
+                    android:layout_marginBottom="@dimen/_2sdp"
+                    android:textAlignment="center"
                     android:textColor="@color/textColor"
-                    android:textSize="@dimen/text_normal"
+                    android:textSize="@dimen/text_small"
                     tools:ignore="HardcodedText" />
 
 
                 <TextView
                     android:id="@+id/price"
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="20"
+                    android:text="الاجمالى:200"
                     android:textAlignment="center"
                     android:textColor="@color/textColor"
-                    android:textSize="@dimen/text_normal"
+                    android:textSize="@dimen/text_small"
+                    android:padding="@dimen/_2sdp"
                     tools:ignore="HardcodedText,NestedWeights" />
 
-
-
-
+                <TextView
+                    android:id="@+id/Totalprice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="الاجمالى:200"
+                    android:textAlignment="center"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/text_small"
+                    tools:ignore="HardcodedText,NestedWeights" />
 
             </LinearLayout>
 
@@ -100,7 +117,7 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:layout_marginTop="@dimen/_3sdp"
-        android:padding="@dimen/_3sdp"
+        android:padding="@dimen/_1sdp"
         android:orientation="horizontal">
         <TextView
             android:id="@+id/unit"
@@ -109,21 +126,13 @@
             android:layout_height="wrap_content"
             android:text="Shape/Size:A"
             android:textAllCaps="true"
-            android:visibility="visible"
+            android:visibility="gone"
             android:textColor="@color/textColor"
-            android:textSize="@dimen/text_normal"
+            android:textSize="@dimen/text_small_x"
             tools:ignore="HardcodedText" />
 
 
-        <TextView
-            android:id="@+id/color"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Color:red"
-            android:textColor="@color/textColor"
-            android:textSize="@dimen/text_normal"
-            tools:ignore="HardcodedText,NestedWeights" />
+
 
 
 

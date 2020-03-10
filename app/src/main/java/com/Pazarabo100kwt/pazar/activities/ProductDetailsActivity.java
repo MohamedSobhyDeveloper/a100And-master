@@ -2,13 +2,9 @@ package com.Pazarabo100kwt.pazar.activities;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -33,9 +29,9 @@ import com.Pazarabo100kwt.pazar.adapters.ProductImagesAdapter;
 import com.Pazarabo100kwt.pazar.baseactivity.BaseActivity;
 import com.Pazarabo100kwt.pazar.fragments.ImageFragment;
 import com.Pazarabo100kwt.pazar.fragments.VideoFragment;
-import com.Pazarabo100kwt.pazar.helpers.CallbackRetrofit;
+import com.Pazarabo100kwt.pazar.retrofit.CallbackRetrofit;
 import com.Pazarabo100kwt.pazar.helpers.PrefManager;
-import com.Pazarabo100kwt.pazar.helpers.RetrofitModel;
+import com.Pazarabo100kwt.pazar.retrofit.RetrofitModel;
 import com.Pazarabo100kwt.pazar.helpers.StaticMembers;
 import com.Pazarabo100kwt.pazar.models.cart.AddCartResponse;
 import com.Pazarabo100kwt.pazar.models.search_products.MeasureItem;
@@ -45,15 +41,10 @@ import com.Pazarabo100kwt.pazar.models.wishlist_models.ErrorWishListResponse;
 import com.Pazarabo100kwt.pazar.models.wishlist_models.WishlistResponse;
 import com.google.android.material.tabs.TabLayout;
 import com.google.gson.GsonBuilder;
-import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Target;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.Locale;
 
 import butterknife.BindView;

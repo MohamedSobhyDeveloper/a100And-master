@@ -18,9 +18,9 @@ import com.bumptech.glide.Glide;
 import com.google.gson.GsonBuilder;
 import com.Pazarabo100kwt.pazar.R;
 import com.Pazarabo100kwt.pazar.activities.ProductDetailsActivity;
-import com.Pazarabo100kwt.pazar.helpers.CallbackRetrofit;
+import com.Pazarabo100kwt.pazar.retrofit.CallbackRetrofit;
 import com.Pazarabo100kwt.pazar.helpers.PrefManager;
-import com.Pazarabo100kwt.pazar.helpers.RetrofitModel;
+import com.Pazarabo100kwt.pazar.retrofit.RetrofitModel;
 import com.Pazarabo100kwt.pazar.helpers.StaticMembers;
 import com.Pazarabo100kwt.pazar.models.search_products.Product;
 import com.Pazarabo100kwt.pazar.models.wishlist_models.ErrorWishListResponse;
@@ -28,7 +28,6 @@ import com.Pazarabo100kwt.pazar.models.wishlist_models.WishlistResponse;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.io.IOException;
 import java.util.List;
 
 import butterknife.BindView;

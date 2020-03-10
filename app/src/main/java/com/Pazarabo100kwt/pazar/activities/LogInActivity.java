@@ -7,7 +7,6 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import com.google.android.material.textfield.TextInputEditText;
@@ -15,17 +14,15 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.google.gson.GsonBuilder;
 import com.Pazarabo100kwt.pazar.R;
 import com.Pazarabo100kwt.pazar.baseactivity.BaseActivity;
-import com.Pazarabo100kwt.pazar.helpers.CallbackRetrofit;
+import com.Pazarabo100kwt.pazar.retrofit.CallbackRetrofit;
 import com.Pazarabo100kwt.pazar.helpers.PrefManager;
-import com.Pazarabo100kwt.pazar.helpers.RetrofitModel;
+import com.Pazarabo100kwt.pazar.retrofit.RetrofitModel;
 import com.Pazarabo100kwt.pazar.helpers.StaticMembers;
 import com.Pazarabo100kwt.pazar.models.login_models.ErrorLoginResponse;
 import com.Pazarabo100kwt.pazar.models.login_models.LogInSendModel;
 import com.Pazarabo100kwt.pazar.models.login_models.LoginResponse;
 
 import org.jetbrains.annotations.NotNull;
-
-import java.io.IOException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

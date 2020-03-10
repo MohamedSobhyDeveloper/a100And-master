@@ -1,16 +1,13 @@
 package com.Pazarabo100kwt.pazar.activities
 
-import android.app.Activity
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.View.VISIBLE
-import androidx.appcompat.app.AppCompatActivity
 import butterknife.ButterKnife
 import com.Pazarabo100kwt.pazar.R
 import com.Pazarabo100kwt.pazar.baseactivity.BaseActivity
-import com.Pazarabo100kwt.pazar.helpers.CallbackRetrofit
-import com.Pazarabo100kwt.pazar.helpers.RetrofitModel
+import com.Pazarabo100kwt.pazar.retrofit.CallbackRetrofit
+import com.Pazarabo100kwt.pazar.retrofit.RetrofitModel
 import com.Pazarabo100kwt.pazar.helpers.StaticMembers
 import com.Pazarabo100kwt.pazar.models.cart.Data
 import com.Pazarabo100kwt.pazar.models.order_models.StoreOrderResponse

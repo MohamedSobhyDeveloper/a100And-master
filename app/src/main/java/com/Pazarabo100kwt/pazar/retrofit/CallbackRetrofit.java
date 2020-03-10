@@ -1,8 +1,9 @@
-package com.Pazarabo100kwt.pazar.helpers;
+package com.Pazarabo100kwt.pazar.retrofit;
 
 import android.content.Context;
 
 import com.Pazarabo100kwt.pazar.R;
+import com.Pazarabo100kwt.pazar.helpers.StaticMembers;
 
 import org.jetbrains.annotations.NotNull;
 

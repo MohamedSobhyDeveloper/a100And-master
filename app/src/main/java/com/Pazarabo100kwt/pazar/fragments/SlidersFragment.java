@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
@@ -12,12 +13,12 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.Pazarabo100kwt.pazar.R;
-import com.Pazarabo100kwt.pazar.helpers.CallbackRetrofit;
-import com.Pazarabo100kwt.pazar.helpers.RetrofitModel;
 import com.Pazarabo100kwt.pazar.helpers.SliderHelper;
 import com.Pazarabo100kwt.pazar.models.slider_models.Data;
 import com.Pazarabo100kwt.pazar.models.slider_models.SliderItem;
 import com.Pazarabo100kwt.pazar.models.slider_models.SliderResponse;
+import com.Pazarabo100kwt.pazar.retrofit.CallbackRetrofit;
+import com.Pazarabo100kwt.pazar.retrofit.RetrofitModel;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -27,10 +28,13 @@ import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Response;
 
 public class SlidersFragment extends Fragment {
+    @BindView(R.id.tryagainbtn)
+    Button tryagainbtn;
     private View view;
 
     public static SlidersFragment getInstance() {
@@ -63,8 +67,7 @@ public class SlidersFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
-        if (sliderHelper!=null)
-        {
+        if (sliderHelper != null) {
             sliderHelper.pauseAll();
         }
     }
@@ -72,8 +75,7 @@ public class SlidersFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        if (sliderHelper!=null)
-        {
+        if (sliderHelper != null) {
             sliderHelper.resumeAll();
         }
     }
@@ -106,6 +108,7 @@ public class SlidersFragment extends Fragment {
                             sliderHelper = new SliderHelper(Objects.requireNonNull(getActivity()), view, sliderList);
                             sliderHelper.notifyAdapters();
                         }
+
                     }
                 }
             }
@@ -114,8 +117,15 @@ public class SlidersFragment extends Fragment {
             public void onFailure(@NotNull Call<SliderResponse> call, @NotNull Throwable t) {
                 super.onFailure(call, t);
                 progress.setVisibility(View.GONE);
+                tryagainbtn.setVisibility(View.VISIBLE);
             }
         });
 
+    }
+
+    @OnClick(R.id.tryagainbtn)
+    public void onViewClicked() {
+        tryagainbtn.setVisibility(View.GONE);
+        getSliders();
     }
 }

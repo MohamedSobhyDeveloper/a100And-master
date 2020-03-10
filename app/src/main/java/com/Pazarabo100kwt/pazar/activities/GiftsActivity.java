@@ -5,11 +5,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,9 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.Pazarabo100kwt.pazar.R;
 import com.Pazarabo100kwt.pazar.adapters.GiftAdapter;
 import com.Pazarabo100kwt.pazar.baseactivity.BaseActivity;
-import com.Pazarabo100kwt.pazar.fragments.MessageFragment;
-import com.Pazarabo100kwt.pazar.helpers.CallbackRetrofit;
-import com.Pazarabo100kwt.pazar.helpers.RetrofitModel;
+import com.Pazarabo100kwt.pazar.retrofit.CallbackRetrofit;
+import com.Pazarabo100kwt.pazar.retrofit.RetrofitModel;
 import com.Pazarabo100kwt.pazar.helpers.StaticMembers;
 import com.Pazarabo100kwt.pazar.models.gifts_models.DataItem;
 import com.Pazarabo100kwt.pazar.models.gifts_models.GiftsResponse;
@@ -27,7 +24,6 @@ import com.Pazarabo100kwt.pazar.models.gifts_models.GiftsResponse;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;

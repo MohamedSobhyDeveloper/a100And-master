@@ -17,15 +17,13 @@ import androidx.fragment.app.DialogFragment;
 import com.google.gson.Gson;
 import com.Pazarabo100kwt.pazar.R;
 import com.Pazarabo100kwt.pazar.activities.LogInActivity;
-import com.Pazarabo100kwt.pazar.helpers.CallbackRetrofit;
+import com.Pazarabo100kwt.pazar.retrofit.CallbackRetrofit;
 import com.Pazarabo100kwt.pazar.helpers.PrefManager;
-import com.Pazarabo100kwt.pazar.helpers.RetrofitModel;
+import com.Pazarabo100kwt.pazar.retrofit.RetrofitModel;
 import com.Pazarabo100kwt.pazar.helpers.StaticMembers;
 import com.Pazarabo100kwt.pazar.models.message_models.MessageResponse;
 
 import org.jetbrains.annotations.NotNull;
-
-import java.io.IOException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

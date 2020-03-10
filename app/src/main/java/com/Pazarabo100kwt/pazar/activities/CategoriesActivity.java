@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.RelativeLayout;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,9 +15,8 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.Pazarabo100kwt.pazar.R;
 import com.Pazarabo100kwt.pazar.adapters.CategoryAdapter;
 import com.Pazarabo100kwt.pazar.baseactivity.BaseActivity;
-import com.Pazarabo100kwt.pazar.fragments.MessageFragment;
-import com.Pazarabo100kwt.pazar.helpers.CallbackRetrofit;
-import com.Pazarabo100kwt.pazar.helpers.RetrofitModel;
+import com.Pazarabo100kwt.pazar.retrofit.CallbackRetrofit;
+import com.Pazarabo100kwt.pazar.retrofit.RetrofitModel;
 import com.Pazarabo100kwt.pazar.helpers.StaticMembers;
 import com.Pazarabo100kwt.pazar.models.categories.CategoriesResponse;
 import com.Pazarabo100kwt.pazar.models.categories.DataItem;
