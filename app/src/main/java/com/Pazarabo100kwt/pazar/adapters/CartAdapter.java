@@ -19,15 +19,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.Pazarabo100kwt.pazar.R;
 import com.Pazarabo100kwt.pazar.activities.CartActivity;
 import com.Pazarabo100kwt.pazar.activities.LogInActivity;
-import com.Pazarabo100kwt.pazar.retrofit.CallbackRetrofit;
 import com.Pazarabo100kwt.pazar.helpers.PrefManager;
-import com.Pazarabo100kwt.pazar.retrofit.RetrofitModel;
 import com.Pazarabo100kwt.pazar.helpers.StaticMembers;
 import com.Pazarabo100kwt.pazar.models.cart.AddCartResponse;
 import com.Pazarabo100kwt.pazar.models.cart.CartItem;
 import com.Pazarabo100kwt.pazar.models.cart.Data;
 import com.Pazarabo100kwt.pazar.models.cart.Product;
 import com.Pazarabo100kwt.pazar.models.cart.delete_cart_models.DeleteCartResponse;
+import com.Pazarabo100kwt.pazar.retrofit.CallbackRetrofit;
+import com.Pazarabo100kwt.pazar.retrofit.RetrofitModel;
 import com.bumptech.glide.Glide;
 
 import org.jetbrains.annotations.NotNull;
@@ -41,6 +41,7 @@ import retrofit2.Call;
 import retrofit2.Response;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Holder> {
+
 
 
     private CartActivity activity;
@@ -81,21 +82,20 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Holder> {
             intent.putExtra(StaticMembers.ACTION, true);
             activity.startActivity(intent);
         } else {
-            if (cartItem.getUnit()!=null&&cartItem.getColor()!=null){
+            if (cartItem.getUnit() != null && cartItem.getColor() != null) {
                 call = RetrofitModel.getApi(activity).addOrEditCart(cartItem.getProductId(),
                         amount, cartItem.getUnit().getId(), cartItem.getColor().getId());
-            }else if (cartItem.getUnit()!=null){
+            } else if (cartItem.getUnit() != null) {
                 call = RetrofitModel.getApi(activity).addOrEditCart(cartItem.getProductId(),
                         amount, cartItem.getUnit().getId());
 
-            }else if (cartItem.getColor()!=null){
+            } else if (cartItem.getColor() != null) {
                 call = RetrofitModel.getApi(activity).addOrEditCart(cartItem.getProductId(),
-                        amount,cartItem.getColor().getId());
-            }else {
+                        amount, cartItem.getColor().getId());
+            } else {
                 call = RetrofitModel.getApi(activity).addOrEditCart(cartItem.getProductId(),
                         amount, 0, 0);
             }
-
 
 
             call.enqueue(new CallbackRetrofit<AddCartResponse>(activity) {
@@ -127,15 +127,15 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Holder> {
             intent.putExtra(StaticMembers.ACTION, true);
             activity.startActivity(intent);
         } else {
-            HashMap hashMap=new HashMap();
-            if (cartItem.getColor()!=null){
+            HashMap hashMap = new HashMap();
+            if (cartItem.getColor() != null) {
 
-                hashMap.put("colorcode",cartItem.getColor().getId()+"");
-                call = RetrofitModel.getApi(activity).deleteCartItem(cartItem.getProductId(),hashMap);
+                hashMap.put("colorcode", cartItem.getColor().getId() + "");
+                call = RetrofitModel.getApi(activity).deleteCartItem(cartItem.getProductId(), hashMap);
 
-            }else {
+            } else {
 
-                call = RetrofitModel.getApi(activity).deleteCartItem(cartItem.getProductId(),null);
+                call = RetrofitModel.getApi(activity).deleteCartItem(cartItem.getProductId(), null);
 
             }
             call.enqueue(new CallbackRetrofit<DeleteCartResponse>(activity) {
@@ -212,7 +212,10 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Holder> {
         TextView delivery;
         @BindView(R.id.deliveryLayout)
         LinearLayout deliveryLayout;
-
+        @BindView(R.id.discount)
+        TextView discount;
+        @BindView(R.id.discountLayout)
+        LinearLayout discountLayout;
         @BindView(R.id.productcolor)
         TextView productcolor;
 
@@ -228,6 +231,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Holder> {
 
                 totalLayout.setVisibility(View.GONE);
                 deliveryLayout.setVisibility(View.GONE);
+                discountLayout.setVisibility(View.GONE);
                 itemLayout.setVisibility(View.VISIBLE);
                 CartItem cartItem = cartData.getCart().get(position);
                 Product product = cartItem.getProduct();
@@ -302,6 +306,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Holder> {
                 });
             } else {
                 totalLayout.setVisibility(View.VISIBLE);
+                discountLayout.setVisibility(View.VISIBLE);
                 itemLayout.setVisibility(View.GONE);
                 total.setText(cartData.getTotal() + " " + activity.getString(R.string.kd));
                 if (cartData.getCart() != null && cartData.getCart().size() > 0) {

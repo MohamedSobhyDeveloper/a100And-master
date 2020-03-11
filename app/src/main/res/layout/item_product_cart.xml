@@ -174,6 +174,34 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/discountLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/discount"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/text_big"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/discount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0 KWD"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/text_big"
+
+            />
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/totalLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
