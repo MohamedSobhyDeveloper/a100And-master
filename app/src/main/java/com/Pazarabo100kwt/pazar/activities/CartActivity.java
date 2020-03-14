@@ -61,6 +61,7 @@ public class CartActivity extends BaseActivity {
     RelativeLayout relativeView;
     @BindView(R.id.isemptyTv)
     TextView isemptyTv;
+    String promocode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,13 +69,15 @@ public class CartActivity extends BaseActivity {
         setContentView(R.layout.activity_cart);
         ButterKnife.bind(this);
 
+        promocode="";
 
         toolbar.setNavigationOnClickListener(v -> onBackPressed());
         cartData = new Data();
         cartData.setCart(new ArrayList<>());
-        adapter = new CartAdapter(this, cartData, progress);
+        adapter = new CartAdapter(this, cartData, progress,promocode);
         recycler.setAdapter(adapter);
-        getCart();
+
+        getCart(promocode);
         ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new RecyclerItemTouchHelper(0, ItemTouchHelper.START,
                 (viewHolder, direction, position) -> {
                     if (cartData.getCart().size() > position) adapter.deleteCartItem(position);
@@ -84,11 +87,14 @@ public class CartActivity extends BaseActivity {
             Intent intent = new Intent(getBaseContext(), SelectPaymentActivity.class);
 
             intent.putExtra(StaticMembers.CART, cartData);
+            intent.putExtra(StaticMembers.promocode, promocode);
+
             startActivityForResult(intent, ORDER_REQ);
 
 
         });
         addPromo.setOnClickListener(v -> {
+
             final AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
             final EditText input = new EditText(this);
             alertDialog.setTitle(getString(R.string.add_promocode));
@@ -108,52 +114,69 @@ public class CartActivity extends BaseActivity {
 
 
     public void setPromo(String s) {
-        progress.setVisibility(View.VISIBLE);
-        Call<MessageResponse> call = RetrofitModel.getApi(this).addPromo(s);
-        call.enqueue(new CallbackRetrofit<MessageResponse>(this) {
-            @Override
-            public void onResponse(@NotNull Call<MessageResponse> call, @NotNull Response<MessageResponse> response) {
-                progress.setVisibility(View.GONE);
-                MessageResponse result;
-                if (response.isSuccessful()) {
-                    result = response.body();
-                    if (result != null) {
-                        StaticMembers.toastMessageSuccess(getBaseContext(), result.getMessage());
-                        if (result.isStatus()) {
-                            getCart();
-                        }
-                    }
-                } else {
-                    ResponseBody errorBody = response.errorBody();
-                    try {
-                        if (errorBody != null) {
-                            String e = errorBody.string();
-                            StaticMembers.checkLoginRequired(errorBody, CartActivity.this);
-                            result = new Gson().fromJson(e, MessageResponse.class);
-                            if (result != null && result.getMessage() != null)
-                                StaticMembers.toastMessageFailed(getBaseContext(), result.getMessage());
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
 
-            @Override
-            public void onFailure(@NotNull Call<MessageResponse> call, @NotNull Throwable t) {
-                super.onFailure(call, t);
-                progress.setVisibility(View.GONE);
-            }
-        });
+//        progress.setVisibility(View.VISIBLE);
+
+        promocode=s;
+
+        getCart(promocode);
+
+
+//        Call<MessageResponse> call = RetrofitModel.getApi(this).addPromo(s);
+//        call.enqueue(new CallbackRetrofit<MessageResponse>(this) {
+//            @Override
+//            public void onResponse(@NotNull Call<MessageResponse> call, @NotNull Response<MessageResponse> response) {
+//                progress.setVisibility(View.GONE);
+//                MessageResponse result;
+//                if (response.isSuccessful()) {
+//                    result = response.body();
+//                    if (result != null) {
+//                        StaticMembers.toastMessageSuccess(getBaseContext(), result.getMessage());
+//                        if (result.isStatus()) {
+//                            getCart("");
+//                        }
+//                    }
+//                } else {
+//                    ResponseBody errorBody = response.errorBody();
+//                    try {
+//                        if (errorBody != null) {
+//                            String e = errorBody.string();
+//                            StaticMembers.checkLoginRequired(errorBody, CartActivity.this);
+//                            result = new Gson().fromJson(e, MessageResponse.class);
+//                            if (result != null && result.getMessage() != null)
+//                                StaticMembers.toastMessageFailed(getBaseContext(), result.getMessage());
+//                        }
+//                    } catch (Exception e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(@NotNull Call<MessageResponse> call, @NotNull Throwable t) {
+//                super.onFailure(call, t);
+//                progress.setVisibility(View.GONE);
+//            }
+//        });
+//
+//
+
     }
 
-    public void getCart() {
+    public void getCart(String code) {
         progress.setVisibility(View.VISIBLE);
         if (PrefManager.getInstance(getBaseContext()).getAPIToken().isEmpty()) {
             openLogin(this);
             finish();
         } else {
-            Call<CartResponse> call = RetrofitModel.getApi(getBaseContext()).getCart();
+            Call<CartResponse> call;
+            if (!code.isEmpty()){
+                 call = RetrofitModel.getApi(getBaseContext()).getCart(code);
+
+            }else {
+                call = RetrofitModel.getApi(getBaseContext()).getCart();
+
+            }
             call.enqueue(new CallbackRetrofit<CartResponse>(this) {
                 @SuppressLint("SetTextI18n")
                 @Override
@@ -175,7 +198,7 @@ public class CartActivity extends BaseActivity {
                                 invoicelimit.setVisibility(View.VISIBLE);
                                 invoicelimit.setText(getString(R.string.Minimum_payment_to_be_completed) + " " + limited+" "+getString(R.string.kd));
                             }
-                            adapter.setCartData(cartData);
+                            adapter.setCartData(cartData,promocode);
                             adapter.notifyDataSetChanged();
 
                         }else {
@@ -187,7 +210,9 @@ public class CartActivity extends BaseActivity {
 
 
                     } else {
+                        promocode="";
                         StaticMembers.checkLoginRequired(response.errorBody(), CartActivity.this);
+
                     }
                 }
 
@@ -205,7 +230,7 @@ public class CartActivity extends BaseActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == ORDER_REQ) {
             if (resultCode == RESULT_OK) {
-                getCart();
+                getCart(promocode);
             }
         }
     }

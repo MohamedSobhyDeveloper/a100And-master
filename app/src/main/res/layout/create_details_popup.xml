@@ -149,6 +149,36 @@
             />
     </LinearLayout>
 
+
+    <LinearLayout
+        android:id="@+id/discountLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        android:visibility="visible">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/discount"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/text_normal"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/discount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0 KWD"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/text_normal"
+
+            />
+    </LinearLayout>
+
+
     <LinearLayout
         android:id="@+id/totalLayout"
         android:layout_width="match_parent"

@@ -85,6 +85,7 @@ public class StaticMembers {
     public static final String SORT = "sort";
     public static final String AMOUNT = "amount";
     public static final String CART = "cart";
+    public static final String promocode = "promocode";
     public static final String EDIT_CART = "cart/store";
     public static final String QUANTITY = "quantity";
     public static final String PRODUCT_ID = "product_id";
@@ -345,6 +346,9 @@ public class StaticMembers {
                         PrefManager.getInstance(context).removeToken();
                         openLogin(context);
                     }
+                }else {
+                    Toasty.error(context, errorLoginResponse.getMessage(), Toast.LENGTH_SHORT, true).show();
+
                 }
             }
         } catch (Exception e) {
@@ -356,7 +360,7 @@ public class StaticMembers {
 
 
     @SuppressLint("SetTextI18n")
-    public static void opendetailsdialog(Context context,StoreOrderResponse storeOrderResponse) {
+    public static void opendetailsdialog(Context context,StoreOrderResponse storeOrderResponse,String discount,String net) {
         Dialog dialogview = new Dialog(context);
         dialogview.setContentView(R.layout.create_details_popup);
         dialogview.setCanceledOnTouchOutside(false);
@@ -366,6 +370,7 @@ public class StaticMembers {
         CardView home = dialogview.findViewById(R.id.home);
         TextView delivery_charge = dialogview.findViewById(R.id.delivery_charge);
         TextView total = dialogview.findViewById(R.id.total);
+        TextView discounttv = dialogview.findViewById(R.id.discount);
         TextView payment_method = dialogview.findViewById(R.id.payment_method);
         TextView address = dialogview.findViewById(R.id.address);
         TextView order_number = dialogview.findViewById(R.id.order_number);
@@ -373,7 +378,8 @@ public class StaticMembers {
         TextView close = dialogview.findViewById(R.id.close);
 
 
-        total.setText(storeOrderResponse.getData().getResult().getTotalAmount()+" "+context.getString(R.string.kd));
+        total.setText(net+" "+context.getString(R.string.kd));
+        discounttv.setText(discount+" "+"%");
         payment_method.setText(storeOrderResponse.getData().getResult().getPaymentWay()+"");
         order_number.setText(context.getString(R.string.order_)+" "+"#"+" "+storeOrderResponse.getData().getResult().getId()+"");
         delivery_charge.setText(storeOrderResponse.getData().getResult().getDeliverycharge()+" "+context.getString(R.string.kd));

@@ -30,6 +30,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
 
 public interface ApiInterface {
@@ -60,6 +61,9 @@ public interface ApiInterface {
 
     @GET(StaticMembers.CART)
     Call<CartResponse> getCart();
+
+    @GET(StaticMembers.CART)
+    Call<CartResponse> getCart(@Query("code")String code);
 
     @GET(StaticMembers.SLIDER)
     Call<SliderResponse> getSlider();
@@ -100,8 +104,10 @@ public interface ApiInterface {
     @POST(StaticMembers.GIFT)
     Call<MessageResponse> addPromo(@Field(StaticMembers.CODE) String code);
 
+
     @POST(StaticMembers.ORDER_STORE)
     Call<StoreOrderResponse> storeOrder(@Body RequestBody file);
+
 
    /*
     @POST(StaticMembers.login)

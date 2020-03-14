@@ -12,6 +12,27 @@ public class Data implements Serializable {
 
     @SerializedName("total")
     private double total;
+    @SerializedName("discount")
+    private double discount;
+    @SerializedName("net")
+    private double net;
+
+
+    public double getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(double discount) {
+        this.discount = discount;
+    }
+
+    public double getNet() {
+        return net;
+    }
+
+    public void setNet(double net) {
+        this.net = net;
+    }
 
     @SerializedName("cart")
     private List<CartItem> cart;

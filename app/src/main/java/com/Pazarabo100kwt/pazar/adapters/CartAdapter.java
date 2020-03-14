@@ -47,11 +47,13 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Holder> {
     private CartActivity activity;
     private RelativeLayout progress;
     private Data cartData;
+    private String promocode;
 
-    public CartAdapter(CartActivity activity, Data cartData, RelativeLayout progress) {
+    public CartAdapter(CartActivity activity, Data cartData, RelativeLayout progress,String promocode) {
         this.activity = activity;
         this.cartData = cartData;
         this.progress = progress;
+        this.promocode=promocode;
     }
 
     void changeTotal(double total) {
@@ -59,8 +61,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Holder> {
         notifyItemChanged(cartData.getCart().size());
     }
 
-    public void setCartData(Data cartData) {
+    public void setCartData(Data cartData,String promocode) {
         this.cartData = cartData;
+        this.promocode=promocode;
     }
 
     @NonNull
@@ -105,7 +108,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Holder> {
                     if (!response.isSuccessful()) {
                         amountText.setText(String.format(Locale.getDefault(), "%d", amount));
                         StaticMembers.checkLoginRequired(response.errorBody(), activity);
-                    } else activity.getCart();
+                    } else activity.getCart(promocode);
                 }
 
                 @Override
@@ -147,7 +150,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Holder> {
                         if (!response.message().isEmpty())
                             StaticMembers.toastMessageSuccess(activity, response.message());
                         StaticMembers.checkLoginRequired(response.errorBody(), activity);
-                    } else activity.getCart();
+                    } else activity.getCart(promocode);
                 }
 
                 @Override
@@ -308,7 +311,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Holder> {
                 totalLayout.setVisibility(View.VISIBLE);
                 discountLayout.setVisibility(View.VISIBLE);
                 itemLayout.setVisibility(View.GONE);
-                total.setText(cartData.getTotal() + " " + activity.getString(R.string.kd));
+                total.setText(cartData.getNet() + " " + activity.getString(R.string.kd));
+                discount.setText(cartData.getDiscount()+" "+"%");
                 if (cartData.getCart() != null && cartData.getCart().size() > 0) {
                     deliveryLayout.setVisibility(View.VISIBLE);
                     delivery.setText(cartData.getCart().get(0).getDeliverycharge() + " " + activity.getString(R.string.kd));

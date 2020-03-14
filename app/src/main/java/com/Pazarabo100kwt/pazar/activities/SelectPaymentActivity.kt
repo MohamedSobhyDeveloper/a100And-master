@@ -35,8 +35,10 @@ class SelectPaymentActivity : BaseActivity() {
     private fun orderNow() {
         var noSelected = true
         val cartData = intent.getSerializableExtra(StaticMembers.CART) as Data
+        val promocode = intent.getStringExtra(StaticMembers.promocode)
         val builder = MultipartBody.Builder()
         builder.setType(MultipartBody.FORM)
+
         for (cart in cartData.cart) {
             if (!cart.isNotChecked) {
                 noSelected = false
@@ -49,14 +51,22 @@ class SelectPaymentActivity : BaseActivity() {
             return
         }
         progress.visibility = VISIBLE
-        val call = RetrofitModel.getApi(this).storeOrder(builder.build())
+        val call:Call<StoreOrderResponse>
+        if (!promocode.isEmpty()){
+            builder.addFormDataPart("code",promocode)
+            call = RetrofitModel.getApi(this).storeOrder(builder.build())
+
+        }else{
+             call = RetrofitModel.getApi(this).storeOrder(builder.build())
+
+        }
         call.enqueue(object : CallbackRetrofit<StoreOrderResponse>(this) {
             override fun onResponse(call: Call<StoreOrderResponse>, response: Response<StoreOrderResponse>) {
                 progress.visibility = View.GONE
                 val result = response.body()
                 if (response.isSuccessful && result != null) {
                     StaticMembers.toastMessageSuccess(baseContext, result.message)
-                    StaticMembers.opendetailsdialog(this@SelectPaymentActivity,result)
+                    StaticMembers.opendetailsdialog(this@SelectPaymentActivity,result, cartData.discount.toString(), cartData.net.toString())
                     ordervalue=1
 //                    setResult(Activity.RESULT_OK)
 //                    startActivity(Intent(this@SelectPaymentActivity, ConfirmBillActivity::class.java))
