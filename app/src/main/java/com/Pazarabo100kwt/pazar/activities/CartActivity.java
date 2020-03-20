@@ -118,7 +118,6 @@ public class CartActivity extends BaseActivity {
 //        progress.setVisibility(View.VISIBLE);
 
         promocode=s;
-
         getCart(promocode);
 
 
@@ -160,6 +159,7 @@ public class CartActivity extends BaseActivity {
 //        });
 //
 //
+
 
     }
 
