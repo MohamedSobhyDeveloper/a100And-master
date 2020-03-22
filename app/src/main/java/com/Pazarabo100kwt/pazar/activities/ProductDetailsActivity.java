@@ -29,6 +29,9 @@ import com.Pazarabo100kwt.pazar.adapters.ProductImagesAdapter;
 import com.Pazarabo100kwt.pazar.baseactivity.BaseActivity;
 import com.Pazarabo100kwt.pazar.fragments.ImageFragment;
 import com.Pazarabo100kwt.pazar.fragments.VideoFragment;
+import com.Pazarabo100kwt.pazar.models.search_products.ColorList;
+import com.Pazarabo100kwt.pazar.models.search_products.Measure;
+import com.Pazarabo100kwt.pazar.models.search_products.MeasureList;
 import com.Pazarabo100kwt.pazar.retrofit.CallbackRetrofit;
 import com.Pazarabo100kwt.pazar.helpers.PrefManager;
 import com.Pazarabo100kwt.pazar.retrofit.RetrofitModel;
@@ -45,6 +48,7 @@ import com.wang.avi.AVLoadingIndicatorView;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
 import java.util.Locale;
 
 import butterknife.BindView;
@@ -109,6 +113,7 @@ public class ProductDetailsActivity extends BaseActivity {
     ProductImagesAdapter adapter;
     VideoFragment videoFragment;
     ProDetails proDetails;
+    List<ColorList> colorList;
     String actualPrice;
     @BindView(R.id.shareproduct)
     ImageView shareproduct;
@@ -180,9 +185,10 @@ public class ProductDetailsActivity extends BaseActivity {
             amount = savedInstanceState.getInt(StaticMembers.AMOUNT);
             maxAmount = savedInstanceState.getInt(StaticMembers.MAX_AMOUNT);
         }
-        if (product.getProDetails() != null) {
+
+        if (product.getColorLists() != null) {
             View view = null;
-            for (ProDetails details : product.getProDetails()) {
+            for (ColorList details : product.getColorLists()) {
                 TabLayout.Tab tab = colorsTabLayout.newTab();
                 view = LayoutInflater.from(this).inflate(R.layout.item_color_tab, null, false);
                 TextView textView = view.findViewById(R.id.text);
@@ -271,11 +277,15 @@ public class ProductDetailsActivity extends BaseActivity {
 
     void changeViewsOnSelection() {
         proDetails = product.getProDetails().get(colorsTabLayout.getSelectedTabPosition());
-        if (proDetails.getMeasure() == null) {
+
+        colorList=product.getColorLists();
+
+
+        if (colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures() == null) {
             tabLayout.setVisibility(View.GONE);
             sizesColor.setVisibility(View.GONE);
 
-        } else if (proDetails.getMeasure().isEmpty()) {
+        } else if (colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures().isEmpty()) {
             tabLayout.setVisibility(View.GONE);
             sizesColor.setVisibility(View.GONE);
         } else {
@@ -290,44 +300,44 @@ public class ProductDetailsActivity extends BaseActivity {
             }*/
 
 
-            if (proDetails.getMeasure().get(0).getId()==29) {
+            if (colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures().get(0).getId()==29) {
                 tabLayout.setVisibility(View.GONE);
                 sizesColor.setVisibility(View.GONE);
             } else {
                 selectedSizeTab = tabLayout.getSelectedTabPosition();
                 tabLayout.removeAllTabs();
-                for (MeasureItem measure : proDetails.getMeasure()) {
+                for (MeasureList measure : colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures()) {
                     TabLayout.Tab tab = tabLayout.newTab();
                     tab.setText(Html.fromHtml(String.format(Locale.getDefault(), getString(R.string.tab_text_unselected_line),
-                            measure.getName())));
+                            measure.getMeasure().getName())));
                     tabLayout.addTab(tab);
                 }
 
                 TabLayout.Tab tab = tabLayout.getTabAt(selectedSizeTab < tabLayout.getTabCount() && selectedSizeTab > -1 ? selectedSizeTab : 0);
                 if (tab != null) {
                     tab.setText(Html.fromHtml(String.format(Locale.getDefault(), getString(R.string.tab_text_selected_line),
-                            proDetails.getMeasure().get(selectedSizeTab < tabLayout.getTabCount() && selectedSizeTab > -1 ? selectedSizeTab : 0).getName())));
+                            colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures().get(selectedSizeTab < tabLayout.getTabCount() && selectedSizeTab > -1 ? selectedSizeTab : 0).getMeasure().getName())));
                     tab.select();
                 }
-                if (proDetails.getMeasure().size() > 3)
+                if (colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures().size() > 3)
                     tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
                 else tabLayout.setTabMode(TabLayout.MODE_FIXED);
 
                 tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
                     @Override
                     public void onTabSelected(TabLayout.Tab tab) {
-                        if (proDetails.getMeasure() != null && proDetails.getMeasure().size() > tab.getPosition()) {
+                        if (colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures() != null && colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures().size() > tab.getPosition()) {
                             tab.setText(Html.fromHtml(String.format(Locale.getDefault(), getString(R.string.tab_text_selected_line),
-                                    proDetails.getMeasure().get(tab.getPosition()).getName())));
+                                    colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures().get(tab.getPosition()).getMeasure().getName())));
                         }
 
                     }
 
                     @Override
                     public void onTabUnselected(TabLayout.Tab tab) {
-                        if (proDetails.getMeasure() != null && proDetails.getMeasure().size() > tab.getPosition())
+                        if (colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures() != null && colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures().size() > tab.getPosition())
                             tab.setText(Html.fromHtml(String.format(Locale.getDefault(), getString(R.string.tab_text_unselected_line),
-                                    proDetails.getMeasure().get(tab.getPosition()).getName())));
+                                    colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures().get(tab.getPosition()).getMeasure().getName())));
                     }
 
                     @Override
@@ -415,12 +425,12 @@ public class ProductDetailsActivity extends BaseActivity {
         } else {
 
             Call<AddCartResponse> call;
-            if (proDetails.getMeasure() != null && !proDetails.getMeasure().isEmpty())
+            if (colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures() != null && !colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures().isEmpty())
                 call = RetrofitModel.getApi(this).addOrEditCart("" + product.getId(), amount,
-                        proDetails.getMeasure().get(tabLayout.getSelectedTabPosition()).getId(), proDetails.getColor().getId());
+                        colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures().get(tabLayout.getSelectedTabPosition()).getId(), colorList.get(colorsTabLayout.getSelectedTabPosition()).getColor().getId());
             else
                 call = RetrofitModel.getApi(this).addOrEditCart("" + product.getId(), amount,
-                        proDetails.getColor().getId());
+                        colorList.get(colorsTabLayout.getSelectedTabPosition()).getColor().getId());
 
             call.enqueue(new CallbackRetrofit<AddCartResponse>(this) {
                 @Override

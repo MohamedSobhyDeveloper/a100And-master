@@ -10,13 +10,21 @@ public class ProDetails implements Serializable {
 	private String subcode;
 	private String remark;
 	private String newprice;
-	private List<MeasureItem> measure;
+	private MeasureItem measure;
 	private Object serial;
 	private String basicunit;
 	private String price;
 	private String unitsize;
 	private int id;
 	private String pId;
+
+	public MeasureItem getMeasure() {
+		return measure;
+	}
+
+	public void setMeasure(MeasureItem measure) {
+		this.measure = measure;
+	}
 
 	public void setColor(Color color){
 		this.color = color;
@@ -66,13 +74,6 @@ public class ProDetails implements Serializable {
 		return newprice;
 	}
 
-	public void setMeasure(List<MeasureItem> measure){
-		this.measure = measure;
-	}
-
-	public List<MeasureItem> getMeasure(){
-		return measure;
-	}
 
 	public void setSerial(Object serial){
 		this.serial = serial;

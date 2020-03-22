@@ -23,6 +23,9 @@ public class Product implements Serializable {
     @SerializedName("pro_details")
     private List<ProDetails> proDetails;
 
+    @SerializedName("color")
+    private List<ColorList> colorLists;
+
     @SerializedName("tag_name")
     private Object tagName;
 
@@ -75,6 +78,14 @@ public class Product implements Serializable {
     private Object limitedInStore;
     @SerializedName("measure")
     private List<Measure> measures;
+
+    public List<ColorList> getColorLists() {
+        return colorLists;
+    }
+
+    public void setColorLists(List<ColorList> colorLists) {
+        this.colorLists = colorLists;
+    }
 
     public List<ProDetails> getProDetails() {
         return proDetails;
