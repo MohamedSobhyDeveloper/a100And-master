@@ -115,6 +115,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Holder> {
                 public void onFailure(@NotNull Call<AddCartResponse> call, @NotNull Throwable t) {
                     super.onFailure(call, t);
                     //  progress.setVisibility(View.GONE);
+                    activity.tryagain();
                 }
             });
         }
@@ -157,6 +158,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Holder> {
                 public void onFailure(@NotNull Call<DeleteCartResponse> call, @NotNull Throwable t) {
                     super.onFailure(call, t);
                     // progress.setVisibility(View.GONE);
+                    activity.tryagain();
                 }
             });
         }

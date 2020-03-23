@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -19,15 +20,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.Pazarabo100kwt.pazar.R;
 import com.Pazarabo100kwt.pazar.adapters.CartAdapter;
 import com.Pazarabo100kwt.pazar.baseactivity.BaseActivity;
-import com.Pazarabo100kwt.pazar.retrofit.CallbackRetrofit;
 import com.Pazarabo100kwt.pazar.helpers.PrefManager;
 import com.Pazarabo100kwt.pazar.helpers.RecyclerItemTouchHelper;
-import com.Pazarabo100kwt.pazar.retrofit.RetrofitModel;
 import com.Pazarabo100kwt.pazar.helpers.StaticMembers;
 import com.Pazarabo100kwt.pazar.models.cart.CartResponse;
 import com.Pazarabo100kwt.pazar.models.cart.Data;
-import com.Pazarabo100kwt.pazar.models.message_models.MessageResponse;
-import com.google.gson.Gson;
+import com.Pazarabo100kwt.pazar.retrofit.CallbackRetrofit;
+import com.Pazarabo100kwt.pazar.retrofit.RetrofitModel;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -35,7 +34,7 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import okhttp3.ResponseBody;
+import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Response;
 
@@ -62,6 +61,8 @@ public class CartActivity extends BaseActivity {
     @BindView(R.id.isemptyTv)
     TextView isemptyTv;
     String promocode;
+    @BindView(R.id.tryagainbtn)
+    Button tryagainbtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,12 +70,12 @@ public class CartActivity extends BaseActivity {
         setContentView(R.layout.activity_cart);
         ButterKnife.bind(this);
 
-        promocode="";
+        promocode = "";
 
         toolbar.setNavigationOnClickListener(v -> onBackPressed());
         cartData = new Data();
         cartData.setCart(new ArrayList<>());
-        adapter = new CartAdapter(this, cartData, progress,promocode);
+        adapter = new CartAdapter(this, cartData, progress, promocode);
         recycler.setAdapter(adapter);
 
         getCart(promocode);
@@ -117,7 +118,7 @@ public class CartActivity extends BaseActivity {
 
 //        progress.setVisibility(View.VISIBLE);
 
-        promocode=s;
+        promocode = s;
         getCart(promocode);
 
 
@@ -164,16 +165,18 @@ public class CartActivity extends BaseActivity {
     }
 
     public void getCart(String code) {
+        relativeView.setVisibility(View.VISIBLE);
+        tryagainbtn.setVisibility(View.GONE);
         progress.setVisibility(View.VISIBLE);
         if (PrefManager.getInstance(getBaseContext()).getAPIToken().isEmpty()) {
             openLogin(this);
             finish();
         } else {
             Call<CartResponse> call;
-            if (!code.isEmpty()){
-                 call = RetrofitModel.getApi(getBaseContext()).getCart(code);
+            if (!code.isEmpty()) {
+                call = RetrofitModel.getApi(getBaseContext()).getCart(code);
 
-            }else {
+            } else {
                 call = RetrofitModel.getApi(getBaseContext()).getCart();
 
             }
@@ -185,23 +188,23 @@ public class CartActivity extends BaseActivity {
                     if (response.isSuccessful() && response.body() != null && response.body().getData() != null) {
                         cartData = response.body().getData();
 
-                        if (cartData.getCart()!=null&&cartData.getCart().size()>0){
+                        if (cartData.getCart() != null && cartData.getCart().size() > 0) {
 
                             double limited = Double.parseDouble(cartData.getCart().get(0).getInvoicelimit());
 
-                            double total=cartData.getTotal()-Integer.parseInt(cartData.getCart().get(0).getDeliverycharge());
-                            if (total>= limited) {
+                            double total = cartData.getTotal() - Integer.parseInt(cartData.getCart().get(0).getDeliverycharge());
+                            if (total >= limited) {
                                 order.setVisibility(View.VISIBLE);
                                 invoicelimit.setVisibility(View.GONE);
                             } else {
                                 order.setVisibility(View.GONE);
                                 invoicelimit.setVisibility(View.VISIBLE);
-                                invoicelimit.setText(getString(R.string.Minimum_payment_to_be_completed) + " " + limited+" "+getString(R.string.kd));
+                                invoicelimit.setText(getString(R.string.Minimum_payment_to_be_completed) + " " + limited + " " + getString(R.string.kd));
                             }
-                            adapter.setCartData(cartData,promocode);
+                            adapter.setCartData(cartData, promocode);
                             adapter.notifyDataSetChanged();
 
-                        }else {
+                        } else {
 
                             relativeView.setVisibility(View.GONE);
                             isemptyTv.setVisibility(View.VISIBLE);
@@ -210,7 +213,7 @@ public class CartActivity extends BaseActivity {
 
 
                     } else {
-                        promocode="";
+                        promocode = "";
                         StaticMembers.checkLoginRequired(response.errorBody(), CartActivity.this);
 
                     }
@@ -220,6 +223,8 @@ public class CartActivity extends BaseActivity {
                 public void onFailure(@NotNull Call<CartResponse> call, @NotNull Throwable t) {
                     super.onFailure(call, t);
                     progress.setVisibility(View.GONE);
+                    relativeView.setVisibility(View.GONE);
+                    tryagainbtn.setVisibility(View.VISIBLE);
                 }
             });
         }
@@ -233,5 +238,15 @@ public class CartActivity extends BaseActivity {
                 getCart(promocode);
             }
         }
+    }
+
+    @OnClick(R.id.tryagainbtn)
+    public void onViewClicked() {
+        getCart(promocode);
+    }
+
+    public void tryagain() {
+        relativeView.setVisibility(View.GONE);
+        tryagainbtn.setVisibility(View.VISIBLE);
     }
 }
