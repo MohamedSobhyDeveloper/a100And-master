@@ -281,7 +281,7 @@ public class ProductDetailsActivity extends BaseActivity {
         colorList=product.getColorLists();
 
 
-        if (colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures() == null) {
+        if (colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures().get(0).getMeasure() == null) {
             tabLayout.setVisibility(View.GONE);
             sizesColor.setVisibility(View.GONE);
 
@@ -425,7 +425,7 @@ public class ProductDetailsActivity extends BaseActivity {
         } else {
 
             Call<AddCartResponse> call;
-            if (colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures() != null && !colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures().isEmpty())
+            if (colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures() != null &&colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures().get(0).getMeasure() != null && !colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures().isEmpty())
                 call = RetrofitModel.getApi(this).addOrEditCart("" + product.getId(), amount,
                         colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures().get(tabLayout.getSelectedTabPosition()).getId(), colorList.get(colorsTabLayout.getSelectedTabPosition()).getColor().getId());
             else
