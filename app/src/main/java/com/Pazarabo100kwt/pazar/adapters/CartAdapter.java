@@ -56,8 +56,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Holder> {
         this.promocode=promocode;
     }
 
-    void changeTotal(double total) {
+    void changeTotal(double total,double net) {
         cartData.setTotal(total);
+        cartData.setNet(net);
         notifyItemChanged(cartData.getCart().size());
     }
 
@@ -306,7 +307,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Holder> {
                     if (compoundButton.isPressed()) {
                         cartItem.setNotChecked(!b);
                         float price = Float.parseFloat(cartItem.getPrice()) * Float.parseFloat(cartItem.getQuantity());
-                        changeTotal(cartData.getTotal() + (b ? price : (-1 * price)));
+                        changeTotal(cartData.getTotal() + (b ? price : (-1 * price)),cartData.getNet()+ (b ? price : (-1 * price)));
                     }
                 });
             } else {

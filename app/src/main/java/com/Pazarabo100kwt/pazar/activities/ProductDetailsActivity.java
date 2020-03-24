@@ -427,7 +427,7 @@ public class ProductDetailsActivity extends BaseActivity {
             Call<AddCartResponse> call;
             if (colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures() != null &&colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures().get(0).getMeasure() != null && !colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures().isEmpty())
                 call = RetrofitModel.getApi(this).addOrEditCart("" + product.getId(), amount,
-                        colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures().get(tabLayout.getSelectedTabPosition()).getId(), colorList.get(colorsTabLayout.getSelectedTabPosition()).getColor().getId());
+                        colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures().get(tabLayout.getSelectedTabPosition()).getMeasure().getId(), colorList.get(colorsTabLayout.getSelectedTabPosition()).getColor().getId());
             else
                 call = RetrofitModel.getApi(this).addOrEditCart("" + product.getId(), amount,
                         colorList.get(colorsTabLayout.getSelectedTabPosition()).getColor().getId());
