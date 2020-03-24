@@ -248,7 +248,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Holder> {
 
                     name.setText(product.getName());
                     productId.setText(String.format(Locale.getDefault(), activity.getString(R.string.product_id_s), product.getProductNo()));
-                    if (cartData.getCart().get(position).getSubcode() != null) {
+                    if (cartData.getCart().get(position).getSubcode() != null&&!cartData.getCart().get(position).getSubcode().equals("")) {
                         productnumber.setText(activity.getString(R.string.product_number) + " " + cartData.getCart().get(position).getSubcode() + "");
                         productnumber.setVisibility(View.VISIBLE);
 
