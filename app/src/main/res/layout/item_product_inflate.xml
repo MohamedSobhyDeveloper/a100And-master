@@ -64,6 +64,17 @@
                 tools:ignore="HardcodedText,NestedWeights" />
 
 
+            <TextView
+                android:id="@+id/shape"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="shape:A"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/text_small_x"
+                tools:ignore="HardcodedText,NestedWeights" />
+
+
+
         </LinearLayout>
 
 

@@ -414,6 +414,8 @@ public class StaticMembers {
                 TextView Totalprice = rowView.findViewById(R.id.Totalprice);
                 TextView unit = rowView.findViewById(R.id.unit);
                 TextView color = rowView.findViewById(R.id.color);
+                TextView shape = rowView.findViewById(R.id.shape);
+
 
 //                if (storeOrderResponse.getData().getResult().getItem().get(i).getUnit()!=null&&!storeOrderResponse.getData().getResult().getItem().get(i).getUnit().equals("0")&&!storeOrderResponse.getData().getResult().getItem().get(i).getUnit().equals("")){
 //                    unit.setVisibility(View.VISIBLE);
@@ -430,6 +432,18 @@ public class StaticMembers {
            }else {
                color.setVisibility(View.GONE);
            }
+
+
+                if (storeOrderResponse.getData().getResult().getItem().get(i).getUnit()!=null&&!storeOrderResponse.getData().getResult().getItem().get(i).getUnit().equals("")){
+                    shape.setVisibility(View.VISIBLE);
+                    shape.setText(context.getString(R.string.shape)+" : "+storeOrderResponse.getData().getResult().getItem().get(i).getUnit()+"");
+
+                }else {
+                    shape.setVisibility(View.GONE);
+                }
+
+
+
 
                 name.setText(storeOrderResponse.getData().getResult().getItem().get(i).getProduct_name()+"");
 //                productId.setText(storeOrderResponse.getData().getResult().getItem().get(i).getSubcode()+"-"+storeOrderResponse.getData().getResult().getItem().get(i).getProduct_no());
