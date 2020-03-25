@@ -141,5 +141,6 @@
     <string name="try_again">اعادة المحاولة مرة اخرى</string>
     <string name="product_name"> المنتج</string>
     <string name="quantity">العدد</string>
+    <string name="shape">الشكل</string>
 
 </resources>

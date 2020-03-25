@@ -40,7 +40,7 @@ import retrofit2.Response;
 
 import static com.Pazarabo100kwt.pazar.helpers.StaticMembers.openLogin;
 
-public class CartActivity extends BaseActivity {
+public class CartActivity extends BaseActivity implements CartAdapter.checkTotalInterface {
     private static final int ORDER_REQ = 456;
     @BindView(R.id.recycler)
     RecyclerView recycler;
@@ -75,7 +75,7 @@ public class CartActivity extends BaseActivity {
         toolbar.setNavigationOnClickListener(v -> onBackPressed());
         cartData = new Data();
         cartData.setCart(new ArrayList<>());
-        adapter = new CartAdapter(this, cartData, progress, promocode);
+        adapter = new CartAdapter(this, cartData, progress, promocode,this);
         recycler.setAdapter(adapter);
 
         getCart(promocode);
@@ -248,5 +248,18 @@ public class CartActivity extends BaseActivity {
     public void tryagain() {
         relativeView.setVisibility(View.GONE);
         tryagainbtn.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void onClicktotal(double total) {
+        double limited = Double.parseDouble(cartData.getCart().get(0).getInvoicelimit());
+        if (total >= limited) {
+            order.setVisibility(View.VISIBLE);
+            invoicelimit.setVisibility(View.GONE);
+        } else {
+            order.setVisibility(View.GONE);
+            invoicelimit.setVisibility(View.VISIBLE);
+            invoicelimit.setText(getString(R.string.Minimum_payment_to_be_completed) + " " + limited + " " + getString(R.string.kd));
+        }
     }
 }

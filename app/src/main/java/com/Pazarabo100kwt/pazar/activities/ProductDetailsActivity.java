@@ -300,21 +300,24 @@ public class ProductDetailsActivity extends BaseActivity {
             }*/
 
 
-            if (colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures().get(0).getId()==29) {
+            if (colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures().get(0).getMeasure().getId()==29) {
                 tabLayout.setVisibility(View.GONE);
                 sizesColor.setVisibility(View.GONE);
             } else {
                 selectedSizeTab = tabLayout.getSelectedTabPosition();
                 tabLayout.removeAllTabs();
                 for (MeasureList measure : colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures()) {
-                    TabLayout.Tab tab = tabLayout.newTab();
-                    tab.setText(Html.fromHtml(String.format(Locale.getDefault(), getString(R.string.tab_text_unselected_line),
-                            measure.getMeasure().getName())));
-                    tabLayout.addTab(tab);
+                    if (measure.getMeasure()!=null){
+                        TabLayout.Tab tab = tabLayout.newTab();
+                        tab.setText(Html.fromHtml(String.format(Locale.getDefault(), getString(R.string.tab_text_unselected_line),
+                                measure.getMeasure().getName())));
+                        tabLayout.addTab(tab);
+                    }
+
                 }
 
                 TabLayout.Tab tab = tabLayout.getTabAt(selectedSizeTab < tabLayout.getTabCount() && selectedSizeTab > -1 ? selectedSizeTab : 0);
-                if (tab != null) {
+                if (tab != null&&colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures().get(selectedSizeTab < tabLayout.getTabCount() && selectedSizeTab > -1 ? selectedSizeTab : 0).getMeasure()!=null) {
                     tab.setText(Html.fromHtml(String.format(Locale.getDefault(), getString(R.string.tab_text_selected_line),
                             colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures().get(selectedSizeTab < tabLayout.getTabCount() && selectedSizeTab > -1 ? selectedSizeTab : 0).getMeasure().getName())));
                     tab.select();
@@ -326,7 +329,7 @@ public class ProductDetailsActivity extends BaseActivity {
                 tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
                     @Override
                     public void onTabSelected(TabLayout.Tab tab) {
-                        if (colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures() != null && colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures().size() > tab.getPosition()) {
+                        if (colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures() != null && colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures().size() > tab.getPosition()&&colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures().get(tab.getPosition()).getMeasure()!=null) {
                             tab.setText(Html.fromHtml(String.format(Locale.getDefault(), getString(R.string.tab_text_selected_line),
                                     colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures().get(tab.getPosition()).getMeasure().getName())));
                         }
@@ -335,7 +338,7 @@ public class ProductDetailsActivity extends BaseActivity {
 
                     @Override
                     public void onTabUnselected(TabLayout.Tab tab) {
-                        if (colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures() != null && colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures().size() > tab.getPosition())
+                        if (colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures() != null && colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures().size() > tab.getPosition()&&colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures().get(tab.getPosition()).getMeasure()!=null)
                             tab.setText(Html.fromHtml(String.format(Locale.getDefault(), getString(R.string.tab_text_unselected_line),
                                     colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures().get(tab.getPosition()).getMeasure().getName())));
                     }

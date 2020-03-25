@@ -48,23 +48,26 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Holder> {
     private RelativeLayout progress;
     private Data cartData;
     private String promocode;
+    private checkTotalInterface checkTotalInterface;
 
-    public CartAdapter(CartActivity activity, Data cartData, RelativeLayout progress,String promocode) {
+    public CartAdapter(CartActivity activity, Data cartData, RelativeLayout progress, String promocode, checkTotalInterface checkTotalInterface) {
         this.activity = activity;
         this.cartData = cartData;
         this.progress = progress;
-        this.promocode=promocode;
+        this.promocode = promocode;
+        this.checkTotalInterface = checkTotalInterface;
     }
 
-    void changeTotal(double total,double net) {
+    void changeTotal(double total, double net) {
         cartData.setTotal(total);
         cartData.setNet(net);
         notifyItemChanged(cartData.getCart().size());
+        checkTotalInterface.onClicktotal(total);
     }
 
-    public void setCartData(Data cartData,String promocode) {
+    public void setCartData(Data cartData, String promocode) {
         this.cartData = cartData;
-        this.promocode=promocode;
+        this.promocode = promocode;
     }
 
     @NonNull
@@ -224,6 +227,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Holder> {
         LinearLayout discountLayout;
         @BindView(R.id.productcolor)
         TextView productcolor;
+        @BindView(R.id.productshape)
+        TextView productshape;
 
         Holder(@NonNull View itemView) {
             super(itemView);
@@ -248,7 +253,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Holder> {
 
                     name.setText(product.getName());
                     productId.setText(String.format(Locale.getDefault(), activity.getString(R.string.product_id_s), product.getProductNo()));
-                    if (cartData.getCart().get(position).getSubcode() != null&&!cartData.getCart().get(position).getSubcode().equals("")) {
+                    if (cartData.getCart().get(position).getSubcode() != null && !cartData.getCart().get(position).getSubcode().equals("")) {
                         productnumber.setText(activity.getString(R.string.product_number) + " " + cartData.getCart().get(position).getSubcode() + "");
                         productnumber.setVisibility(View.VISIBLE);
 
@@ -262,6 +267,13 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Holder> {
 
                     } else {
                         productcolor.setVisibility(View.GONE);
+                    }
+
+                    if (cartData.getCart().get(position).getUnit()!=null){
+                        productshape.setText(activity.getString(R.string.shape) + " : " + cartData.getCart().get(position).getUnit().getName()+ "");
+                        productshape.setVisibility(View.VISIBLE);
+                    }else {
+                        productshape.setVisibility(View.GONE);
                     }
 
                     price.setText(String.format(Locale.getDefault(), activity.getString(R.string.s_kwd), cartItem.getPrice()));
@@ -307,7 +319,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Holder> {
                     if (compoundButton.isPressed()) {
                         cartItem.setNotChecked(!b);
                         float price = Float.parseFloat(cartItem.getPrice()) * Float.parseFloat(cartItem.getQuantity());
-                        changeTotal(cartData.getTotal() + (b ? price : (-1 * price)),cartData.getNet()+ (b ? price : (-1 * price)));
+                        changeTotal(cartData.getTotal() + (b ? price : (-1 * price)), cartData.getNet() + (b ? price : (-1 * price)));
                     }
                 });
             } else {
@@ -315,7 +327,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Holder> {
                 discountLayout.setVisibility(View.VISIBLE);
                 itemLayout.setVisibility(View.GONE);
                 total.setText(cartData.getNet() + " " + activity.getString(R.string.kd));
-                discount.setText(cartData.getDiscount()+" "+"%");
+                discount.setText(cartData.getDiscount() + " " + "%");
                 if (cartData.getCart() != null && cartData.getCart().size() > 0) {
                     deliveryLayout.setVisibility(View.VISIBLE);
                     delivery.setText(cartData.getCart().get(0).getDeliverycharge() + " " + activity.getString(R.string.kd));
@@ -323,5 +335,10 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Holder> {
 
             }
         }
+    }
+
+
+    public interface checkTotalInterface {
+        void onClicktotal(double total);
     }
 }
