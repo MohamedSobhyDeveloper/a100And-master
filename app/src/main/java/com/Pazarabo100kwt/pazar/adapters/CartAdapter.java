@@ -136,16 +136,20 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Holder> {
             activity.startActivity(intent);
         } else {
             HashMap hashMap = new HashMap();
-            if (cartItem.getColor() != null) {
+            if (cartItem.getColor() != null&&cartItem.getUnit()!=null) {
 
                 hashMap.put("colorcode", cartItem.getColor().getId() + "");
+                hashMap.put("unitcode", cartItem.getUnit().getId() + "");
                 call = RetrofitModel.getApi(activity).deleteCartItem(cartItem.getProductId(), hashMap);
 
-            } else {
-
-                call = RetrofitModel.getApi(activity).deleteCartItem(cartItem.getProductId(), null);
-
+            } else if (cartItem.getColor()!=null){
+                hashMap.put("colorcode", cartItem.getColor().getId() + "");
+                call = RetrofitModel.getApi(activity).deleteCartItem(cartItem.getProductId(), hashMap);
             }
+                else {
+                call = RetrofitModel.getApi(activity).deleteCartItem(cartItem.getProductId(), null);
+            }
+
             call.enqueue(new CallbackRetrofit<DeleteCartResponse>(activity) {
                 @Override
                 public void onResponse(@NotNull Call<DeleteCartResponse> call, @NotNull Response<DeleteCartResponse> response) {

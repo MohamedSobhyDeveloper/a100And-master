@@ -62,7 +62,7 @@
     <string name="tab_text_unselected_line" translatable="false"><![CDATA[<font color="#EA1F22"><b>%s<b/></font>]]></string>
     <string name="tab_text_selected" translatable="false"><![CDATA[<font color="#ffffff"><b>%s<b/></font><br/><font color="#ffffff">%s</font>]]></string>
     <string name="tab_text_selected_line" translatable="false"><![CDATA[<font color="#ffffff"><b>%s<b/></font>]]></string>
-    <string name="sizes">Shapes/Sizes</string>
+    <string name="sizes">Shape/Size</string>
     <string name="d_reviewers">%d reviewers</string>
     <string name="description">Description:</string>
     <string name="add_to_cart_s">Add to Cart (%.2f)</string>
@@ -146,7 +146,7 @@
     <string name="try_again">Try Again</string>
     <string name="product_name">Product name</string>
     <string name="quantity">Quantity</string>
-    <string name="shape">Shape</string>
+    <string name="shape">Shape/Size</string>
 
 
 </resources>

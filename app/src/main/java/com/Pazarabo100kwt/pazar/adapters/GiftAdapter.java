@@ -1,5 +1,6 @@
 package com.Pazarabo100kwt.pazar.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -37,10 +38,11 @@ public class GiftAdapter extends RecyclerView.Adapter<GiftAdapter.Holder> {
         return new Holder(LayoutInflater.from(context).inflate(R.layout.item_gift, parent, false));
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull Holder holder, int position) {
         DataItem item = list.get(position);
-        holder.discount.setText(String.format(Locale.getDefault(), context.getString(R.string.dis_s_kwd ), item.getAmount()));
+        holder.discount.setText(" % "+" "+item.getAmount());
         holder.code.setText(item.getCode());
         holder.cardCode.setOnClickListener(v -> {
             ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
