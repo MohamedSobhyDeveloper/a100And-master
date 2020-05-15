@@ -16,12 +16,7 @@ public class SplashActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        String s = StaticMembers.getLanguage(getBaseContext());
-        if (s != null && !s.isEmpty()) {
-            StaticMembers.changeLocale(getBaseContext(), s);
-        }else {
-            StaticMembers.changeLocale(getBaseContext(), "ar");
-        }
+
         new Handler().postDelayed(() -> {
             Intent intent;
            /* if (PrefManager.getInstance(getBaseContext()).getAPIToken().isEmpty()) {

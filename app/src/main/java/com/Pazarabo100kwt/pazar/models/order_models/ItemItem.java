@@ -39,6 +39,16 @@ public class ItemItem{
 	@SerializedName("color_name")
 	private String color_name;
 
+	@SerializedName("hastag")
+	private String hastag;
+
+	public String getHastag() {
+		return hastag;
+	}
+
+	public void setHastag(String hastag) {
+		this.hastag = hastag;
+	}
 
 	public String getProduct_no() {
 		return product_no;

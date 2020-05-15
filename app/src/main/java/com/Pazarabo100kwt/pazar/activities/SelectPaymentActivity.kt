@@ -66,7 +66,7 @@ class SelectPaymentActivity : BaseActivity() {
                 val result = response.body()
                 if (response.isSuccessful && result != null) {
                     StaticMembers.toastMessageSuccess(baseContext, result.message)
-                    StaticMembers.opendetailsdialog(this@SelectPaymentActivity,result, cartData.discount.toString(), cartData.net.toString())
+                    StaticMembers.opendetailsdialog(this@SelectPaymentActivity,result, cartData.discount, cartData.total)
                     ordervalue=1
 //                    setResult(Activity.RESULT_OK)
 //                    startActivity(Intent(this@SelectPaymentActivity, ConfirmBillActivity::class.java))

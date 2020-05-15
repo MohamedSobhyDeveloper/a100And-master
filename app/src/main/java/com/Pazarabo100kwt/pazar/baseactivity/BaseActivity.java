@@ -1,12 +1,16 @@
 package com.Pazarabo100kwt.pazar.baseactivity;
 
 import android.annotation.SuppressLint;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.Pazarabo100kwt.pazar.helpers.StaticMembers;
+
+import java.util.Locale;
 
 
 @SuppressLint("Registered")
@@ -18,11 +22,19 @@ public class BaseActivity extends AppCompatActivity {
 
         Log.e("CurrentScreen", this.getClass().getSimpleName());
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+        setuplanguages();
 
     }
 
 
-
+    private void setuplanguages() {
+        String s = StaticMembers.getLanguage(getBaseContext());
+        if (s != null && !s.isEmpty()) {
+            StaticMembers.changeLocale(getBaseContext(), s);
+        }else {
+            StaticMembers.changeLocale(getBaseContext(), "ar");
+        }
+    }
 //    @Override
 //    public void onBackPressed() {
 //        new MaterialStyledDialog.Builder(this)

@@ -104,6 +104,7 @@ public class StaticMembers {
     public static final String MAX_AMOUNT = "max";
     public static final String UNIT_SIZE = "unitsize";
     public static final String COLOR = "color";
+    public static final String Status = "status";
     public static final String SUB_CATEGORY_ID = "subcategory_id";
     public static final String OFFERS = "offer";
     public static final String DISCOUNT = "discount";
@@ -360,7 +361,7 @@ public class StaticMembers {
 
 
     @SuppressLint("SetTextI18n")
-    public static void opendetailsdialog(Context context,StoreOrderResponse storeOrderResponse,String discount,String net) {
+    public static void opendetailsdialog(Context context,StoreOrderResponse storeOrderResponse,double discount,double net) {
         Dialog dialogview = new Dialog(context);
         dialogview.setContentView(R.layout.create_details_popup);
         dialogview.setCanceledOnTouchOutside(false);
@@ -377,9 +378,10 @@ public class StaticMembers {
         LinearLayout llayout_item = dialogview.findViewById(R.id.llayout_item);
         TextView close = dialogview.findViewById(R.id.close);
 
-
-        total.setText(net+" "+context.getString(R.string.kd));
         discounttv.setText(discount+" "+"%");
+        double totalvalueall=net*discount/100;
+        total.setText(net-totalvalueall+" "+context.getString(R.string.kd));
+
         payment_method.setText(storeOrderResponse.getData().getResult().getPaymentWay()+"");
         order_number.setText(context.getString(R.string.order_)+" "+"#"+" "+storeOrderResponse.getData().getResult().getId()+"");
         delivery_charge.setText(storeOrderResponse.getData().getResult().getDeliverycharge()+" "+context.getString(R.string.kd));
@@ -425,9 +427,16 @@ public class StaticMembers {
 //                    unit.setVisibility(View.GONE);
 //                }
 
-           if (!storeOrderResponse.getData().getResult().getItem().get(i).getColor_name().equals("")){
-               color.setVisibility(View.VISIBLE);
-               color.setText(context.getString(R.string.color)+" : "+storeOrderResponse.getData().getResult().getItem().get(i).getColor_name()+"");
+           if (!storeOrderResponse.getData().getResult().getItem().get(i).getHastag().equals("")){
+
+               if (!storeOrderResponse.getData().getResult().getItem().get(i).getColor_name().equals("")){
+                   color.setVisibility(View.VISIBLE);
+                   color.setText(context.getString(R.string.color)+" : "+storeOrderResponse.getData().getResult().getItem().get(i).getColor_name()+"");
+
+               }else {
+                   color.setVisibility(View.GONE);
+
+               }
 
            }else {
                color.setVisibility(View.GONE);

@@ -75,12 +75,29 @@ public interface ApiInterface {
                                         @Field(StaticMembers.UNIT_SIZE) int unitSize,
                                         @Field(StaticMembers.COLOR) int color
     );
+    @FormUrlEncoded
+    @POST(StaticMembers.EDIT_CART)
+    Call<AddCartResponse> addOrEditCart(@Field(StaticMembers.PRODUCT_ID) String id,
+                                        @Field(StaticMembers.QUANTITY) int q,
+                                        @Field(StaticMembers.UNIT_SIZE) int unitSize,
+                                        @Field(StaticMembers.COLOR) int color,
+                                        @Field(StaticMembers.Status) String status
+
+    );
 
     @FormUrlEncoded
     @POST(StaticMembers.EDIT_CART)
     Call<AddCartResponse> addOrEditCart(@Field(StaticMembers.PRODUCT_ID) String id,
                                         @Field(StaticMembers.QUANTITY) int q,
                                         @Field(StaticMembers.COLOR) int color
+    );
+    @FormUrlEncoded
+    @POST(StaticMembers.EDIT_CART)
+    Call<AddCartResponse> addOrEditCart(@Field(StaticMembers.PRODUCT_ID) String id,
+                                        @Field(StaticMembers.QUANTITY) int q,
+                                        @Field(StaticMembers.COLOR) int color,
+                                         @Field(StaticMembers.Status) String status
+
     );
 
 

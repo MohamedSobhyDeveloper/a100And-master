@@ -217,6 +217,8 @@ public class CartActivity extends BaseActivity implements CartAdapter.checkTotal
                         StaticMembers.checkLoginRequired(response.errorBody(), CartActivity.this);
 
                     }
+
+
                 }
 
                 @Override
@@ -250,6 +252,7 @@ public class CartActivity extends BaseActivity implements CartAdapter.checkTotal
         tryagainbtn.setVisibility(View.VISIBLE);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onClicktotal(double total) {
         double limited = Double.parseDouble(cartData.getCart().get(0).getInvoicelimit());
