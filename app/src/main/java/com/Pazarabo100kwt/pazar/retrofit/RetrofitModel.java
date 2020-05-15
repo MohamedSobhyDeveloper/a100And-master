@@ -26,6 +26,7 @@ public class RetrofitModel {
         OkHttpClient.Builder builder = new OkHttpClient().newBuilder();
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+
         builder.addInterceptor(interceptor);
         builder.addInterceptor(chain -> {
             Request.Builder requestBuilder = chain.request().newBuilder();
