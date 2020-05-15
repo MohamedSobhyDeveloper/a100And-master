@@ -206,7 +206,7 @@ public class StaticMembers {
                     textInputLayout.setError(errorMessage);
                     textInputLayout.setErrorEnabled(true);
                 } else {
-                    if (!isValidPassword(s.toString())) {
+                    if (s.length()<6) {
 
                         textInputLayout.setError(errorMessage2);
                         textInputLayout.setErrorEnabled(true);
@@ -222,7 +222,7 @@ public class StaticMembers {
             textInputLayout.setErrorEnabled(true);
             return false;
         } else {
-            if (!isValidPassword(editText.getText().toString())) {
+            if (editText.getText().toString().length()<6) {
                 textInputLayout.setError(errorMessage2);
                 textInputLayout.setErrorEnabled(true);
                 return false;

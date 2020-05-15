@@ -19,6 +19,8 @@ public class SplashActivity extends BaseActivity {
         String s = StaticMembers.getLanguage(getBaseContext());
         if (s != null && !s.isEmpty()) {
             StaticMembers.changeLocale(getBaseContext(), s);
+        }else {
+            StaticMembers.changeLocale(getBaseContext(), "ar");
         }
         new Handler().postDelayed(() -> {
             Intent intent;

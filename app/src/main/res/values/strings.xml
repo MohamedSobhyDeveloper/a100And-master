@@ -48,7 +48,7 @@
     <string name="password">Password</string>
     <string name="conf_password">Confirm password</string>
     <string name="change">Change</string>
-    <string name="password_invalid_error">Password must have upper and lower character and number min 8 chr max:255
+    <string name="password_invalid_error">Password must be 6 symbols at least
     </string>
     <string name="email_doesnt_exist">Email doesn\'t exist</string>
     <string name="filter">Filter</string>

@@ -49,7 +49,7 @@
     <string name="password">كلمة السر</string>
     <string name="conf_password">تأكيد كلمة السر</string>
     <string name="change">تغيير</string>
-    <string name="password_invalid_error">كلمة السر يجب ان تكون حروف كبيرة و صغيرة و أرقام من 8 حروف إلى55 2 حرف</string>
+    <string name="password_invalid_error">كلمة السر يجب ان تكون 6 رموز على الاقل</string>
     <string name="email_doesnt_exist">البريد الالكتروني ليس موجودًا</string>
     <string name="filter">فلترة</string>
     <string name="sort_by">ترتيب:</string>
