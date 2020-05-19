@@ -19,11 +19,12 @@ import androidx.fragment.app.Fragment;
 
 import com.Pazarabo100kwt.pazar.R;
 import com.Pazarabo100kwt.pazar.helpers.StaticMembers;
+import com.potyvideo.library.AndExoPlayerView;
 
 public class VideoFragment extends Fragment {
 
     private String url;
-    private VideoView video;
+    private AndExoPlayerView video;
     private RelativeLayout progress;
     private boolean isPlaying, isFirst;
     private int stopPosition = 0;
@@ -55,89 +56,90 @@ public class VideoFragment extends Fragment {
             url = savedInstanceState.getString(StaticMembers.VIDEO);
             stopPosition = savedInstanceState.getInt(StaticMembers.STOP);
         }
-        video = view.findViewById(R.id.video);
-        MediaController controller = new MediaController(getContext());
-        styleMediaController(controller);
-        controller.setMediaPlayer(video);
-        video.setMediaController(controller);
+        video = view.findViewById(R.id.andExoPlayerView);
+
+//        video = view.findViewById(R.id.video);
+//        MediaController controller = new MediaController(getContext());
+//        styleMediaController(controller);
+//        controller.setMediaPlayer(video);
+//        video.setMediaController(controller);
         clicker = view.findViewById(R.id.clicker);
-        progress = view.findViewById(R.id.progress);
-        video.setVideoPath(url);
-        isPlaying = false;
-        isFirst = true;
-        video.setOnPreparedListener(mp -> {
-            progress.setVisibility(View.GONE);
-            if (isPlaying) {
-                video.seekTo(stopPosition);
-                video.postDelayed(() -> video.start(), 200);
-            }
-            isFirst = false;
-        });
-        //resumeVideo();
+//        progress = view.findViewById(R.id.progress);
+//        video.setVideoPath(url);
+//        isPlaying = false;
+//        isFirst = true;
+//        video.setOnPreparedListener(mp -> {
+//            progress.setVisibility(View.GONE);
+//            if (isPlaying) {
+//                video.seekTo(stopPosition);
+//                video.postDelayed(() -> video.start(), 200);
+//            }
+//            isFirst = false;
+//        });
+//        //resumeVideo();
         clicker.setOnClickListener(v -> {
-            progress.setVisibility(View.VISIBLE);
-            if (isPlaying) {
-                progress.setVisibility(View.GONE);
-                pauseVideo();
-            } else {
-                video.resume();
-                clicker.setVisibility(View.GONE);
+            clicker.setVisibility(View.GONE);
+            if (url!=null){
+                video.setVisibility(View.VISIBLE);
+                video.setSource(url);
+
             }
-            isPlaying = !isPlaying;
+
         });
+
     }
 
-    @Override
-    public void onPause() {
-        super.onPause();
-        pauseVideo();
-    }
-
-    public void pauseVideo() {
-        if (video != null) {
-            stopPosition = video.getCurrentPosition();
-            video.pause();
-            clicker.setVisibility(View.VISIBLE);
-        }
-    }
-
-    public void resumeVideo() {
-        if (video != null) {
-            progress.setVisibility(View.VISIBLE);
-            isPlaying = true;
-            video.resume();
-        }
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        if (video != null && !isFirst) {
-            video.seekTo(stopPosition);
-            video.start();
-        }
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        if (video != null)
-            video.resume();
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        if (video != null)
-            video.stopPlayback();
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if (video != null)
-            video.stopPlayback();
-    }
+//    @Override
+//    public void onPause() {
+//        super.onPause();
+//        pauseVideo();
+//    }
+//
+//    public void pauseVideo() {
+//        if (video != null) {
+//            stopPosition = video.getCurrentPosition();
+//            video.pause();
+//            clicker.setVisibility(View.VISIBLE);
+//        }
+//    }
+//
+//    public void resumeVideo() {
+//        if (video != null) {
+//            progress.setVisibility(View.VISIBLE);
+//            isPlaying = true;
+//            video.resume();
+//        }
+//    }
+//
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//        if (video != null && !isFirst) {
+//            video.seekTo(stopPosition);
+//            video.start();
+//        }
+//    }
+//
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//        if (video != null)
+//            video.resume();
+//    }
+//
+//    @Override
+//    public void onStop() {
+//        super.onStop();
+//        if (video != null)
+//            video.stopPlayback();
+//    }
+//
+//    @Override
+//    public void onDestroy() {
+//        super.onDestroy();
+//        if (video != null)
+//            video.stopPlayback();
+//    }
 
     private void styleMediaController(View view) {
         if (view instanceof MediaController) {
