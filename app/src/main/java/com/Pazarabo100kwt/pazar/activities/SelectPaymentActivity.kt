@@ -42,7 +42,7 @@ class SelectPaymentActivity : BaseActivity() {
         for (cart in cartData.cart) {
             if (!cart.isNotChecked) {
                 noSelected = false
-                builder.addFormDataPart("product_id[]", "" + cart.id)
+                builder.addFormDataPart("cart_id[]", "" + cart.id)
             }
         }
         if (noSelected) {

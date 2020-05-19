@@ -13,9 +13,12 @@
         tools:ignore="AllowBackup,GoogleAppIndexingWarning,UnusedAttribute">
         <activity
             android:name=".activities.MainActivity"
-            android:windowSoftInputMode="stateAlwaysHidden" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            />
         <activity
             android:name=".activities.SplashActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.Transparent">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,21 +26,47 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.LogInActivity" />
-        <activity android:name=".activities.RegistrationActivity" />
-        <activity android:name=".activities.SearchProductsActivity" />
+        <activity android:name=".activities.LogInActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activities.RegistrationActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activities.SearchProductsActivity"
+            android:screenOrientation="portrait"
+            />
         <activity
             android:name=".activities.CategoriesActivity"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity android:name=".activities.SubCategoriesActivity" />
-        <activity android:name=".activities.FavoritesActivity" />
-        <activity android:name=".activities.ProductDetailsActivity" />
-        <activity android:name=".activities.CartActivity" />
-        <activity android:name=".activities.ConfirmBillActivity" />
-        <activity android:name=".activities.OffersActivity" />
-        <activity android:name=".activities.DiscountsActivity" />
-        <activity android:name=".activities.GiftsActivity" />
-        <activity android:name=".activities.SelectPaymentActivity" />
+            android:windowSoftInputMode="stateAlwaysHidden"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activities.SubCategoriesActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activities.FavoritesActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activities.ProductDetailsActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activities.CartActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activities.ConfirmBillActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activities.OffersActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activities.DiscountsActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activities.GiftsActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activities.SelectPaymentActivity"
+            android:screenOrientation="portrait"
+            />
     </application>
 
 </manifest>
