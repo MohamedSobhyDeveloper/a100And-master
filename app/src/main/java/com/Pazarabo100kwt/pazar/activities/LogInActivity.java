@@ -24,6 +24,8 @@ import com.Pazarabo100kwt.pazar.models.login_models.LoginResponse;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Objects;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import retrofit2.Call;
@@ -74,11 +76,11 @@ public class LogInActivity extends BaseActivity {
 
             progress.setVisibility(View.VISIBLE);
             LogInSendModel sendModel = new LogInSendModel();
-            if (emailText.getText().toString().contains("@"))
-                sendModel.setEmail(emailText.getText().toString());
-            else
-                sendModel.setTelephone(emailText.getText().toString());
-            sendModel.setPassword(passwordText.getText().toString());
+//            if (emailText.getText().toString().contains("@"))
+                sendModel.setEmail(Objects.requireNonNull(emailText.getText()).toString());
+//            else
+//                sendModel.setTelephone(emailText.getText().toString());
+            sendModel.setPassword(Objects.requireNonNull(passwordText.getText()).toString());
             Call<LoginResponse> call = RetrofitModel.getApi(this).login(sendModel);
             call.enqueue(new CallbackRetrofit<LoginResponse>(this) {
                 @Override
