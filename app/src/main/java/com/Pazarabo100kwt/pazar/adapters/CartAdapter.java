@@ -284,12 +284,15 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Holder> {
                     }
 
                     if (cartData.getCart().get(position).getColor() != null) {
-                        productcolor.setText(activity.getString(R.string.color) + " : " + cartData.getCart().get(position).getColor().getName() + "");
-                        productcolor.setVisibility(View.VISIBLE);
 
-                    } else {
+                        if (cartData.getCart().get(position).getColor().getHastag()!=null&&!cartData.getCart().get(position).getColor().getHastag().equals("")){
+                            productcolor.setText(activity.getString(R.string.color) + " : " + cartData.getCart().get(position).getColor().getName() + "");
+                            productcolor.setVisibility(View.VISIBLE);
+
+                        } else {
                         productcolor.setVisibility(View.GONE);
                     }
+                }
 
                     if (cartData.getCart().get(position).getUnit()!=null){
                         productshape.setText(activity.getString(R.string.shape) + " : " + cartData.getCart().get(position).getUnit().getName()+ "");
