@@ -312,16 +312,34 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Holder> {
                     if (amount < 2)
                         remove.setEnabled(false);
                     else remove.setEnabled(true);
+
+                    int maxamountv= Integer.parseInt(cartItem.getProduct().getProDetails().get(0).getCount());
+                    if (amount>=maxamountv){
+                        add.setEnabled(false);
+                    }else {
+                        add.setEnabled(true);
+                    }
+
+
                     add.setOnClickListener(v -> {
+                        add.setEnabled(false);
+                        remove.setEnabled(false);
                         amountText.setText(String.format(Locale.getDefault(), "%d", amount + 1));
                         changeCartItem(cartItem,1, amountText,"");
                         if (amount + 1 > 1)
                             remove.setEnabled(true);
+                        int maxamount= Integer.parseInt(cartItem.getProduct().getProDetails().get(0).getCount());
+
+                        if (amount>=maxamount){
+                            add.setEnabled(false);
+                        }
                /* if (product.getProDetails().get(0).getCount() != null)
                     if (amount >= Integer.parseInt(product.getProDetails().get(0).getCount()))
                         add.setEnabled(false);*/
                     });
                     remove.setOnClickListener(v -> {
+                        remove.setEnabled(false);
+                        add.setEnabled(false);
                         if (amount < 2)
                             remove.setEnabled(false);
                         else {
@@ -329,12 +347,13 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Holder> {
                             changeCartItem(cartItem,  1, amountText,"1");
                             if (amount - 1 < 2)
                                 remove.setEnabled(false);
-                   /* if (product.getProDetails().get(0).getCount() != null)
-                        if (amount < Integer.parseInt(product.getProDetails().get(0).getCount()))
-                            add.setEnabled(true);*/
+                if (cartItem.getProduct().getProDetails().get(0).getCount() != null)
+                        if (amount-1 < Integer.parseInt(product.getProDetails().get(0).getCount()))
+                            add.setEnabled(true);
                         }
                     });
                 }
+
                 RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) linear.getLayoutParams();
                 params.setMargins(0, 0, 0, 0);
                 linear.setLayoutParams(params);

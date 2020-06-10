@@ -29,19 +29,17 @@ import com.Pazarabo100kwt.pazar.adapters.ProductImagesAdapter;
 import com.Pazarabo100kwt.pazar.baseactivity.BaseActivity;
 import com.Pazarabo100kwt.pazar.fragments.ImageFragment;
 import com.Pazarabo100kwt.pazar.fragments.VideoFragment;
-import com.Pazarabo100kwt.pazar.models.search_products.ColorList;
-import com.Pazarabo100kwt.pazar.models.search_products.Measure;
-import com.Pazarabo100kwt.pazar.models.search_products.MeasureList;
-import com.Pazarabo100kwt.pazar.retrofit.CallbackRetrofit;
 import com.Pazarabo100kwt.pazar.helpers.PrefManager;
-import com.Pazarabo100kwt.pazar.retrofit.RetrofitModel;
 import com.Pazarabo100kwt.pazar.helpers.StaticMembers;
 import com.Pazarabo100kwt.pazar.models.cart.AddCartResponse;
-import com.Pazarabo100kwt.pazar.models.search_products.MeasureItem;
+import com.Pazarabo100kwt.pazar.models.search_products.ColorList;
+import com.Pazarabo100kwt.pazar.models.search_products.MeasureList;
 import com.Pazarabo100kwt.pazar.models.search_products.ProDetails;
 import com.Pazarabo100kwt.pazar.models.search_products.Product;
 import com.Pazarabo100kwt.pazar.models.wishlist_models.ErrorWishListResponse;
 import com.Pazarabo100kwt.pazar.models.wishlist_models.WishlistResponse;
+import com.Pazarabo100kwt.pazar.retrofit.CallbackRetrofit;
+import com.Pazarabo100kwt.pazar.retrofit.RetrofitModel;
 import com.google.android.material.tabs.TabLayout;
 import com.google.gson.GsonBuilder;
 import com.wang.avi.AVLoadingIndicatorView;
@@ -108,7 +106,7 @@ public class ProductDetailsActivity extends BaseActivity {
     CheckBox favorite;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
-    int amount = 1, maxAmount = 1;
+    int amount = 1, maxAmount =0;
     Product product;
     ProductImagesAdapter adapter;
     VideoFragment videoFragment;
@@ -121,6 +119,8 @@ public class ProductDetailsActivity extends BaseActivity {
     LinearLayout botomLayout;
     @BindView(R.id.avi)
     AVLoadingIndicatorView avi;
+    @BindView(R.id.soldout)
+    TextView soldout;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -169,7 +169,7 @@ public class ProductDetailsActivity extends BaseActivity {
             public void onPageSelected(int position) {
                 StaticMembers.changeDots(position, adapter.getCount(), indicator, getBaseContext());
                 if (videoFragment != null)
-                    if (position != 0){
+                    if (position != 0) {
 
                     }
 //                        videoFragment.pauseVideo();
@@ -241,9 +241,9 @@ public class ProductDetailsActivity extends BaseActivity {
             if (amount > 1)
                 remove.setEnabled(true);
 //            if (product.getProDetails().get(0).getCount() != null){
-                if (amount >= maxAmount){
-                    add.setEnabled(false);
-                }
+            if (amount >= maxAmount) {
+                add.setEnabled(false);
+            }
 
             if (actualPrice != null && !actualPrice.isEmpty()) {
                 float total = amount * Float.parseFloat(actualPrice);
@@ -253,17 +253,17 @@ public class ProductDetailsActivity extends BaseActivity {
         });
         remove.setOnClickListener(v ->
         {
-            if (amount < 2){
+            if (amount < 2) {
                 remove.setEnabled(false);
-            }else {
+            } else {
                 amount--;
                 amountText.setText(String.format(Locale.getDefault(), "%d", amount));
                 if (amount < 2)
                     remove.setEnabled(false);
 //                if (product.getProDetails().get(0).getCount() != null)
-                    if (amount < maxAmount){
-                        add.setEnabled(true);
-                    }
+                if (amount < maxAmount) {
+                    add.setEnabled(true);
+                }
                 if (actualPrice != null && !actualPrice.isEmpty()) {
                     float total = amount * Float.parseFloat(actualPrice);
                     addToCartText.setText(String.format(Locale.getDefault(), getString(R.string.add_to_cart_s), total));
@@ -280,7 +280,7 @@ public class ProductDetailsActivity extends BaseActivity {
     void changeViewsOnSelection() {
         proDetails = product.getProDetails().get(colorsTabLayout.getSelectedTabPosition());
 
-        colorList=product.getColorLists();
+        colorList = product.getColorLists();
 
 
         if (colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures().get(0).getMeasure() == null) {
@@ -302,14 +302,14 @@ public class ProductDetailsActivity extends BaseActivity {
             }*/
 
 
-            if (colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures().get(0).getMeasure().getId()==29) {
+            if (colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures().get(0).getMeasure().getId() == 29) {
                 tabLayout.setVisibility(View.GONE);
                 sizesColor.setVisibility(View.GONE);
             } else {
                 selectedSizeTab = tabLayout.getSelectedTabPosition();
                 tabLayout.removeAllTabs();
                 for (MeasureList measure : colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures()) {
-                    if (measure.getMeasure()!=null){
+                    if (measure.getMeasure() != null) {
                         TabLayout.Tab tab = tabLayout.newTab();
                         tab.setText(Html.fromHtml(String.format(Locale.getDefault(), getString(R.string.tab_text_unselected_line),
                                 measure.getMeasure().getName())));
@@ -319,7 +319,7 @@ public class ProductDetailsActivity extends BaseActivity {
                 }
 
                 TabLayout.Tab tab = tabLayout.getTabAt(selectedSizeTab < tabLayout.getTabCount() && selectedSizeTab > -1 ? selectedSizeTab : 0);
-                if (tab != null&&colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures().get(selectedSizeTab < tabLayout.getTabCount() && selectedSizeTab > -1 ? selectedSizeTab : 0).getMeasure()!=null) {
+                if (tab != null && colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures().get(selectedSizeTab < tabLayout.getTabCount() && selectedSizeTab > -1 ? selectedSizeTab : 0).getMeasure() != null) {
                     tab.setText(Html.fromHtml(String.format(Locale.getDefault(), getString(R.string.tab_text_selected_line),
                             colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures().get(selectedSizeTab < tabLayout.getTabCount() && selectedSizeTab > -1 ? selectedSizeTab : 0).getMeasure().getName())));
                     tab.select();
@@ -331,7 +331,7 @@ public class ProductDetailsActivity extends BaseActivity {
                 tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
                     @Override
                     public void onTabSelected(TabLayout.Tab tab) {
-                        if (colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures() != null && colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures().size() > tab.getPosition()&&colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures().get(tab.getPosition()).getMeasure()!=null) {
+                        if (colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures() != null && colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures().size() > tab.getPosition() && colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures().get(tab.getPosition()).getMeasure() != null) {
                             tab.setText(Html.fromHtml(String.format(Locale.getDefault(), getString(R.string.tab_text_selected_line),
                                     colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures().get(tab.getPosition()).getMeasure().getName())));
                         }
@@ -340,7 +340,7 @@ public class ProductDetailsActivity extends BaseActivity {
 
                     @Override
                     public void onTabUnselected(TabLayout.Tab tab) {
-                        if (colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures() != null && colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures().size() > tab.getPosition()&&colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures().get(tab.getPosition()).getMeasure()!=null)
+                        if (colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures() != null && colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures().size() > tab.getPosition() && colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures().get(tab.getPosition()).getMeasure() != null)
                             tab.setText(Html.fromHtml(String.format(Locale.getDefault(), getString(R.string.tab_text_unselected_line),
                                     colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures().get(tab.getPosition()).getMeasure().getName())));
                     }
@@ -354,18 +354,28 @@ public class ProductDetailsActivity extends BaseActivity {
             }
 
 
-
         }
 
 
         if (proDetails.getCount() != null) {
             maxAmount = Integer.parseInt(proDetails.getCount());
-            if (maxAmount==1){
+            if (maxAmount == 0) {
+                soldout.setVisibility(View.VISIBLE);
+                addToCart.setVisibility(View.GONE);
+                buyNow.setVisibility(View.GONE);
+                amount=0;
                 add.setEnabled(false);
                 remove.setEnabled(false);
+            } else {
+                amount=1;
+
+                if (maxAmount == 1) {
+                    add.setEnabled(false);
+                    remove.setEnabled(false);
+                }
+//                if (amount > maxAmount)
+//                    amount = 1;
             }
-            if (amount > maxAmount)
-                amount = 1;
         }
         if (proDetails.getPrice() != null) {
             priceOld.setText(String.format(Locale.getDefault(), getString(R.string.s_kwd), proDetails.getPrice()));
@@ -380,11 +390,6 @@ public class ProductDetailsActivity extends BaseActivity {
             priceOld.setVisibility(View.VISIBLE);
             actualPrice = proDetails.getNewprice();
         } else priceOld.setVisibility(View.GONE);
-        if (actualPrice != null) {
-            addToCartText.setText(String.format(Locale.getDefault(), getString(R.string.add_to_cart_s), Float.parseFloat(actualPrice) * amount));
-            buyNowText.setText(String.format(Locale.getDefault(), getString(R.string.buy_now_s), amount * Float.parseFloat(actualPrice)));
-            amountText.setText(String.format(Locale.getDefault(), "%d", amount));
-        }
 
         if (amount < 2)
             remove.setEnabled(false);
@@ -393,6 +398,22 @@ public class ProductDetailsActivity extends BaseActivity {
                 add.setEnabled(false);
             else
                 add.setEnabled(true);
+
+
+            if (maxAmount==0){
+                soldout.setVisibility(View.VISIBLE);
+                addToCart.setVisibility(View.GONE);
+                buyNow.setVisibility(View.GONE);
+                amount=0;
+                add.setEnabled(false);
+                remove.setEnabled(false);
+            }
+
+        if (actualPrice != null) {
+            addToCartText.setText(String.format(Locale.getDefault(), getString(R.string.add_to_cart_s), Float.parseFloat(actualPrice) * amount));
+            buyNowText.setText(String.format(Locale.getDefault(), getString(R.string.buy_now_s), amount * Float.parseFloat(actualPrice)));
+            amountText.setText(String.format(Locale.getDefault(), "%d", amount));
+        }
     }
 
     @Override
@@ -430,7 +451,7 @@ public class ProductDetailsActivity extends BaseActivity {
         } else {
 
             Call<AddCartResponse> call;
-            if (colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures() != null &&colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures().get(0).getMeasure() != null && !colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures().isEmpty())
+            if (colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures() != null && colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures().get(0).getMeasure() != null && !colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures().isEmpty())
                 call = RetrofitModel.getApi(this).addOrEditCart("" + product.getId(), amount,
                         colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures().get(tabLayout.getSelectedTabPosition()).getMeasure().getId(), colorList.get(colorsTabLayout.getSelectedTabPosition()).getColor().getId());
             else
@@ -448,7 +469,7 @@ public class ProductDetailsActivity extends BaseActivity {
                     } else if (response.body() != null) {
                         StaticMembers.toastMessageSuccess(getBaseContext(), response.body().getMessage());
 //                        amountText.setText(String.format(Locale.getDefault(), "%d", amount));
-                        amount=1;
+                        amount = 1;
                         amountText.setText("1");
                         float total = amount * Float.parseFloat(actualPrice);
                         addToCartText.setText(String.format(Locale.getDefault(), getString(R.string.add_to_cart_s), total));
@@ -525,16 +546,14 @@ public class ProductDetailsActivity extends BaseActivity {
             Intent shareIntent = new Intent(Intent.ACTION_SEND);
             shareIntent.setType("text/plain");
             shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Pazar");
-            String shareMessage= getString(R.string.Let_me_recommend_this_app)+"\n";
-            shareMessage = shareMessage +" "+ "https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID +"\n\n";
+            String shareMessage = getString(R.string.Let_me_recommend_this_app) + "\n";
+            shareMessage = shareMessage + " " + "https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID + "\n\n";
             shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
             startActivity(Intent.createChooser(shareIntent, "choose one"));
-        } catch(Exception e) {
+        } catch (Exception e) {
             //e.toString();
         }
     }
-
-
 
 
 }

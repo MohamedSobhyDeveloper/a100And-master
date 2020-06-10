@@ -3,6 +3,8 @@ package com.Pazarabo100kwt.pazar.models.cart;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.Generated;
+
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 @Generated("com.robohorse.robopojogenerator")
@@ -73,6 +75,18 @@ public class Product implements Serializable {
 
 	@SerializedName("limited_in_store")
 	private Object limitedInStore;
+
+	@SerializedName("pro_details")
+	@Expose
+	private List<ProDetail> proDetails = null;
+
+	public List<ProDetail> getProDetails() {
+		return proDetails;
+	}
+
+	public void setProDetails(List<ProDetail> proDetails) {
+		this.proDetails = proDetails;
+	}
 
 	public void setLocationInStore2(String locationInStore2){
 		this.locationInStore2 = locationInStore2;

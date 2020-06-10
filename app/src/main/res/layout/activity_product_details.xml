@@ -241,6 +241,18 @@
                         android:contentDescription="@string/add"
                         android:src="@drawable/add_drawable" />
 
+                    <TextView
+                        android:id="@+id/soldout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/sold_out"
+                        android:textAllCaps="true"
+                        android:visibility="gone"
+                        android:textColor="@color/red"
+                        android:textSize="@dimen/text_normal_x"
+                        android:textStyle="bold" />
+
+
                 </LinearLayout>
 
                 <View
