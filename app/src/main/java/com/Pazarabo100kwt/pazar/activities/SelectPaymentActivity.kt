@@ -3,6 +3,9 @@ package com.Pazarabo100kwt.pazar.activities
 import android.os.Bundle
 import android.view.View
 import android.view.View.VISIBLE
+import android.widget.RadioButton
+import android.widget.RadioGroup
+import android.widget.Toast
 import butterknife.ButterKnife
 import com.Pazarabo100kwt.pazar.R
 import com.Pazarabo100kwt.pazar.baseactivity.BaseActivity
@@ -21,6 +24,7 @@ import retrofit2.Response
 class SelectPaymentActivity : BaseActivity() {
 
      var ordervalue=0
+     var payment=""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +33,12 @@ class SelectPaymentActivity : BaseActivity() {
         setSupportActionBar(toolbar)
         toolbar.setNavigationOnClickListener { v -> onBackPressed() }
         done.setOnClickListener { v -> orderNow() }
+        payment=resources.getString(R.string.cash)
 
+        radiagroup.setOnCheckedChangeListener { group, checkedId ->
+            val radio: RadioButton = findViewById(checkedId)
+                payment="${radio.text}"
+        }
     }
 
     private fun orderNow() {
@@ -54,10 +63,13 @@ class SelectPaymentActivity : BaseActivity() {
         val call:Call<StoreOrderResponse>
         if (!promocode.isEmpty()){
             builder.addFormDataPart("code",promocode)
+            builder.addFormDataPart("payment",payment)
+
             call = RetrofitModel.getApi(this).storeOrder(builder.build())
 
         }else{
-             call = RetrofitModel.getApi(this).storeOrder(builder.build())
+            builder.addFormDataPart("payment",payment)
+            call = RetrofitModel.getApi(this).storeOrder(builder.build())
 
         }
         call.enqueue(object : CallbackRetrofit<StoreOrderResponse>(this) {
@@ -66,7 +78,7 @@ class SelectPaymentActivity : BaseActivity() {
                 val result = response.body()
                 if (response.isSuccessful && result != null) {
                     StaticMembers.toastMessageSuccess(baseContext, result.message)
-                    StaticMembers.opendetailsdialog(this@SelectPaymentActivity,result, cartData.discount, cartData.total)
+                    StaticMembers.opendetailsdialog(this@SelectPaymentActivity,result, cartData.discount, cartData.total,payment)
                     ordervalue=1
 //                    setResult(Activity.RESULT_OK)
 //                    startActivity(Intent(this@SelectPaymentActivity, ConfirmBillActivity::class.java))

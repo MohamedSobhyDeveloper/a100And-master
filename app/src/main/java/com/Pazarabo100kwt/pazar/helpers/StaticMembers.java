@@ -361,7 +361,7 @@ public class StaticMembers {
 
 
     @SuppressLint("SetTextI18n")
-    public static void opendetailsdialog(Context context,StoreOrderResponse storeOrderResponse,double discount,double net) {
+    public static void opendetailsdialog(Context context,StoreOrderResponse storeOrderResponse,double discount,double net,String payment) {
         Dialog dialogview = new Dialog(context);
         dialogview.setContentView(R.layout.create_details_popup);
         dialogview.setCanceledOnTouchOutside(false);

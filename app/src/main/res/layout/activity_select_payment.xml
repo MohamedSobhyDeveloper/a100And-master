@@ -46,17 +46,17 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:layout_marginStart="@dimen/_20sdp"
+                android:id="@+id/radiagroup"
                 android:background="@drawable/roundedbuttondrawablewhite"
                 android:layout_marginEnd="@dimen/_20sdp"
                 android:layout_marginBottom="100dp"
                 android:padding="@dimen/_25sdp">
 
                 <RadioButton
-                    android:id="@+id/visa"
+                    android:id="@+id/link"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:enabled="false"
                     android:text="@string/visa_knet"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/text_normal_x" />

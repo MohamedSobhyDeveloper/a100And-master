@@ -115,7 +115,7 @@
     <string name="s_required">%s مطلوب</string>
     <string name="select_payment">اختر طريقة الدفع</string>
     <string name="done">دفع</string>
-    <string name="visa_knet">VISA / KNET</string>
+    <string name="visa_knet">ارسال رابط</string>
     <string name="cash">نقدا</string>
     <string name="select_at_least_one">اختر على الاقل عنصر واحد</string>
     <string name="want_to_exit">هل تريد الخروج من التطبيق</string>

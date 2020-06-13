@@ -277,6 +277,82 @@ public class ProductDetailsActivity extends BaseActivity {
 
     int selectedSizeTab = 0;
 
+    void changeViewsOnSelectioncolor(int position) {
+        proDetails = product.getProDetails().get(position);
+
+
+        if (proDetails.getCount() != null) {
+            maxAmount = Integer.parseInt(proDetails.getCount());
+            if (maxAmount == 0) {
+                addToCart.setVisibility(View.GONE);
+                buyNow.setVisibility(View.GONE);
+                amount=0;
+                add.setEnabled(false);
+                remove.setEnabled(false);
+                soldout.setVisibility(View.VISIBLE);
+
+            } else {
+                amount=1;
+
+                if (maxAmount == 1) {
+                    add.setEnabled(false);
+                    remove.setEnabled(false);
+                }else {
+                    add.setEnabled(true);
+                    remove.setEnabled(true);
+                }
+                soldout.setVisibility(View.GONE);
+                addToCart.setVisibility(View.VISIBLE);
+                buyNow.setVisibility(View.VISIBLE);
+
+//                if (amount > maxAmount)
+//                    amount = 1;
+            }
+        }
+        if (proDetails.getPrice() != null) {
+            priceOld.setText(String.format(Locale.getDefault(), getString(R.string.s_kwd), proDetails.getPrice()));
+            priceOld.setPaintFlags(priceOld.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+            price.setText(String.format(Locale.getDefault(), getString(R.string.s_kwd), proDetails.getPrice()));
+            actualPrice = proDetails.getPrice();
+        }
+
+
+        if (proDetails.getNewprice() != null) {
+            price.setText(String.format(Locale.getDefault(), getString(R.string.s_kwd), proDetails.getNewprice()));
+            priceOld.setVisibility(View.VISIBLE);
+            actualPrice = proDetails.getNewprice();
+        } else priceOld.setVisibility(View.GONE);
+
+        if (amount < 2)
+            remove.setEnabled(false);
+        if (proDetails.getCount() != null)
+            if (amount > Integer.parseInt(proDetails.getCount()))
+                add.setEnabled(false);
+            else
+                add.setEnabled(true);
+
+
+        if (maxAmount==0){
+            soldout.setVisibility(View.VISIBLE);
+            addToCart.setVisibility(View.GONE);
+            buyNow.setVisibility(View.GONE);
+            amount=0;
+            add.setEnabled(false);
+            remove.setEnabled(false);
+        }else {
+            soldout.setVisibility(View.GONE);
+
+        }
+
+        if (actualPrice != null) {
+            addToCartText.setText(String.format(Locale.getDefault(), getString(R.string.add_to_cart_s), Float.parseFloat(actualPrice) * amount));
+            buyNowText.setText(String.format(Locale.getDefault(), getString(R.string.buy_now_s), amount * Float.parseFloat(actualPrice)));
+            amountText.setText(String.format(Locale.getDefault(), "%d", amount));
+        }
+    }
+
+
+
     void changeViewsOnSelection() {
         proDetails = product.getProDetails().get(colorsTabLayout.getSelectedTabPosition());
 
@@ -336,6 +412,8 @@ public class ProductDetailsActivity extends BaseActivity {
                                     colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures().get(tab.getPosition()).getMeasure().getName())));
                         }
 
+                       changeViewsOnSelectioncolor(tab.getPosition());
+
                     }
 
                     @Override
@@ -360,19 +438,26 @@ public class ProductDetailsActivity extends BaseActivity {
         if (proDetails.getCount() != null) {
             maxAmount = Integer.parseInt(proDetails.getCount());
             if (maxAmount == 0) {
-                soldout.setVisibility(View.VISIBLE);
                 addToCart.setVisibility(View.GONE);
                 buyNow.setVisibility(View.GONE);
                 amount=0;
                 add.setEnabled(false);
                 remove.setEnabled(false);
+                soldout.setVisibility(View.VISIBLE);
+
             } else {
                 amount=1;
 
                 if (maxAmount == 1) {
                     add.setEnabled(false);
                     remove.setEnabled(false);
+                }else {
+                    add.setEnabled(true);
+                    remove.setEnabled(true);
                 }
+                soldout.setVisibility(View.GONE);
+                addToCart.setVisibility(View.VISIBLE);
+                buyNow.setVisibility(View.VISIBLE);
 //                if (amount > maxAmount)
 //                    amount = 1;
             }
@@ -400,14 +485,17 @@ public class ProductDetailsActivity extends BaseActivity {
                 add.setEnabled(true);
 
 
-            if (maxAmount==0){
-                soldout.setVisibility(View.VISIBLE);
-                addToCart.setVisibility(View.GONE);
-                buyNow.setVisibility(View.GONE);
-                amount=0;
-                add.setEnabled(false);
-                remove.setEnabled(false);
-            }
+        if (maxAmount==0){
+            soldout.setVisibility(View.VISIBLE);
+            addToCart.setVisibility(View.GONE);
+            buyNow.setVisibility(View.GONE);
+            amount=0;
+            add.setEnabled(false);
+            remove.setEnabled(false);
+        }else {
+            soldout.setVisibility(View.GONE);
+
+        }
 
         if (actualPrice != null) {
             addToCartText.setText(String.format(Locale.getDefault(), getString(R.string.add_to_cart_s), Float.parseFloat(actualPrice) * amount));
@@ -415,6 +503,10 @@ public class ProductDetailsActivity extends BaseActivity {
             amountText.setText(String.format(Locale.getDefault(), "%d", amount));
         }
     }
+
+
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
