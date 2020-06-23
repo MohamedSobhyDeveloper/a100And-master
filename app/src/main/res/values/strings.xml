@@ -120,8 +120,8 @@
     <string name="s_required">%s is required</string>
     <string name="select_payment">Select Payment</string>
     <string name="done">Done</string>
-    <string name="visa_knet">Send Link</string>
-    <string name="cash">Cash</string>
+    <string name="visa_knet">KNET</string>
+    <string name="cash">CASH</string>
     <string name="select_at_least_one">Please select at least one cart item</string>
     <string name="want_to_exit">Want To Exit App</string>
     <string name="yes">yes</string>

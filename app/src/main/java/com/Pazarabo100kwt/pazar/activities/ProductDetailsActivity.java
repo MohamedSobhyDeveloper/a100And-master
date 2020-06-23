@@ -46,6 +46,7 @@ import com.wang.avi.AVLoadingIndicatorView;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -122,6 +123,8 @@ public class ProductDetailsActivity extends BaseActivity {
     @BindView(R.id.soldout)
     TextView soldout;
 
+    List<ColorList> SortColorList;
+
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -189,8 +192,18 @@ public class ProductDetailsActivity extends BaseActivity {
         }
 
         if (product.getColorLists() != null) {
+               SortColorList=new ArrayList<>();
+            for (int i=0;i<product.getProDetails().size();i++){
+                for (int j=0;j<product.getColorLists().size();j++){
+                    if (product.getProDetails().get(i).getColor().getId()==product.getColorLists().get(j).getColor().getId()){
+                        SortColorList.add(product.getColorLists().get(j));
+                    }
+
+                }
+            }
+
             View view = null;
-            for (ColorList details : product.getColorLists()) {
+            for (ColorList details : SortColorList) {
                 TabLayout.Tab tab = colorsTabLayout.newTab();
                 view = LayoutInflater.from(this).inflate(R.layout.item_color_tab, null, false);
                 TextView textView = view.findViewById(R.id.text);
@@ -207,6 +220,24 @@ public class ProductDetailsActivity extends BaseActivity {
                 }
 
             }
+
+//            for (int i=0;i<product.getProDetails().size();i++){
+//                TabLayout.Tab tab = colorsTabLayout.newTab();
+//                view = LayoutInflater.from(this).inflate(R.layout.item_color_tab, null, false);
+//                TextView textView = view.findViewById(R.id.text);
+//                CardView cardView = view.findViewById(R.id.colorCard);
+//                if (product.getProDetails().get(i).getColor() != null) {
+//                    textView.setText(product.getProDetails().get(i).getColor().getCode() + "");
+//                    if (product.getProDetails().get(i).getColor().getHastag().isEmpty()) {
+//                        colorsTabLayout.setVisibility(View.GONE);
+//                        selectColor.setVisibility(View.GONE);
+//                    } else
+//                        cardView.setCardBackgroundColor(Color.parseColor("#" + product.getProDetails().get(i).getColor() .getColor().getHastag()));
+//                    tab.setCustomView(view);
+//                    colorsTabLayout.addTab(tab);
+//                }
+//            }
+//
             if (view != null) {
                 ViewGroup.LayoutParams params = view.getLayoutParams();
                 ViewGroup.LayoutParams params1 = colorsTabLayout.getLayoutParams();
@@ -356,7 +387,7 @@ public class ProductDetailsActivity extends BaseActivity {
     void changeViewsOnSelection() {
         proDetails = product.getProDetails().get(colorsTabLayout.getSelectedTabPosition());
 
-        colorList = product.getColorLists();
+        colorList = SortColorList;
 
 
         if (colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures().get(0).getMeasure() == null) {
@@ -437,7 +468,7 @@ public class ProductDetailsActivity extends BaseActivity {
 
         if (proDetails.getCount() != null) {
             maxAmount = Integer.parseInt(proDetails.getCount());
-            if (maxAmount == 0) {
+            if (maxAmount == 0||maxAmount<0) {
                 addToCart.setVisibility(View.GONE);
                 buyNow.setVisibility(View.GONE);
                 amount=0;
@@ -492,7 +523,11 @@ public class ProductDetailsActivity extends BaseActivity {
             amount=0;
             add.setEnabled(false);
             remove.setEnabled(false);
-        }else {
+        }else if (maxAmount == 1) {
+            add.setEnabled(false);
+            remove.setEnabled(false);
+        }
+        else {
             soldout.setVisibility(View.GONE);
 
         }

@@ -41,35 +41,67 @@
                 tools:ignore="ContentDescription" />
 
 
-            <RadioGroup
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginStart="@dimen/_20sdp"
-                android:id="@+id/radiagroup"
+                android:orientation="horizontal"
                 android:background="@drawable/roundedbuttondrawablewhite"
+                android:layout_marginStart="@dimen/_20sdp"
                 android:layout_marginEnd="@dimen/_20sdp"
                 android:layout_marginBottom="100dp"
-                android:padding="@dimen/_25sdp">
+                android:layout_marginTop="@dimen/_10sdp"
 
-                <RadioButton
-                    android:id="@+id/link"
-                    android:layout_width="match_parent"
+                >
+                <RadioGroup
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:text="@string/visa_knet"
-                    android:textColor="@android:color/black"
-                    android:textSize="@dimen/text_normal_x" />
+                    android:id="@+id/radiagroup"
+                    android:padding="@dimen/_25sdp">
 
-                <RadioButton
-                    android:id="@+id/cash"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:checked="true"
-                    android:text="@string/cash"
-                    android:textColor="@android:color/black"
-                    android:textSize="@dimen/text_normal_x" />
-            </RadioGroup>
+                    <RadioButton
+                        android:id="@+id/link"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:text="@string/visa_knet"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/text_normal_x" />
+
+                    <RadioButton
+                        android:id="@+id/cash"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:text="@string/cash"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/text_normal_x" />
+                </RadioGroup>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_gravity="center"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:src="@drawable/knet"/>
+                    <ImageView
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:src="@drawable/cash"/>
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/done"
