@@ -196,7 +196,10 @@ public class ProductDetailsActivity extends BaseActivity {
             for (int i=0;i<product.getProDetails().size();i++){
                 for (int j=0;j<product.getColorLists().size();j++){
                     if (product.getProDetails().get(i).getColor().getId()==product.getColorLists().get(j).getColor().getId()){
-                        SortColorList.add(product.getColorLists().get(j));
+                        if (!SortColorList.contains(product.getColorLists().get(j))){
+                            SortColorList.add(product.getColorLists().get(j));
+                        }
+
                     }
 
                 }
