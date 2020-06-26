@@ -443,7 +443,10 @@ public class ProductDetailsActivity extends BaseActivity {
                                     colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures().get(tab.getPosition()).getMeasure().getName())));
                         }
 
-                       changeViewsOnSelectioncolor(tab.getPosition());
+                        if (product.getColorLists()!=null&&product.getColorLists().size()<2){
+                            changeViewsOnSelectioncolor(tab.getPosition());
+                        }
+
 
                     }
 
