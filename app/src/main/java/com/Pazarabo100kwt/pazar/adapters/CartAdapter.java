@@ -312,8 +312,15 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Holder> {
                     if (amount < 2)
                         remove.setEnabled(false);
                     else remove.setEnabled(true);
+                    
+                    int maxamountv = 0;
+                    for (int i=0;i<cartItem.getProduct().getProDetails().size();i++){
+                        if (cartItem.getProduct().getProDetails().get(i).getColor().equals(cartItem.getColor().getId()+"")){
+                             maxamountv= Integer.parseInt(cartItem.getProduct().getProDetails().get(i).getCount());
 
-                    int maxamountv= Integer.parseInt(cartItem.getProduct().getProDetails().get(0).getCount());
+                        }
+                    }
+
                     if (amount>=maxamountv){
                         add.setEnabled(false);
                     }else {
