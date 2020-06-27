@@ -43,7 +43,7 @@ public class MeasureList implements Serializable {
     private String price;
     @SerializedName("newprice")
     @Expose
-    private Object newprice;
+    private String newprice;
     @SerializedName("remark")
     @Expose
     private String remark;
@@ -139,11 +139,11 @@ public class MeasureList implements Serializable {
         this.price = price;
     }
 
-    public Object getNewprice() {
+    public String getNewprice() {
         return newprice;
     }
 
-    public void setNewprice(Object newprice) {
+    public void setNewprice(String newprice) {
         this.newprice = newprice;
     }
 

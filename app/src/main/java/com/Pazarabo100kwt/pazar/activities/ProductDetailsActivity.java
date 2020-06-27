@@ -386,6 +386,81 @@ public class ProductDetailsActivity extends BaseActivity {
     }
 
 
+    void changeViewsOnSelectionMoreshapes(int position) {
+//        proDetails = product.getProDetails().get(position);
+
+
+        if (colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures().get(position).getCount() != null) {
+            maxAmount = Integer.parseInt(colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures().get(position).getCount());
+            if (maxAmount == 0) {
+                addToCart.setVisibility(View.GONE);
+                buyNow.setVisibility(View.GONE);
+                amount=0;
+                add.setEnabled(false);
+                remove.setEnabled(false);
+                soldout.setVisibility(View.VISIBLE);
+
+            } else {
+                amount=1;
+
+                if (maxAmount == 1) {
+                    add.setEnabled(false);
+                    remove.setEnabled(false);
+                }else {
+                    add.setEnabled(true);
+                    remove.setEnabled(true);
+                }
+                soldout.setVisibility(View.GONE);
+                addToCart.setVisibility(View.VISIBLE);
+                buyNow.setVisibility(View.VISIBLE);
+
+//                if (amount > maxAmount)
+//                    amount = 1;
+            }
+        }
+        if (colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures().get(position).getPrice() != null) {
+            priceOld.setText(String.format(Locale.getDefault(), getString(R.string.s_kwd), proDetails.getPrice()));
+            priceOld.setPaintFlags(priceOld.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+            price.setText(String.format(Locale.getDefault(), getString(R.string.s_kwd), colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures().get(position).getPrice()));
+            actualPrice = colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures().get(position).getPrice();
+        }
+
+
+        if (colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures().get(position).getNewprice() != null) {
+            price.setText(String.format(Locale.getDefault(), getString(R.string.s_kwd), proDetails.getNewprice()));
+            priceOld.setVisibility(View.VISIBLE);
+            actualPrice = colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures().get(position).getNewprice();
+        } else priceOld.setVisibility(View.GONE);
+
+        if (amount < 2)
+            remove.setEnabled(false);
+        if (colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures().get(position).getCount() != null)
+            if (amount > Integer.parseInt(colorList.get(colorsTabLayout.getSelectedTabPosition()).getMeasures().get(position).getCount()))
+                add.setEnabled(false);
+            else
+                add.setEnabled(true);
+
+
+        if (maxAmount==0){
+            soldout.setVisibility(View.VISIBLE);
+            addToCart.setVisibility(View.GONE);
+            buyNow.setVisibility(View.GONE);
+            amount=0;
+            add.setEnabled(false);
+            remove.setEnabled(false);
+        }else {
+            soldout.setVisibility(View.GONE);
+
+        }
+
+        if (actualPrice != null) {
+            addToCartText.setText(String.format(Locale.getDefault(), getString(R.string.add_to_cart_s), Float.parseFloat(actualPrice) * amount));
+            buyNowText.setText(String.format(Locale.getDefault(), getString(R.string.buy_now_s), amount * Float.parseFloat(actualPrice)));
+            amountText.setText(String.format(Locale.getDefault(), "%d", amount));
+        }
+    }
+
+
 
     void changeViewsOnSelection() {
         proDetails = product.getProDetails().get(colorsTabLayout.getSelectedTabPosition());
@@ -448,6 +523,8 @@ public class ProductDetailsActivity extends BaseActivity {
 
                         if (product.getColorLists()!=null&&product.getColorLists().size()<2){
                             changeViewsOnSelectioncolor(tab.getPosition());
+                        }else {
+                            changeViewsOnSelectionMoreshapes(tab.getPosition());
                         }
 
 
