@@ -21,10 +21,13 @@ import com.Pazarabo100kwt.pazar.R;
 import com.Pazarabo100kwt.pazar.helpers.StaticMembers;
 import com.potyvideo.library.AndExoPlayerView;
 
+import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
+import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
+
 public class VideoFragment extends Fragment {
 
     private String url;
-    private AndExoPlayerView video;
+    private JCVideoPlayerStandard video;
     private RelativeLayout progress;
     private boolean isPlaying, isFirst;
     private int stopPosition = 0;
@@ -57,6 +60,9 @@ public class VideoFragment extends Fragment {
             stopPosition = savedInstanceState.getInt(StaticMembers.STOP);
         }
         video = view.findViewById(R.id.andExoPlayerView);
+        video.setUp(url
+                , JCVideoPlayerStandard.SCREEN_LAYOUT_NORMAL, "嫂子闭眼睛");
+
 
 //        video = view.findViewById(R.id.video);
 //        MediaController controller = new MediaController(getContext());
@@ -81,7 +87,9 @@ public class VideoFragment extends Fragment {
             clicker.setVisibility(View.GONE);
             if (url!=null){
                 video.setVisibility(View.VISIBLE);
-                video.setSource(url);
+                video.setUp(url
+                        , JCVideoPlayerStandard.SCREEN_LAYOUT_NORMAL, "嫂子闭眼睛");
+
 
             }
 
@@ -140,6 +148,9 @@ public class VideoFragment extends Fragment {
 //        if (video != null)
 //            video.stopPlayback();
 //    }
+
+
+
 
     private void styleMediaController(View view) {
         if (view instanceof MediaController) {

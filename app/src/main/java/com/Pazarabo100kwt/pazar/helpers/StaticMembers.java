@@ -50,7 +50,7 @@ import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
 public class StaticMembers {
 
-    public static final String domain = "http://aboo100.com/shop/public/api/";
+    public static final String domain = "http://pazarweb.online/shop/public/api/";
     public static final String CAT = "categories";
     public static final String CATEGORY = "category";
     public static final String CATEGORY_ID = "category_id";

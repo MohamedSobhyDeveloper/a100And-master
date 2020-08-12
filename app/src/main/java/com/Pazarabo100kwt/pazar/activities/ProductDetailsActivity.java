@@ -176,7 +176,7 @@ public class ProductDetailsActivity extends BaseActivity {
 
                     }
 //                        videoFragment.pauseVideo();
-                //  else videoFragment.resumeVideo();
+//                  else videoFragment.resumeVideo();
             }
 
             @Override
