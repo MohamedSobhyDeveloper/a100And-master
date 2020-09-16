@@ -172,8 +172,7 @@ public class ProductDetailsActivity extends BaseActivity {
             public void onPageSelected(int position) {
                 StaticMembers.changeDots(position, adapter.getCount(), indicator, getBaseContext());
                 if (videoFragment != null)
-                    if (position != 0) {
-
+                    if (position == 0) {
                     }
 //                        videoFragment.pauseVideo();
 //                  else videoFragment.resumeVideo();

@@ -48,7 +48,6 @@
                 android:background="@drawable/roundedbuttondrawablewhite"
                 android:layout_marginStart="@dimen/_20sdp"
                 android:layout_marginEnd="@dimen/_20sdp"
-                android:layout_marginBottom="100dp"
                 android:layout_marginTop="@dimen/_10sdp"
 
                 >
@@ -101,7 +100,19 @@
 
             </LinearLayout>
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:layout_marginEnd="50dp"
+                android:padding="@dimen/_10sdp"
+                android:gravity="center"
+                tools:text="@string/done"
+                android:layout_marginBottom="100dp"
+                android:textColor="@color/red"
+                android:id="@+id/tv_result"
 
+                />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/done"

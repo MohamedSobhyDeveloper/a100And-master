@@ -6,6 +6,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebChromeClient;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.MediaController;
@@ -32,6 +36,7 @@ public class VideoFragment extends Fragment {
     private boolean isPlaying, isFirst;
     private int stopPosition = 0;
     private ImageView clicker;
+    WebView videoWeb;
 
     public static VideoFragment getInstance(String url) {
         VideoFragment f = new VideoFragment();
@@ -59,41 +64,39 @@ public class VideoFragment extends Fragment {
             url = savedInstanceState.getString(StaticMembers.VIDEO);
             stopPosition = savedInstanceState.getInt(StaticMembers.STOP);
         }
-        video = view.findViewById(R.id.andExoPlayerView);
-        video.setUp(url
-                , JCVideoPlayerStandard.SCREEN_LAYOUT_NORMAL, "嫂子闭眼睛");
+
+        videoWeb =view.findViewById(R.id.videoWebView);
+
+//        videoWeb.setWebViewClient(new Browser_Home());
+//        videoWeb.setWebChromeClient(new ChromeClient(((VideosListActivity) context)));
+        videoWeb.setWebViewClient(new WebViewClient());
+        videoWeb.getSettings().setJavaScriptEnabled(true);
+        videoWeb.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
+        videoWeb.getSettings().setPluginState(WebSettings.PluginState.OFF);
+        videoWeb.getSettings().setMediaPlaybackRequiresUserGesture(false);
+        videoWeb.setWebChromeClient(new WebChromeClient());
+        videoWeb.loadUrl(url);
 
 
-//        video = view.findViewById(R.id.video);
-//        MediaController controller = new MediaController(getContext());
-//        styleMediaController(controller);
-//        controller.setMediaPlayer(video);
-//        video.setMediaController(controller);
-        clicker = view.findViewById(R.id.clicker);
-//        progress = view.findViewById(R.id.progress);
-//        video.setVideoPath(url);
-//        isPlaying = false;
-//        isFirst = true;
-//        video.setOnPreparedListener(mp -> {
-//            progress.setVisibility(View.GONE);
-//            if (isPlaying) {
-//                video.seekTo(stopPosition);
-//                video.postDelayed(() -> video.start(), 200);
+
+//        video = view.findViewById(R.id.andExoPlayerView);
+//        video.setUp(url
+//                , JCVideoPlayerStandard.SCREEN_LAYOUT_NORMAL, "嫂子闭眼睛");
+//
+//
+//        clicker = view.findViewById(R.id.clicker);
+//
+//        clicker.setOnClickListener(v -> {
+//            clicker.setVisibility(View.GONE);
+//            if (url!=null){
+//                video.setVisibility(View.VISIBLE);
+//                video.setUp(url
+//                        , JCVideoPlayerStandard.SCREEN_LAYOUT_NORMAL, "嫂子闭眼睛");
+//
+//
 //            }
-//            isFirst = false;
+//
 //        });
-//        //resumeVideo();
-        clicker.setOnClickListener(v -> {
-            clicker.setVisibility(View.GONE);
-            if (url!=null){
-                video.setVisibility(View.VISIBLE);
-                video.setUp(url
-                        , JCVideoPlayerStandard.SCREEN_LAYOUT_NORMAL, "嫂子闭眼睛");
-
-
-            }
-
-        });
 
     }
 
@@ -168,4 +171,6 @@ public class VideoFragment extends Fragment {
             ((SeekBar) view).getThumb().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
         }
     }
+
+
 }
