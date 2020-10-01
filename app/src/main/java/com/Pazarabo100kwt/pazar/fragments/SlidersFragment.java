@@ -42,8 +42,7 @@ public class SlidersFragment extends Fragment {
         return fragment;
     }
 
-    @BindView(R.id.recycler)
-    RecyclerView recyclerView;
+
     @BindView(R.id.progress)
     RelativeLayout progress;
     List<ArrayList<SliderItem>> sliderList;

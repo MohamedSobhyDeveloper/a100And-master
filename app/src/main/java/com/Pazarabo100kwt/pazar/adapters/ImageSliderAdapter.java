@@ -35,7 +35,7 @@ public class ImageSliderAdapter extends LoopingPagerAdapter<SliderItem> {
 //        Glide.with(context).load(getItem(listPosition).getPhoto()).fitCenter().into(imageView);
         Glide.with(context)
                 .asBitmap()
-                .apply(new RequestOptions().override(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT))
+//                .apply(new RequestOptions().override(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT))
                 .load(getItem(listPosition).getPhoto())
                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                 .into(imageView);
